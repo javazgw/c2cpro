@@ -6,6 +6,16 @@
            version="3.0">
 
 
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>com.ht.c2c.server.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <!-- url-pattern>*</url-pattern-->
+        <servlet-name>Login</servlet-name>
+    </filter-mapping>
+
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/init</url-pattern>
@@ -23,4 +33,15 @@
         <servlet-name>test</servlet-name>
         <servlet-class>com.ht.c2c.server.testservlet</servlet-class>
     </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>com.ht.c2c.server.LoginServlet</servlet-class>
+    </servlet>
+
 </web-app>
