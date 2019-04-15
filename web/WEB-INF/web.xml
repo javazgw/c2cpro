@@ -17,7 +17,7 @@
     </filter-mapping>
 
     <servlet-mapping>
-        <servlet-name>BaseServlet</servlet-name>
+        <servlet-name>init</servlet-name>
         <url-pattern>/init</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -26,7 +26,7 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>BaseServlet</servlet-name>
+        <servlet-name>init</servlet-name>
         <servlet-class>com.ht.c2c.server.Init</servlet-class>
     </servlet>
     <servlet>
@@ -34,6 +34,14 @@
         <servlet-class>com.ht.c2c.server.testservlet</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>BS</servlet-name>
+        <url-pattern>/BS</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>BS</servlet-name>
+        <servlet-class>com.ht.c2c.server.BaseServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -43,5 +51,52 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>com.ht.c2c.server.LoginServlet</servlet-class>
     </servlet>
+
+
+    <!--goods-->
+    <filter>
+        <filter-name>goods</filter-name>
+        <filter-class>com.ht.c2c.server.Goods</filter-class>
+        <init-param>
+            <param-name>param1</param-name>
+            <param-value>valueOfparam1</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>goods</filter-name>
+        <url-pattern>/goods/*</url-pattern>
+    </filter-mapping>
+
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>goods</servlet-name>-->
+        <!--<url-pattern>/goods</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <!--<servlet>-->
+        <!--<servlet-name>goods</servlet-name>-->
+        <!--<servlet-class>com.ht.c2c.server.BaseServlet</servlet-class>-->
+    <!--</servlet>-->
+    <!--user-->
+    <!--order-->
+    <filter>
+        <filter-name>order</filter-name>
+        <filter-class>com.ht.c2c.server.Order</filter-class>
+        <init-param>
+            <param-name>param1</param-name>
+            <param-value>valueOfparam1</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>order</filter-name>
+        <url-pattern>/order/*</url-pattern>
+    </filter-mapping>
+
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>order</servlet-name>-->
+        <!--<url-pattern>/order</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <!--<servlet>-->
+        <!--<servlet-name>order</servlet-name>-->
+        <!--<servlet-class>com.ht.c2c.server.BaseServlet</servlet-class>-->
+    <!--</servlet>-->
 
 </web-app>
