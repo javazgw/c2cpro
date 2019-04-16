@@ -20,7 +20,7 @@ public class Configure {
     static Logger logger;
 
     private Configure() throws IOException {
-        desettingfile = Configure.class.getProtectionDomain().getCodeSource().getLocation() + "setting/setting.ini";
+        desettingfile = Configure.class.getProtectionDomain().getCodeSource().getLocation() + "setting.ini";
 //        desettingfile = Configure.class.getResource("setting.ini").getFile();
         desettingfile = desettingfile.substring(5, desettingfile.length());
         PropertyConfigurator.configure(desettingfile);
