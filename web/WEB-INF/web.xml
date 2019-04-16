@@ -98,5 +98,19 @@
         <!--<servlet-name>order</servlet-name>-->
         <!--<servlet-class>com.ht.c2c.server.BaseServlet</servlet-class>-->
     <!--</servlet>-->
+    <listener>
+        <listener-class>
+            org.apache.commons.fileupload.servlet.FileCleanerCleanup
+        </listener-class>
+    </listener>
+    <!--<servlet>-->
+        <!--<servlet-name>up</servlet-name>-->
 
+
+        <!--<servlet-class>com.ht.c2c.server.FileUpload</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>up</servlet-name>-->
+        <!--<url-pattern>/up</url-pattern>-->
+    <!--</servlet-mapping>-->
 </web-app>

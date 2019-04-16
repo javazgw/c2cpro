@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_c2cpro" default="compile.module.c2cpro">
+  <dirname property="module.c2cpro.basedir" file="${ant.file.module_c2cpro}"/>
+  
+  <property name="module.jdk.home.c2cpro" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.c2cpro" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.c2cpro" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.c2cpro" value="-encoding UTF-8 -source 5 -target 1.5 ${compiler.args}"/>
+  
+  <property name="c2cpro.output.dir" value="${module.c2cpro.basedir}/out/production/C2CPro"/>
+  <property name="c2cpro.testoutput.dir" value="${module.c2cpro.basedir}/out/test/C2CPro"/>
+  
+  <path id="c2cpro.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="c2cpro.module.production.classpath">
+    <path refid="${module.jdk.classpath.c2cpro}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:8.0.15.classpath"/>
+    <path refid="library.maven:_com.google.protobuf:protobuf-java:3.6.1.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.1.16.classpath"/>
+    <path refid="library.maven:_com.alibaba:fastjson:1.2.56.classpath"/>
+    <path refid="library.maven:_javax.mail:javax.mail-api:1.6.2.classpath"/>
+    <path refid="library.maven:_redis.clients:jedis:3.0.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.22.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-pool2:2.4.3.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-core:2.11.2.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-api:2.11.2.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_commons-fileupload:commons-fileupload:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.2.classpath"/>
+  </path>
+  
+  <path id="c2cpro.runtime.production.module.classpath">
+    <pathelement location="${c2cpro.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:8.0.15.classpath"/>
+    <path refid="library.maven:_com.google.protobuf:protobuf-java:3.6.1.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.1.16.classpath"/>
+    <path refid="library.maven:_com.alibaba:fastjson:1.2.56.classpath"/>
+    <path refid="library.maven:_javax.mail:javax.mail-api:1.6.2.classpath"/>
+    <path refid="library.maven:_redis.clients:jedis:3.0.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.22.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-pool2:2.4.3.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-core:2.11.2.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-api:2.11.2.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_commons-fileupload:commons-fileupload:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.2.classpath"/>
+  </path>
+  
+  <path id="c2cpro.module.classpath">
+    <path refid="${module.jdk.classpath.c2cpro}"/>
+    <pathelement location="${c2cpro.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:8.0.15.classpath"/>
+    <path refid="library.maven:_com.google.protobuf:protobuf-java:3.6.1.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.1.16.classpath"/>
+    <path refid="library.maven:_com.alibaba:fastjson:1.2.56.classpath"/>
+    <path refid="library.maven:_javax.mail:javax.mail-api:1.6.2.classpath"/>
+    <path refid="library.maven:_redis.clients:jedis:3.0.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.22.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-pool2:2.4.3.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-core:2.11.2.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-api:2.11.2.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-log4j12:1.7.26.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_commons-fileupload:commons-fileupload:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.2.classpath"/>
+  </path>
+  
+  <path id="c2cpro.runtime.module.classpath">
+    <pathelement location="${c2cpro.testoutput.dir}"/>
+    <pathelement location="${c2cpro.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:8.0.15.classpath"/>
+    <path refid="library.maven:_com.google.protobuf:protobuf-java:3.6.1.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.1.16.classpath"/>
+    <path refid="library.maven:_com.alibaba:fastjson:1.2.56.classpath"/>
+    <path refid="library.maven:_javax.mail:javax.mail-api:1.6.2.classpath"/>
+    <path refid="library.maven:_redis.clients:jedis:3.0.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.22.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-pool2:2.4.3.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-core:2.11.2.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-api:2.11.2.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-log4j12:1.7.26.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_commons-fileupload:commons-fileupload:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.2.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.c2cpro">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.c2cpro">
+    <patternset refid="excluded.from.module.c2cpro"/>
+  </patternset>
+  
+  <path id="c2cpro.module.sourcepath">
+    <dirset dir="${module.c2cpro.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/setting"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.c2cpro" depends="compile.module.c2cpro.production,compile.module.c2cpro.tests" description="Compile module C2CPro"/>
+  
+  <target name="compile.module.c2cpro.production" depends="register.custom.compilers" description="Compile module C2CPro; production classes">
+    <mkdir dir="${c2cpro.output.dir}"/>
+    <javac2 destdir="${c2cpro.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.c2cpro}/javac">
+      <compilerarg line="${compiler.args.c2cpro}"/>
+      <bootclasspath refid="c2cpro.module.bootclasspath"/>
+      <classpath refid="c2cpro.module.production.classpath"/>
+      <src refid="c2cpro.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.c2cpro"/>
+    </javac2>
+    
+    <copy todir="${c2cpro.output.dir}">
+      <fileset dir="${module.c2cpro.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.c2cpro.basedir}/src/main/setting">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.c2cpro.tests" depends="register.custom.compilers,compile.module.c2cpro.production" description="compile module C2CPro; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.c2cpro" description="cleanup module">
+    <delete dir="${c2cpro.output.dir}"/>
+    <delete dir="${c2cpro.testoutput.dir}"/>
+  </target>
+</project>
