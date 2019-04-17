@@ -83,7 +83,12 @@ public class SQLTools {
 
     public static void main(String[] argv) throws Exception {
 
-        SQLTools.getInstance().Update("insert into bcode (bcode,bname) values('0001','zgw')");
+        long l = System.currentTimeMillis();
+        for (int i = 0;i<1000;i++) {
+            SQLTools.getInstance().Update("insert into bcode (bcode,bname) values('0001','zgw')");
 
+        }
+        l = System.currentTimeMillis()-l;
+        System.out.println("insert time s"+l/1000);
     }
 }

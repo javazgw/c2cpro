@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li class="nav-item  active open">
-                        <a href="main.jsp?url=list.jsp" class="nav-link ">
+                        <a href="main.jsp?url=goodslist.jsp" class="nav-link ">
                             <i class="icon-graph"></i>
                             <span class="title">产品管理</span>
                             <span class="selected"></span>
