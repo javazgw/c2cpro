@@ -1,11 +1,15 @@
 package com.ht.c2c.tools;
 
+import com.ht.c2c.dataBase.DataSet;
+import com.ht.c2c.dataBase.Row;
+
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 /**
  * Created by guangwangzhuang on 2019/4/12.
@@ -81,14 +85,76 @@ public class SQLTools {
         return result;
     }
 
+    public DataSet query(String sql) throws SQLException {
+
+        Connection conn  =dataSource.getConnection();
+
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        DataSet ds = new DataSet();
+        Configure.log(" q:"+sql);
+        int count = 0;
+        try {
+            while (rs.next()) {
+                count ++;
+                Row r = new Row();
+                for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
+                    String colname = rs.getMetaData().getColumnName(i + 1);
+                    r.setValue(colname, rs.getString(colname));
+                }
+                ds.addRow(r);
+            }
+
+        }
+        finally {
+
+
+            rs.close();
+            stmt.close();
+            conn.close();
+        }
+
+        return ds;
+
+    }
+
+    public boolean handleTransaction(Vector<String> SqlArray) throws Exception {
+
+
+        Configure.info(" handleTransaction:"+SqlArray);
+        Connection conn  =dataSource.getConnection();
+        Statement stmt= conn.createStatement();
+        conn.setAutoCommit(false);
+        try {
+            for (String sql : SqlArray) {
+                stmt.addBatch(sql);
+
+            }
+            stmt.executeBatch();
+            conn.commit();
+
+            return true;
+        }
+        finally
+        {
+            conn.setAutoCommit(true);
+            stmt.close();
+            conn.close();
+
+        }
+    }
+
     public static void main(String[] argv) throws Exception {
 
         long l = System.currentTimeMillis();
-        for (int i = 0;i<1000;i++) {
+       /* for (int i = 0;i<1000;i++) {
             SQLTools.getInstance().Update("insert into bcode (bcode,bname) values('0001','zgw')");
 
-        }
+        }*/
         l = System.currentTimeMillis()-l;
         System.out.println("insert time s"+l/1000);
+
+        DataSet ds = SQLTools.getInstance().query("select * from gcode");
+        System.out.println(ds);
     }
 }

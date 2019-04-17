@@ -112,7 +112,7 @@
                                                 <i class="fa fa-search"></i> 删除</button>
                                         </div>
                                         <button class="btn btn-sm btn-default filter-cancel">
-                                            <i class="fa fa-times"></i> 修改</button>
+                                            <i class="fa fa-times" data-toggle="modal" data-target="#myModal"></i> 修改</button>
                                     </td>
                                 </tr>
 
@@ -137,3 +137,24 @@
     </div>
     <!-- END CONTENT BODY -->
 </div>
+<a href="#" data-toggle="modal" data-load-url="/index.jsp" data-target="#myModal">Click me</a>
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-lg" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Event</h4>
+            </div>
+            <div class="modal-body">
+                <p>Loading...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a  href='/site/login' class='ls-modal'>Login</a>

@@ -42,10 +42,18 @@
 <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="../assets/pages/scripts/ecommerce-products.min.js" type="text/javascript"></script>
+<%--<script src="../assets/pages/scripts/ecommerce-products.min.js" type="text/javascript"></script>--%>
 <!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 <script src="../assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
 <script src="../assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
 <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
+
+<script>
+    $('.ls-modal').on('click', function(e){
+        e.preventDefault();
+
+        $('#myModal').modal('show').find('.modal-body').load('edit.jsp');
+    });
+</script>
