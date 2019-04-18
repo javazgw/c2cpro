@@ -156,5 +156,7 @@ public class SQLTools {
 
         DataSet ds = SQLTools.getInstance().query("select * from gcode");
         System.out.println(ds);
+
+        SQLTools.getInstance().Update("update gcode set gname='ipad',price='5000.00',descript='234' where icode =1\n");
     }
 }

@@ -209,8 +209,8 @@
 
 
 
-                                                    <textarea class="summernote" name="desc" rows="6">
-                                                    <%= rs.getString("desc")%>
+                                                    <textarea class="summernote" name="descript" rows="6">
+                                                    <%= rs.getString("descript")%>
 
                                                     </textarea>
                                                 </div>

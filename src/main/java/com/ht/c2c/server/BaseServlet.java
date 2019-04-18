@@ -1,5 +1,6 @@
 package com.ht.c2c.server;
 
+import com.ht.c2c.tools.Configure;
 import com.ht.c2c.tools.SQLTools;
 
 import javax.servlet.ServletException;
@@ -92,10 +93,10 @@ public class BaseServlet extends HttpServlet {
             try {
 
 
-//                SQLTools.getInstance().Update();
+                SQLTools.getInstance().Update(updatesql);
 
             } catch (Exception e) {
-                log(""+e.getMessage());
+                Configure.log(""+e.getMessage());
             }
         }
     }
