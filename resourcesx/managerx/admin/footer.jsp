@@ -46,14 +46,18 @@
 <!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 <script src="../assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
-<script src="../assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
+<%--<script src="../assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>--%>
 <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap-summernote/summernote.min.js" type="text/javascript"></script>
+
+<link href="../assets/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet">
+<%--<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>--%>
 <!-- END THEME LAYOUT SCRIPTS -->
 
-<script>
-    $('.ls-modal').on('click', function(e){
-        e.preventDefault();
+<%--<script>--%>
+    <%--$('.ls-modal').on('click', function(e){--%>
+        <%--e.preventDefault();--%>
 
-        $('#myModal').modal('show').find('.modal-body').load('edit.jsp');
-    });
-</script>
+        <%--$('#myModal').modal('show').find('.modal-body').load('edit.jsp');--%>
+    <%--});--%>
+<%--</script>--%>
