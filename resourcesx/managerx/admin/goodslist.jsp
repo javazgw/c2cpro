@@ -101,9 +101,9 @@
             <td>
                 <input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("imagesid")%>">
             </td>
-            <td>
-                <input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("desc")%>" >
-            </td>
+            <%--<td>--%>
+                <%--<input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("desc")%>" >--%>
+            <%--</td>--%>
 
 
                                     <td>
@@ -111,8 +111,8 @@
                                             <button class="btn btn-sm btn-success filter-submit margin-bottom">
                                                 <i class="fa fa-search"></i> 删除</button>
                                         </div>
-                                        <button class="btn btn-sm btn-default filter-cancel">
-                                            <i class="fa fa-times" data-toggle="modal" data-target="#myModal"></i> 修改</button>
+                                        <button class="btn btn-sm btn-default filter-cancel edit" data-id="<%= rs.getString("gcode")%>">
+                                            <i class="fa fa-times" data-toggle="modal" data-target="#edit" ></i> 修改</button>
                                     </td>
                                 </tr>
 
@@ -157,4 +157,28 @@
     </div>
 </div>
 
-<a  href='/site/login' class='ls-modal'>Login</a>
+<a   class='edit'>Login</a>
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function(){
+
+
+
+        $('.edit').on('click', function (e) {
+            e.preventDefault();
+
+            $('#myModal').modal('show').find('.modal-body').load('goodsedit.jsp?gcode='+$(this).data('id'));
+
+            // $('input[name="product[name]').val("1212")
+        });
+
+        $('#myModal').on('shown.bs.modal', function (e) {
+            e.preventDefault();
+          //  $('input[name="product[name]').val("12124")
+
+        })
+    });
+
+</script>

@@ -591,3 +591,14 @@
     </div>
     <!-- END CONTENT BODY -->
 </div>
+<script>
+
+
+       document.addEventListener("DOMContentLoaded", function(){
+
+        $('input[name="product[name]').val("zgw");
+
+
+    });
+
+</script>
