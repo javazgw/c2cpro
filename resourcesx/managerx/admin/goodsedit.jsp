@@ -168,6 +168,7 @@
                                                     <input type="hidden"  class="form-control" name="icode"  placeholder="" value="<%= rs.getString("icode")%>">
 
 
+
                                                 <input type="text" class="form-control" name="gname" placeholder="" value="<%= rs.getString("gname")%>"> </div>
                                             </div>
 
