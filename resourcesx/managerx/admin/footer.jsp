@@ -48,10 +48,14 @@
 <script src="../assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
 <%--<script src="../assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>--%>
 <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-<script src="../assets/global/plugins/bootstrap-summernote/summernote.min.js" type="text/javascript"></script>
+<%--<script src="../assets/global/plugins/bootstrap-summernote/summernote.min.js" type="text/javascript"></script>--%>
 
-<link href="../assets/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet">
-<%--<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>--%>
+<%--<link href="../assets/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet">--%>
+
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+
+<script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 
 <%--<script>--%>

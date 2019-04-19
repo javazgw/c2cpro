@@ -210,16 +210,25 @@
 
 
 
-                                                    <textarea class="summernote" name="descript" rows="6">
+                                                    <a class="summernote" name="descript" rows="6"  onupdated="$('#summernote').summernote('code', this.data.value);">
                                                     <%= rs.getString("descript")%>
 
-                                                    </textarea>
+                                                    </a>
                                                 </div>
                                             </div>
 
 
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">note:
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-10">
+                                                     <textarea><%= rs.getString("descript")%>
+</textarea>
 
-
+                                                    </textarea>
+                                                </div>
+                                            </div>
 
 
 
@@ -272,9 +281,9 @@
                // return false; //阻止表单默认提交
            // });
        }
-    $('.summernote').summernote();
+   // $('.summernote').summernote();
 
-
+    tinymce.init({ selector:'textarea' });
 
 </script>
 <%--<script src="../assets/global/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>--%>
@@ -282,3 +291,4 @@
 <%--<script src="../assets/global/plugins/bootstrap-markdown/lib/markdown.js" type="text/javascript"></script>--%>
 <%--<script src="../assets/global/plugins/bootstrap-markdown/js/bootstrap-markdown.js" type="text/javascript"></script>--%>
 <%--<script src="../assets/global/plugins/bootstrap-summernote/summernote.min.js" type="text/javascript"></script>--%>
+
