@@ -1,8 +1,8 @@
-﻿<!--
-  ~ Copyright (c) 2019.  javazgw@gmail.com
-  ~
-  ~
-  -->
+﻿﻿<%@ page import="java.sql.Connection" %>
+<%@ page import="com.ht.c2c.tools.SQLTools" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -179,201 +179,31 @@
 							<div class="categories-list-wrap">
 								<button class="btn btn-category d-none d-lg-inline-block"><i class="fa fa-bars"></i>&nbsp;&nbsp;产品分类</button>
 								<ul class="category-list-menu">
-									<li class="category-item-parent dropdown-show">
+
+									<%
+										Connection con = SQLTools.getInstance().getConnection();
+										Statement stmt = con.createStatement();
+										ResultSet rs = stmt.executeQuery("select * from gcodetype");
+
+										while (rs.next())
+										{
+
+									%>
+									<li class="category-item-parent ">
 										<a href="#" class="category-item arrow-toggle">
-											<img src="assets/img/icons/desktop.png" alt="Computer" />
-											<span>电脑</span>
+											<img src="<%= rs.getString("imagepath")%>" alt="Computer" />
+											<span><%= rs.getString("typename")%></span>
 										</a>
-										<ul class="mega-menu-wrap dropdown-nav">
-											<li class="mega-menu-item">
-												<a href="#" class="mega-item-title">Laptop</a>
-												<ul>
-													<li>
-														<a href="#">Has Laptop Price</a>
-													</li>
-													<li>
-														<a href="#">Has Laptop Ram</a>
-													</li>
-													<li>
-														<a href="#">Has Laptop Rom</a>
-													</li>
-													<li>
-														<a href="#">Has Laptop SSD</a>
-													</li>
-												</ul>
-											</li>
 
-											<li class="mega-menu-item">
-												<a href="#" class="mega-item-title">Desktop</a>
-												<ul>
-													<li>
-														<a href="#">Has Laptop Price</a>
-													</li>
-													<li>
-														<a href="#">Has Laptop Ram</a>
-													</li>
-													<li>
-														<a href="#">Has Laptop Rom</a>
-													</li>
-													<li>
-														<a href="#">Has Laptop SSD</a>
-													</li>
-												</ul>
-											</li>
-
-											<li class="mega-menu-item">
-												<a href="#" class="mega-item-title">Notebook</a>
-												<ul>
-													<li>
-														<a href="#">Has Laptop Price</a>
-													</li>
-													<li>
-														<a href="#">Has Laptop Ram</a>
-													</li>
-													<li>
-														<a href="#">Has Laptop Rom</a>
-													</li>
-													<li>
-														<a href="#">Has Laptop SSD</a>
-													</li>
-												</ul>
-											</li>
-										</ul>
 									</li>
 
-									<li class="category-item-parent dropdown-show">
-										<a href="#" class="category-item arrow-toggle">
-											<img src="assets/img/icons/mobile.png" alt="Mobile" />
-											<span>手机</span>
-										</a>
-										<ul class="mega-menu-wrap dropdown-nav">
-											<li class="mega-menu-item">
-												<a href="#" class="mega-item-title">Sumsang</a>
-												<ul>
-													<li>
-														<a href="#">Sumsang S6</a>
-													</li>
-													<li>
-														<a href="#">Sumsang S7</a>
-													</li>
-													<li>
-														<a href="#">Sumsang Prime</a>
-													</li>
-													<li>
-														<a href="#">Sumsang A6</a>
-													</li>
-												</ul>
-											</li>
+										<%
+											}
 
-											<li class="mega-menu-item">
-												<a href="#" class="mega-item-title">Ziaomi</a>
-												<ul>
-													<li>
-														<a href="#">Ziaomi A2 Pro</a>
-													</li>
-													<li>
-														<a href="#">Ziaomi MIX 2</a>
-													</li>
-													<li>
-														<a href="#">Ziaomi F1</a>
-													</li>
-													<li>
-														<a href="#">Ziaomi Prime</a>
-													</li>
-												</ul>
-											</li>
-
-											<li class="mega-menu-item">
-												<a href="#" class="mega-item-title">Jamila</a>
-												<ul>
-													<li>
-														<a href="#">Jamila G100</a>
-													</li>
-													<li>
-														<a href="#">Jamila i120</a>
-													</li>
-													<li>
-														<a href="#">Jamila i15</a>
-													</li>
-													<li>
-														<a href="#">Jamila L62</a>
-													</li>
-												</ul>
-											</li>
-
-											<li class="mega-menu-item">
-												<a href="#" class="mega-item-title">Nakoa</a>
-												<ul>
-													<li>
-														<a href="#">Nakoa Lamia 820</a>
-													</li>
-													<li>
-														<a href="#">Nakoa 888 Pro</a>
-													</li>
-													<li>
-														<a href="#">Nakoa 81 Sirocco</a>
-													</li>
-													<li>
-														<a href="#">Nakoa Lamia 1520</a>
-													</li>
-												</ul>
-											</li>
-										</ul>
-									</li>
-									<li class="category-item-parent">
-										<a href="#" class="category-item">
-											<img src="assets/img/icons/camera.png" alt="Camera" />
-											<span>相机</span>
-										</a>
-									</li>
-									<li class="category-item-parent">
-										<a href="#" class="category-item">
-											<img src="assets/img/icons/fan.png" alt="Camera" />
-											<span>家电</span>
-										</a>
-									</li>
-									<li class="category-item-parent">
-										<a href="#" class="category-item">
-											<img src="assets/img/icons/games.png" alt="Camera" />
-											<span>游戏娱乐</span>
-										</a>
-									</li>
-									<li class="category-item-parent">
-										<a href="#" class="category-item">
-											<img src="assets/img/icons/tv.png" alt="Camera" />
-											<span>电视机</span>
-										</a>
-									</li>
-									<li class="category-item-parent">
-										<a href="#" class="category-item">
-											<img src="assets/img/icons/desktop.png" alt="Computer" />
-											<span>电脑1</span>
-										</a>
-									</li>
-									<li class="category-item-parent hidden">
-										<a href="#" class="category-item">
-											<img src="assets/img/icons/mobile.png" alt="Mobile" />
-											<span>电脑2</span>
-										</a>
-									</li>
-									<li class="category-item-parent hidden">
-										<a href="#" class="category-item">
-											<img src="assets/img/icons/camera.png" alt="Camera" />
-											<span>电脑3</span>
-										</a>
-									</li>
-									<li class="category-item-parent hidden">
-										<a href="#" class="category-item">
-											<img src="assets/img/icons/fan.png" alt="Camera" />
-											<span>电脑4</span>
-										</a>
-									</li>
-									<li class="category-item-parent hidden">
-										<a href="#" class="category-item">
-											<img src="assets/img/icons/games.png" alt="Camera" />
-											<span>电脑5</span>
-										</a>
-									</li>
+											rs.close() ;
+											stmt.close();
+											con.close();
+										%>
 									<li class="category-item-parent">
 										<a href="#" class="category-item btn-more">More Categories</a>
 									</li>

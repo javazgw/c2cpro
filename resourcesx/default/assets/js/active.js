@@ -256,7 +256,7 @@ Last Update: 09.10.2018
             }
         });
 
-        // Sidebar Post Carousel  // index3.html
+        // Sidebar Post Carousel  // index3.jsp
         $('.sidebar-post-carousel').owlCarousel({
             items: 1,
             loop: false,
@@ -278,7 +278,7 @@ Last Update: 09.10.2018
             }
         });
 
-        // Spacial Offer carousel  // index3.html
+        // Spacial Offer carousel  // index3.jsp
         $('.spacial-product-carousel').owlCarousel({
             items: 1,
             loop: false,
