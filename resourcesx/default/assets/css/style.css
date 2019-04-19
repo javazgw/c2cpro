@@ -40,7 +40,7 @@ Last Update: 09.10.2018
    23.  Product Style Here
    24.  Recent Post Area Start
    25.  Client Reviews Area Start
-   26.  Sidebar Recent Post Style // index3.html
+   26.  Sidebar Recent Post Style // index3.jsp
    27.  Start Brand Carousel Area
    28.  Start Newsletter Area
    29.  Start Sidebar Style
@@ -3355,7 +3355,7 @@ Client Reviews Area Start
     margin: 0; }
 
 /*======================================
-Sidebar Recent Post Style // index3.html
+Sidebar Recent Post Style // index3.jsp
 ==========================================*/
 .sidebar-body .owl-carousel .owl-dots {
   margin-top: 15px; }
