@@ -1,10 +1,11 @@
-﻿﻿﻿<%@ page import="java.sql.Connection" %>
+﻿<!DOCTYPE html>
+﻿﻿<%@ page import="java.sql.Connection" %>
 <%@ page import="com.ht.c2c.tools.SQLTools" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!DOCTYPE html>
+
 <html class="no-js" lang="zxx">
 
 <head>
