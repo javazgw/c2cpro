@@ -43,6 +43,7 @@
 
 <body>
 
+<<<<<<< HEAD
 <!--== Start Header Section ==-->
 <header id="header-area" class="header__3">
 	<!-- Start PreHeader Area -->
@@ -460,6 +461,9 @@
 	<!-- End Main Menu Area -->
 </header>
 <!--== End Header Section ==-->
+=======
+<%@ include file="header.jsp" %>
+>>>>>>> 28bf458c7d7c8744ba1a7f4a88da10dcc9858cf4
 
 
 
@@ -473,7 +477,7 @@
 					<!-- Sidebar Banner Start -->
 					<div class="single-home-sidebar d-none d-lg-block">
 						<div class="sidebar-body">
-							<a href="shop.html" class="d-bock">
+							<a href="shop.jsp" class="d-bock">
 								<img src="assets/img/home3-sidebar-banner.jpg" alt="Banner" />
 							</a>
 						</div>
@@ -489,12 +493,12 @@
 									<div class="product-small-list">
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-1.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">Compete Hoodie</a>
+													<a href="single-product.jsp">Compete Hoodie</a>
 												</h2>
 												<span class="pro-price">$30.33</span>
 											</div>
@@ -503,12 +507,12 @@
 
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-3.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">Compete Hoodie</a>
+													<a href="single-product.jsp">Compete Hoodie</a>
 												</h2>
 												<span class="pro-price">$30.33</span>
 											</div>
@@ -517,12 +521,12 @@
 
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-2.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">MH02-Gray</a>
+													<a href="single-product.jsp">MH02-Gray</a>
 												</h2>
 												<span class="pro-price">$20.11</span>
 											</div>
@@ -531,12 +535,12 @@
 
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-3.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">Compete Hoodie</a>
+													<a href="single-product.jsp">Compete Hoodie</a>
 												</h2>
 												<span class="pro-price">$30.33</span>
 											</div>
@@ -545,12 +549,12 @@
 
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-4.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">MH02-Gray</a>
+													<a href="single-product.jsp">MH02-Gray</a>
 												</h2>
 												<span class="pro-price">$20.11</span>
 											</div>
@@ -559,12 +563,12 @@
 
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-5.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">Compete Hoodie</a>
+													<a href="single-product.jsp">Compete Hoodie</a>
 												</h2>
 												<span class="pro-price">$30.33</span>
 											</div>
@@ -577,12 +581,12 @@
 									<div class="product-small-list">
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-1.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">Compete Hoodie</a>
+													<a href="single-product.jsp">Compete Hoodie</a>
 												</h2>
 												<span class="pro-price">$30.33</span>
 											</div>
@@ -591,12 +595,12 @@
 
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-2.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">MH02-Gray</a>
+													<a href="single-product.jsp">MH02-Gray</a>
 												</h2>
 												<span class="pro-price">$20.11</span>
 											</div>
@@ -605,12 +609,12 @@
 
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-3.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">Compete Hoodie</a>
+													<a href="single-product.jsp">Compete Hoodie</a>
 												</h2>
 												<span class="pro-price">$30.33</span>
 											</div>
@@ -619,12 +623,12 @@
 
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-4.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">MH02-Gray</a>
+													<a href="single-product.jsp">MH02-Gray</a>
 												</h2>
 												<span class="pro-price">$20.11</span>
 											</div>
@@ -633,12 +637,12 @@
 
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-5.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">Compete Hoodie</a>
+													<a href="single-product.jsp">Compete Hoodie</a>
 												</h2>
 												<span class="pro-price">$30.33</span>
 											</div>
@@ -651,12 +655,12 @@
 									<div class="product-small-list">
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-1.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">Compete Hoodie</a>
+													<a href="single-product.jsp">Compete Hoodie</a>
 												</h2>
 												<span class="pro-price">$30.33</span>
 											</div>
@@ -665,12 +669,12 @@
 
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-2.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">MH02-Gray</a>
+													<a href="single-product.jsp">MH02-Gray</a>
 												</h2>
 												<span class="pro-price">$20.11</span>
 											</div>
@@ -679,12 +683,12 @@
 
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-3.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">Compete Hoodie</a>
+													<a href="single-product.jsp">Compete Hoodie</a>
 												</h2>
 												<span class="pro-price">$30.33</span>
 											</div>
@@ -693,12 +697,12 @@
 
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-4.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">MH02-Gray</a>
+													<a href="single-product.jsp">MH02-Gray</a>
 												</h2>
 												<span class="pro-price">$20.11</span>
 											</div>
@@ -707,12 +711,12 @@
 
 										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
-											<a href="single-product.html" class="product-thumb">
+											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-5.jpg" alt="Product" />
 											</a>
 											<div class="pro-details">
 												<h2>
-													<a href="single-product.html">Compete Hoodie</a>
+													<a href="single-product.jsp">Compete Hoodie</a>
 												</h2>
 												<span class="pro-price">$30.33</span>
 											</div>
@@ -737,17 +741,17 @@
 									<!-- Single Recent Post Start -->
 									<div class="single-blog-wrap">
 										<figure class="blog-thumb">
-											<a href="single-blog.html"><img src="assets/img/blog-thumb-1.jpg" alt="Blog" /></a>
+											<a href="single-blog.jsp"><img src="assets/img/blog-thumb-1.jpg" alt="Blog" /></a>
 											<figcaption class="blog-icon">
-												<a href="single-blog.html"><i class="fa fa-file-image-o"></i></a>
+												<a href="single-blog.jsp"><i class="fa fa-file-image-o"></i></a>
 											</figcaption>
 										</figure>
 
 										<div class="blog-details">
-											<h3><a href="single-blog.html">Mirum est notare quam</a></h3>
+											<h3><a href="single-blog.jsp">Mirum est notare quam</a></h3>
 											<div class="post-meta">
-												<a href="single-blog.html">20 June, 2018</a>
-												<a href="single-blog.html">Post By: Tuntuni</a>
+												<a href="single-blog.jsp">20 June, 2018</a>
+												<a href="single-blog.jsp">Post By: Tuntuni</a>
 											</div>
 											<p>Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum.</p>
 										</div>
@@ -757,17 +761,17 @@
 									<!-- Single Recent Post Start -->
 									<div class="single-blog-wrap">
 										<figure class="blog-thumb">
-											<a href="single-blog.html"><img src="assets/img/blog-thumb-1.jpg" alt="Blog" /></a>
+											<a href="single-blog.jsp"><img src="assets/img/blog-thumb-1.jpg" alt="Blog" /></a>
 											<figcaption class="blog-icon">
-												<a href="single-blog.html"><i class="fa fa-file-image-o"></i></a>
+												<a href="single-blog.jsp"><i class="fa fa-file-image-o"></i></a>
 											</figcaption>
 										</figure>
 
 										<div class="blog-details">
-											<h3><a href="single-blog.html">Mirum est notare quam</a></h3>
+											<h3><a href="single-blog.jsp">Mirum est notare quam</a></h3>
 											<div class="post-meta">
-												<a href="single-blog.html">20 June, 2018</a>
-												<a href="single-blog.html">Post By: Tuntuni</a>
+												<a href="single-blog.jsp">20 June, 2018</a>
+												<a href="single-blog.jsp">Post By: Tuntuni</a>
 											</div>
 											<p>Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum.</p>
 										</div>
@@ -827,6 +831,7 @@
 					<!-- Client Reviews End -->
 				</div>
 			</div>
+<<<<<<< HEAD
 			<!-- Sidebar Content End -->
 
 			<!-- Product Content Area Wrap -->
@@ -853,6 +858,59 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>
+=======
+			<!-- 侧栏内容 End -->
+
+			<!-- Start 产品展示区 -->
+			<div class="col-lg-9 order-first order-lg-last" style="margin-top: 10px">
+				<div class="shop-page-content-wrap">
+					<div class="shop-page-products-wrap">
+						<div class="products-wrapper">
+							<div class="row">
+								<!-- 产品循环 Start -->
+								<%
+									Connection con1 = SQLTools.getInstance().getConnection();
+									Statement stmt1 = con1.createStatement();
+									ResultSet rs1 = stmt1.executeQuery("select * from gcodetype");
+
+									while (rs1.next())
+									{
+
+								%>
+								<!-- 单一产品 Start -->
+								<div class="col-lg-4 col-sm-6">
+									<div class="single-product-item">
+										<figure class="product-thumb">
+											<a href="single-product.jsp"><img src="assets/img/product-1.jpg" alt="Product"></a>
+										</figure>
+										<div class="product-details">
+											<h2 class="product-title"><a href="single-product.jsp">Rival Field
+												Messenger</a></h2>
+											<div class="rating">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</div>
+											<span class="product-price">$40.99</span>
+											<div class="product-meta">
+												<a href="#" class="btn btn-round btn-cart" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+												<a href="wishlist.jsp" class="btn btn-round btn-cart" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+												<a href="compare.jsp" class="btn btn-round btn-cart" title="Add to Compare"><i class="fa fa-exchange"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- 单一产品 End -->
+								<%
+									}
+									rs.close() ;
+									stmt.close();
+									con.close();
+								%>
+								<!-- 产品循环 End -->
+>>>>>>> 28bf458c7d7c8744ba1a7f4a88da10dcc9858cf4
 							</div>
 							<span class="product-price">$40.99</span>
 
@@ -968,6 +1026,7 @@
 </section>
 <!-- End Popular Categories -->
 
+<<<<<<< HEAD
 <!--== Start Brand Carousel Area ==-->
 <div class="brand-logo-area">
 	<div class="container">
@@ -1273,6 +1332,9 @@
 	</div>
 </div>
 <!--== Product Quick View Modal Area End ==-->
+=======
+<%@ include file="footer.jsp" %>
+>>>>>>> 28bf458c7d7c8744ba1a7f4a88da10dcc9858cf4
 
 <!--=======================Javascript============================-->
 <!--=== Jquery Min Js ===-->
