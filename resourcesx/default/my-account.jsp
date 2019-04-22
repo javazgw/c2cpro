@@ -344,7 +344,9 @@
 		</div>
 		<!--== End Newsletter Area ==-->
 
-		<%@ include file="header.jsp" %>
+
+		<%@ include file="footer.jsp" %>
+
 
 		<!--=======================Javascript============================-->
 		<!--=== Jquery Min Js ===-->
