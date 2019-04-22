@@ -42,7 +42,7 @@
 
 	<body>
 
-		<%@ include file="header.html" %>
+		<%@ include file="header.jsp" %>
 
 		<!--== Start Page Breadcrumb ==-->
 		<div class="page-breadcrumb-wrap">
@@ -493,7 +493,7 @@
 		</div>
 		<!--== End Newsletter Area ==-->
 
-		<%@ include file="footer.html" %>
+		<%@ include file="footer.jsp" %>
 
 		<!--=======================Javascript============================-->
 		<!--=== Jquery Min Js ===-->
