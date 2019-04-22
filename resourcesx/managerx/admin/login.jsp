@@ -79,10 +79,10 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
                 <div class="form-group">
                 <fieldset><label class="control-label visible-ie8 visible-ie9" for="checkimage">验证码:</label> <input  onkeydown="javascript:if(event.keyCode==13) loginsystem() " id="checkimage"
-                                                                       name="checkvalue" tabindex="3" type="text" placeholder="验证码" value="" autocomplete="off" />
-                    <img width="80" height="40" alt="code..." name="randImage" id="randImage" src="./checkimage.jsp"  border="1" align="absmiddle">
-                    <a href=javascript: onclick="javascript:reloadImage()">更换</a></fieldset>
-                </div>
+                                                                                                                           name="checkvalue" tabindex="3" type="text" placeholder="验证码" value="" autocomplete="off" />
+                <img width="80" height="40" alt="code..." name="randImage" id="randImage" src="./checkimage.jsp"  border="1" align="absmiddle">
+                <a href=javascript: onclick="javascript:reloadImage()">更换</a></fieldset>
+        </div>
                 <div class="form-actions">
                     <label class="checkbox">
                         <input type="checkbox" name="remember" value="1" /> 记住我 </label>
