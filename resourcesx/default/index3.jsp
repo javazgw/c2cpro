@@ -43,9 +43,9 @@
 
 <body>
 
-<!--== Start Header Section ==-->
+<!--== 开始标题部分 Start ==-->
 <header id="header-area" class="header__3">
-	<!-- Start PreHeader Area -->
+	<!-- Start 页眉 -->
 	<div class="preheader-area">
 		<div class="container">
 			<div class="row">
@@ -69,25 +69,33 @@
 						</div>
 					</div>
 				</div>
-
+				<div class="col-md-7 col-lg-6 mt-xs-10">
+					<div class="site-setting-menu">
+						<ul class="nav justify-content-center justify-content-md-end">
+							<li><a href="my-account.html">我的账户</a></li>
+							<li><a href="wishlist.html">购物车</a></li>
+							<li><a href="login-register.html">登录</a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<!-- End PreHeader Area -->
+	<!-- End 页眉 -->
 
-	<!-- Start Header Middle Area -->
+	<!-- Start 顶层购物车、logo及搜索 -->
 	<div class="header-middle-area">
 		<div class="container">
 			<div class="row">
-				<!-- Logo Area Start -->
+				<!-- Logo  Start -->
 				<div class="col-4 col-md-2 col-xl-3 m-auto text-center text-lg-left">
 					<a href="index.html" class="logo-wrap d-block">
 						<img src="assets/img/logo-4.png" alt="Logo" class="img-fluid" />
 					</a>
 				</div>
-				<!-- Logo Area End -->
+				<!-- Logo  End -->
 
-				<!-- Search Box Area Start -->
+				<!-- 搜索 Start -->
 				<div class="col-8 col-md-7 col- m-auto ">
 					<div class="search-box-wrap">
 						<form class="search-form d-flex" action="#" method="get">
@@ -98,9 +106,9 @@
 						</form>
 					</div>
 				</div>
-				<!-- Search Box Area End -->
+				<!-- 搜索 End -->
 
-				<!-- Mini Cart Area Start -->
+				<!-- 购物车 Start -->
 				<div class="col-12 col-md-3 col-xl-2 m-auto text-center text-lg-right mt-xs-15">
 					<div class="minicart-wrapper">
 						<button class="btn btn-minicart">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购物车 <sup class="cart-count">3</sup></button>
@@ -164,22 +172,22 @@
 						</div>
 					</div>
 				</div>
-				<!-- Mini Cart Area End -->
+				<!-- 购物车 End -->
 			</div>
 		</div>
 	</div>
-	<!-- End Header Middle Area -->
+	<!-- End 顶层购物车、logo及搜索 -->
 
-	<!-- Start Main Menu Area -->
+	<!-- Start 开始主菜单 -->
 	<div class="navigation-area">
 		<div class="container">
 			<div class="row">
-				<!-- Categories List Start -->
+				<!-- 类别列表 Start -->
 				<div class="col-10 col-lg-3">
 					<div class="categories-list-wrap">
 						<button class="btn btn-category d-none d-lg-inline-block"><i class="fa fa-bars"></i>&nbsp;&nbsp;产品分类</button>
 						<ul class="category-list-menu">
-
+							<!-- 类别列表循环 Start -->
 							<%
 								Connection con = SQLTools.getInstance().getConnection();
 								Statement stmt = con.createStatement();
@@ -199,7 +207,6 @@
 
 							<%
 								}
-
 								rs.close() ;
 								stmt.close();
 								con.close();
@@ -207,12 +214,13 @@
 							<li class="category-item-parent">
 								<a href="#" class="category-item btn-more">More Categories</a>
 							</li>
+							<!-- 类别列表循环 End -->
 						</ul>
 					</div>
 				</div>
-				<!-- Categories List End -->
+				<!-- 类别列表 End -->
 
-				<!-- Main Menu Start -->
+				<!-- 主菜单 Start -->
 				<div class="col-2 col-lg-9 d-none d-lg-block">
 					<div class="main-menu-wrap">
 						<nav class="mainmenu">
@@ -453,24 +461,22 @@
 						</nav>
 					</div>
 				</div>
-				<!-- Main Menu End -->
+				<!-- 主菜单 End -->
 			</div>
 		</div>
 	</div>
-	<!-- End Main Menu Area -->
+	<!-- End 开始主菜单 -->
 </header>
-<!--== End Header Section ==-->
+<!--== 开始标题部分 End ==-->
 
-
-
-<!--== Start Product Content Wrapper ==-->
 <div id="product-container-wrapper">
+<!--== Start 产品展示区 ==-->
 	<div class="container">
 		<div class="row">
-			<!-- Sidebar Content Start -->
+			<!-- 侧栏内容 Start -->
 			<div class="col-lg-3 order-last order-lg-first">
 				<div id="home-sidebar-wrap">
-					<!-- Sidebar Banner Start -->
+					<!-- 侧栏海报 Start -->
 					<div class="single-home-sidebar d-none d-lg-block">
 						<div class="sidebar-body">
 							<a href="shop.html" class="d-bock">
@@ -478,16 +484,16 @@
 							</a>
 						</div>
 					</div>
-					<!-- Sidebar Banner End -->
+					<!-- 侧栏海报 End -->
 
-					<!-- Most viewed Product Start -->
+					<!-- 侧栏热门产品 Start -->
 					<div class="single-home-sidebar">
 						<h3 class="title">MostViewed</h3>
 						<div class="sidebar-body">
 							<div class="sidebar-product-carousel owl-carousel">
 								<div class="sidebar-carousel-item">
 									<div class="product-small-list">
-										<!-- Single Product Start -->
+										<!-- 热门产品 Start -->
 										<div class="single-pro-item d-flex">
 											<a href="single-product.html" class="product-thumb">
 												<img src="assets/img/product-1.jpg" alt="Product" />
@@ -499,9 +505,9 @@
 												<span class="pro-price">$30.33</span>
 											</div>
 										</div>
-										<!-- Single Product End -->
+										<!-- 热门产品 End -->
 
-										<!-- Single Product Start -->
+										<!-- 热门产品 Start -->
 										<div class="single-pro-item d-flex">
 											<a href="single-product.html" class="product-thumb">
 												<img src="assets/img/product-3.jpg" alt="Product" />
@@ -513,9 +519,9 @@
 												<span class="pro-price">$30.33</span>
 											</div>
 										</div>
-										<!-- Single Product End -->
+										<!-- 热门产品 End -->
 
-										<!-- Single Product Start -->
+										<!-- 热门产品 Start -->
 										<div class="single-pro-item d-flex">
 											<a href="single-product.html" class="product-thumb">
 												<img src="assets/img/product-2.jpg" alt="Product" />
@@ -527,9 +533,9 @@
 												<span class="pro-price">$20.11</span>
 											</div>
 										</div>
-										<!-- Single Product End -->
+										<!-- 热门产品 End -->
 
-										<!-- Single Product Start -->
+										<!-- 热门产品 Start -->
 										<div class="single-pro-item d-flex">
 											<a href="single-product.html" class="product-thumb">
 												<img src="assets/img/product-3.jpg" alt="Product" />
@@ -541,9 +547,9 @@
 												<span class="pro-price">$30.33</span>
 											</div>
 										</div>
-										<!-- Single Product End -->
+										<!-- 热门产品 End -->
 
-										<!-- Single Product Start -->
+										<!-- 热门产品 Start -->
 										<div class="single-pro-item d-flex">
 											<a href="single-product.html" class="product-thumb">
 												<img src="assets/img/product-4.jpg" alt="Product" />
@@ -555,9 +561,9 @@
 												<span class="pro-price">$20.11</span>
 											</div>
 										</div>
-										<!-- Single Product End -->
+										<!-- 热门产品 End -->
 
-										<!-- Single Product Start -->
+										<!-- 热门产品 Start -->
 										<div class="single-pro-item d-flex">
 											<a href="single-product.html" class="product-thumb">
 												<img src="assets/img/product-5.jpg" alt="Product" />
@@ -569,7 +575,7 @@
 												<span class="pro-price">$30.33</span>
 											</div>
 										</div>
-										<!-- Single Product End -->
+										<!-- 热门产品 End -->
 									</div>
 								</div>
 
@@ -723,9 +729,9 @@
 							</div>
 						</div>
 					</div>
-					<!-- Most viewed Product End -->
+					<!-- 侧栏热门产品 End -->
 
-					<!-- Recent Post Start -->
+					<!-- 近期动态 Start -->
 					<div class="single-home-sidebar">
 						<div class="section-title">
 							<h2>Recent Posts</h2>
@@ -734,7 +740,7 @@
 						<div class="sidebar-body">
 							<div class="recent-post-content">
 								<div class="sidebar-post-carousel owl-carousel">
-									<!-- Single Recent Post Start -->
+									<!-- 单个最近发布 Start -->
 									<div class="single-blog-wrap">
 										<figure class="blog-thumb">
 											<a href="single-blog.html"><img src="assets/img/blog-thumb-1.jpg" alt="Blog" /></a>
@@ -752,9 +758,9 @@
 											<p>Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum.</p>
 										</div>
 									</div>
-									<!-- Single Recent Post End -->
+									<!-- 单个最近发布 End -->
 
-									<!-- Single Recent Post Start -->
+									<!-- 单个最近发布 Start -->
 									<div class="single-blog-wrap">
 										<figure class="blog-thumb">
 											<a href="single-blog.html"><img src="assets/img/blog-thumb-1.jpg" alt="Blog" /></a>
@@ -772,14 +778,14 @@
 											<p>Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum.</p>
 										</div>
 									</div>
-									<!-- Single Recent Post End -->
+									<!-- 单个最近发布 End -->
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- Recent Post End -->
+					<!-- 近期动态 End -->
 
-					<!-- Client Reviews Start -->
+					<!-- 客户评论 Start -->
 					<div class="single-home-sidebar">
 						<div class="section-title">
 							<h2>Client Says</h2>
@@ -788,7 +794,7 @@
 						<div class="sidebar-body">
 							<div class="reviews-content">
 								<div class="reviews-carousel owl-carousel">
-									<!-- Single Reviews Start -->
+									<!-- 单一评论 Start -->
 									<div class="single-reviews">
 										<a href="#" class="client-thumb">
 											<img src="assets/img/client-1.jpg" alt="Cliebt" />
@@ -797,9 +803,9 @@
 
 										<p class="client-quote">All Perfect !! I have three sites with magento , this theme is the best !! Excellent support , advice theme installation package , sorry for English, are Italian but I had no problem !! Thank you !</p>
 									</div>
-									<!-- Single Reviews End -->
+									<!-- 单一评论 End -->
 
-									<!-- Single Reviews Start -->
+									<!-- 单一评论 Start -->
 									<div class="single-reviews">
 										<a href="#" class="client-thumb">
 											<img src="assets/img/client-2.jpg" alt="Cliebt" />
@@ -808,9 +814,9 @@
 
 										<p class="client-quote">All Perfect !! I have three sites with magento , this theme is the best !! Excellent support , advice theme installation package , sorry for English, are Italian but I had no problem !! Thank you !</p>
 									</div>
-									<!-- Single Reviews End -->
+									<!-- 单一评论 End -->
 
-									<!-- Single Reviews Start -->
+									<!-- 单一评论 Start -->
 									<div class="single-reviews">
 										<a href="#" class="client-thumb">
 											<img src="assets/img/client-3.jpg" alt="Cliebt" />
@@ -819,63 +825,111 @@
 
 										<p class="client-quote">All Perfect !! I have three sites with magento , this theme is the best !! Excellent support , advice theme installation package , sorry for English, are Italian but I had no problem !! Thank you !</p>
 									</div>
-									<!-- Single Reviews End -->
+									<!-- 单一评论 End -->
+									<!-- 单一评论 Start -->
+									<div class="single-reviews">
+										<a href="#" class="client-thumb">
+											<img src="assets/img/client-3.jpg" alt="Cliebt" />
+										</a>
+										<a href="#" class="client-name">Stefano Colombarolli <span class="client-designation">Akamla Manager</span></a>
+
+										<p class="client-quote">All Perfect !! I have three sites with magento , this theme is the best !! Excellent support , advice theme installation package , sorry for English, are Italian but I had no problem !! Thank you !</p>
+									</div>
+									<!-- 单一评论 End -->
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- Client Reviews End -->
+					<!-- 客户评论 End -->
 				</div>
 			</div>
-			<!-- Sidebar Content End -->
+			<!-- 侧栏内容 End -->
 
-			<!-- Product Content Area Wrap -->
-			<div class="col-lg-9" style="margin-top: 10px">
+			<!-- Start 产品展示区 -->
+			<div class="col-lg-9 order-first order-lg-last" style="margin-top: 10px">
+				<div class="shop-page-content-wrap">
+					<div class="shop-page-products-wrap">
+						<div class="products-wrapper">
+							<div class="row">
+								<!-- 产品循环 Start -->
+								<%
+									Connection con1 = SQLTools.getInstance().getConnection();
+									Statement stmt1 = con1.createStatement();
+									ResultSet rs1 = stmt1.executeQuery("select * from gcodetype");
 
-				<%
+									while (rs1.next())
+									{
 
-
-				%>
-
-				<!-- Single Product Start -->
-				<div class="col-lg-4 col-sm-6">
-					<div class="single-product-item">
-						<figure class="product-thumb">
-							<a href="single-product.html"><img src="assets/img/product-1.jpg" alt="Product"></a>
-							<a href="#" class="btn btn-round btn-cart" title="Quick View" data-toggle="modal" data-target="#quickView"><i class="fa fa-eye"></i></a>
-						</figure>
-						<div class="product-details">
-							<h2 class="product-title"><a href="single-product.html">Rival Field
-								Messenger</a></h2>
-							<div class="rating">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div>
-							<span class="product-price">$40.99</span>
-
-							<p class="pro-desc">Ideal for cold-weather training or work outdoors, the Chaz Hoodie promises superior warmth with every wear. Thick material blocks out the wind as ribbed cuffs and bottom band seal in body heat.</p>
-
-							<div class="product-meta">
-								<a href="#" class="btn btn-round btn-cart" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-								<a href="wishlist.html" class="btn btn-round btn-cart" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-								<a href="compare.html" class="btn btn-round btn-cart" title="Add to Compare"><i class="fa fa-exchange"></i></a>
+								%>
+								<!-- 单一产品 Start -->
+								<div class="col-lg-4 col-sm-6">
+									<div class="single-product-item">
+										<figure class="product-thumb">
+											<a href="single-product.html"><img src="assets/img/product-1.jpg" alt="Product"></a>
+										</figure>
+										<div class="product-details">
+											<h2 class="product-title"><a href="single-product.html">Rival Field
+												Messenger</a></h2>
+											<div class="rating">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</div>
+											<span class="product-price">$40.99</span>
+											<div class="product-meta">
+												<a href="#" class="btn btn-round btn-cart" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+												<a href="wishlist.html" class="btn btn-round btn-cart" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+												<a href="compare.html" class="btn btn-round btn-cart" title="Add to Compare"><i class="fa fa-exchange"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- 单一产品 End -->
+								<%
+									}
+									rs.close() ;
+									stmt.close();
+									con.close();
+								%>
+								<!-- 产品循环 End -->
 							</div>
 						</div>
 					</div>
+
+					<div class="products-settings-option d-block d-md-flex">
+						<nav class="page-pagination">
+							<ul class="pagination">
+								<li>
+									<a href="#" aria-label="Previous">&laquo;</a>
+								</li>
+								<li>
+									<a class="current" href="#">1</a>
+								</li>
+								<li>
+									<a href="#">2</a>
+								</li>
+								<li>
+									<a href="#">3</a>
+								</li>
+								<li>
+									<a href="#" aria-label="Next">&raquo;</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
 				</div>
-				<!-- Single Product End -->
+			</div>
+			<!-- End 产品展示区 -->
 
 
-		</div>
 	</div>
 </div>
-<!--== End Product Content Wrapper ==-->
+<!--== End 产品展示区 ==-->
 
-<!-- Start Popular Categories -->
-<section id="popular-category" class="pt-20 pt-xs-0">
+<!-- Start 热门类别 -->
+	<section id="popular-category" class="pt-20 pt-xs-0">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6">
@@ -966,10 +1020,10 @@
 		</div>
 	</div>
 </section>
-<!-- End Popular Categories -->
+<!-- End 热门类别  -->
 
-<!--== Start Brand Carousel Area ==-->
-<div class="brand-logo-area">
+<!--== Start 品牌转盘区 ==-->
+	<div class="brand-logo-area">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
@@ -1014,10 +1068,10 @@
 		</div>
 	</div>
 </div>
-<!--== End Brand Carousel Area ==-->
+<!--== End 品牌转盘区 ==-->
 
-<!--== Start Footer Area ==-->
-<footer id="footer-area">
+<!--== Start 页脚 ==-->
+	<footer id="footer-area">
 	<!-- Footer Widget Area Start -->
 	<div class="footer-widget-area">
 		<div class="container">
@@ -1168,111 +1222,11 @@
 	</div>
 	<!-- Footer Bottom Area -->
 </footer>
-<!--== End Footer Area ==-->
+<!--== End 页脚 ==-->
 
-<!-- Scroll to Top Start -->
-<a href="#" class="scrolltotop"><i class="fa fa-angle-up"></i></a>
-<!-- Scroll to Top End -->
-
-<!--== Product Quick View Modal Area Wrap ==-->
-<div class="modal" id="quickView" tabindex="-1" role="dialog">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true"><img src="assets/img/icons/cancel.png" alt="Close" class="img-fluid"/></span>
-			</button>
-			<div class="modal-body">
-				<div class="quick-view-content single-product-page-content">
-					<div class="row">
-						<!-- Product Thumbnail Start -->
-						<div class="col-lg-5 col-md-6">
-							<div class="product-thumbnail-wrap">
-								<div class="product-thumb-carousel owl-carousel">
-									<div class="single-thumb-item">
-										<a href="single-product.html"><img class="img-fluid" src="assets/img/single-pro-1.jpg" alt="Product" /></a>
-									</div>
-
-									<div class="single-thumb-item">
-										<a href="single-product.html"><img class="img-fluid" src="assets/img/single-pro-2.jpg" alt="Product" /></a>
-									</div>
-
-									<div class="single-thumb-item">
-										<a href="single-product.html"><img class="img-fluid" src="assets/img/single-pro-3.jpg" alt="Product" /></a>
-									</div>
-
-									<div class="single-thumb-item">
-										<a href="single-product.html"><img class="img-fluid" src="assets/img/single-pro-4.jpg" alt="Product" /></a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Product Thumbnail End -->
-
-						<!-- Product Details Start -->
-						<div class="col-lg-7 col-md-6 mt-5 mt-md-0">
-							<div class="product-details">
-								<h2><a href="single-product.html">Crown Summit Backpack</a></h2>
-
-								<div class="rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-half"></i>
-									<i class="fa fa-star-o"></i>
-								</div>
-
-								<span class="price">$52.00</span>
-
-								<div class="product-info-stock-sku">
-									<span class="product-stock-status text-success">In Stock</span>
-									<span class="product-sku-status ml-5"><strong>SKU</strong> MH03</span>
-								</div>
-
-								<p class="products-desc">Ideal for cold-weathered training worked lorem ipsum outdoors, the Chaz Hoodie promises superior warmth with every wear. Thick material blocks out the wind as ribbed cuffs and bottom band seal in body heat Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, reprehenderit.</p>
-								<div class="shopping-option-item">
-									<h4>Color</h4>
-									<ul class="color-option-select d-flex">
-										<li class="color-item black">
-											<div class="color-hvr">
-												<span class="color-fill"></span>
-												<span class="color-name">Black</span>
-											</div>
-										</li>
-
-										<li class="color-item green">
-											<div class="color-hvr">
-												<span class="color-fill"></span>
-												<span class="color-name">green</span>
-											</div>
-										</li>
-
-										<li class="color-item orange">
-											<div class="color-hvr">
-												<span class="color-fill"></span>
-												<span class="color-name">Orange</span>
-											</div>
-										</li>
-									</ul>
-								</div>
-
-								<div class="product-quantity d-flex align-items-center">
-									<div class="quantity-field">
-										<label for="qty">Qty</label>
-										<input type="number" id="qty" min="1" max="100" value="1" />
-									</div>
-
-									<a href="cart.html" class="btn">Add to Cart</a>
-								</div>
-							</div>
-						</div>
-						<!-- Product Details End -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!--== Product Quick View Modal Area End ==-->
+<!-- 返回顶端按钮 Start -->
+	<a href="#" class="scrolltotop"><i class="fa fa-angle-up"></i></a>
+<!-- 返回顶端按钮 End -->
 
 <!--=======================Javascript============================-->
 <!--=== Jquery Min Js ===-->
@@ -1290,6 +1244,8 @@
 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
+</div>
+
 </body>
 
 </html>
