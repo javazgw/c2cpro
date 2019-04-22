@@ -74,7 +74,7 @@ public class CcodeServlet extends HttpServlet {
             if(!checkvalue.equals(req.getSession().getAttribute("checkvalue")))
             {
                 rto.setType(ERROR);
-                rto.setMsg("验证码不正确");
+                rto.setMsg("验证码不正确 ");
                 PrintWriter out = resp.getWriter();
                 out.println(JSON.toJSON(rto));
                 return;
@@ -103,7 +103,8 @@ public class CcodeServlet extends HttpServlet {
                     else if(c==0)
                     {
                         rto.setType(ERROR);
-                        rto.setMsg("用户名不存在或者密码不正确");
+                        rto.setMsg("用户名不存在或者密码不正确 ");
+
                         PrintWriter out = resp.getWriter();
                         out.println(JSON.toJSON(rto));
                     }
@@ -133,7 +134,7 @@ public class CcodeServlet extends HttpServlet {
             try {
                 if (!pass.equals(rpass)) {
                     rto.setType(ERROR);
-                    rto.setMsg("两次录入验证码不一致");
+                    rto.setMsg("两次录入验证码不一致 ");
                     PrintWriter out = resp.getWriter();
                     out.println(JSON.toJSON(rto));
                     return;
@@ -142,7 +143,7 @@ public class CcodeServlet extends HttpServlet {
             catch(Exception e2)
             {
                 rto.setType(ERROR);
-                rto.setMsg("空？");
+                rto.setMsg("空？ ");
                 PrintWriter out = resp.getWriter();
                 out.println(JSON.toJSON(rto));
                 return;
@@ -201,6 +202,11 @@ public class CcodeServlet extends HttpServlet {
                 out.println("<h3>错误</h3>");
             }
 
+        }
+
+        else if(action.equals("logout"))
+        {
+            req.getSession().removeAttribute("cname");
         }
     }
 }

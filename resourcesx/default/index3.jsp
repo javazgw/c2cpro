@@ -43,7 +43,7 @@
 
 <body>
 
-<%@ include file="header.html" %>
+<%@ include file="header.jsp" %>
 
 <div id="product-container-wrapper">
 <!--== Start 产品展示区 ==-->
@@ -598,7 +598,7 @@
 </section>
 <!-- End 热门类别  -->
 
-<%@ include file="footer.html" %>
+<%@ include file="footer.jsp" %>
 
 <!--=======================Javascript============================-->
 <!--=== Jquery Min Js ===-->

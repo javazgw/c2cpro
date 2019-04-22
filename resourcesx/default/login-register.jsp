@@ -42,7 +42,7 @@
 
 	<body>
 
-		<%@ include file="header.html" %>
+		<%@ include file="header.jsp" %>
 
 		<!--== Start Page Breadcrumb ==-->
 		<div class="page-breadcrumb-wrap">
@@ -55,10 +55,10 @@
 									<a href="index.html">Home</a>
 								</li>
 								<li>
-									<a href="shop.jsp">Shop</a>
+									<a href="shop.html">Shop</a>
 								</li>
 								<li>
-									<a href="shop.jsp" class="active">Member Area</a>
+									<a href="shop.html" class="active">Member Area</a>
 								</li>
 							</ul>
 						</div>
@@ -76,32 +76,37 @@
 						<!-- Login Content Start -->
 						<div class="col-lg-5">
 							<div class="login-reg-form-wrap  pr-lg-50">
-								<h2>Already a Member?</h2>
+								<h2>已经有账号?</h2>
 
-								<form action="#" method="post">
+								<form class="login-form" action="javascript:login()" method="post">
 									<div class="single-input-item">
-										<input type="email" placeholder="Email or Username" required />
+										<input type="text" placeholder="邮箱或者用户名" name="cname" required />
 									</div>
 
 									<div class="single-input-item">
-										<input type="password" placeholder="Enter your Password" required />
+										<input type="password" placeholder="密码" name="pass"  required />
 									</div>
-
+									<div class="form-group">
+										<fieldset> <input name="checkvalue"  onkeydown="javascript:if(event.keyCode==13) loginsystem() " id="checkimage"
+														  name="checkvalue" tabindex="3" type="text" placeholder="验证码" value="" autocomplete="off" />
+											<img width="80" height="40" alt="code..." name="randImage" id="randImage" src="./checkimage.jsp"  border="1" align="absmiddle">
+											<a href=javascript: onclick="javascript:reloadImage()">更换</a></fieldset>
+									</div>
 									<div class="single-input-item">
 										<div class="login-reg-form-meta d-flex align-items-center justify-content-between">
 											<div class="remember-meta">
 												<div class="custom-control custom-checkbox">
-													<input type="checkbox" class="custom-control-input" id="rememberMe">
-													<label class="custom-control-label" for="rememberMe">Remember Me</label>
+													<input type="checkbox" class="custom-control-input" name = "remember" id="rememberMe">
+													<label class="custom-control-label" for="rememberMe">记住我</label>
 												</div>
 											</div>
 
-											<a href="#" class="forget-pwd">Forget Password?</a>
+											<a href="#" class="forget-pwd">忘记密码?</a>
 										</div>
 									</div>
 
 									<div class="single-input-item">
-										<button class="btn">Login</button>
+										<button class="btn">登陆</button>
 									</div>
 								</form>
 							</div>
@@ -111,47 +116,36 @@
 						<!-- Register Content Start -->
 						<div class="col-lg-7 mt-30 mt-lg-0">
 							<div class="login-reg-form-wrap">
-								<h2>Singup Form</h2>
-								<form action="#" method="post">
+								<h2>新注册</h2>
+								<form class="register-form" action="javascript:register()" method="post">
+
+
 									<div class="single-input-item">
-										<input type="text" placeholder="Full Name" required />
+										<input type="email" name="email" placeholder="邮箱" required />
 									</div>
 
 									<div class="single-input-item">
-										<input type="email" placeholder="Enter your Email" required />
-									</div>
-
-									<div class="single-input-item">
-										<input type="text" placeholder="Choose yur Username" required />
+										<input type="text" name="cname" placeholder="用户名" required />
 									</div>
 
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="single-input-item">
-												<input type="password" placeholder="Enter your Password" required />
+												<input type="password" name="pass" placeholder="密码" required />
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="single-input-item">
-												<input type="password" placeholder="Repeat your Password" required />
+												<input type="password" name="rpass" placeholder="再输入一次密码" required />
 											</div>
 										</div>
 									</div>
 
-									<div class="single-input-item">
-										<div class="login-reg-form-meta">
-											<div class="remember-meta">
-												<div class="custom-control custom-checkbox">
-													<input type="checkbox" class="custom-control-input" id="subnewsletter">
-													<label class="custom-control-label" for="subnewsletter">Subscribe Our Newsletter</label>
-												</div>
-											</div>
-										</div>
-									</div>
+
 
 									<div class="single-input-item">
-										<button class="btn">Register</button>
+										<button class="btn">注册</button>
 									</div>
 								</form>
 							</div>
@@ -163,42 +157,7 @@
 		</div>
 		<!--== Page Content Wrapper End ==-->
 
-		<!--== Start Newsletter Area ==-->
-		<div class="newsletter-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-9 m-auto">
-						<!-- Newsletter Content Start -->
-						<div class="newsletter-content-wrap text-center text-lg-left d-lg-flex">
-							<h2><i class="fa fa-envelope-square"></i> Sign up for Newsletter</h2>
-							<div class="newsletter-form-wrap">
-								<form id="subscribe-form" action="assets/php/subscribe.php" method="post">
-									<input type="email" name="newsletter_email" id="address" placeholder="Enter Your Email Address" required />
-									<button class="btn" type="submit">Subscribe</button>
-								</form>
-								<!-- Show Error & Success Message -->
-								<div id="subscribeResult"></div>
-							</div>
-						</div>
-						<!-- Newsletter Content End -->
-					</div>
-
-					<div class="col-lg-3 m-auto text-center text-lg-right">
-						<!-- Social Icons Area Start -->
-						<div class="social-icons">
-							<a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-linkedin"></i></a>
-							<a href="#"><i class="fa fa-youtube"></i></a>
-						</div>
-						<!-- Social Icons Area End -->
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--== End Newsletter Area ==-->
-
-		<%@ include file="footer.html" %>
+		<%@ include file="footer.jsp" %>
 
 		<!--=======================Javascript============================-->
 		<!--=== Jquery Min Js ===-->
@@ -216,6 +175,49 @@
 
 		<!--=== Active Js ===-->
 		<script src="assets/js/active.js"></script>
+
+
+
+		<script>
+            var login = function()
+            {
+                $.post( '/cc?action=login', $('.login-form').serialize(), function(data) {
+
+                        if(data.type==1001)
+                        {
+                            window.location.href='/default/index3.jsp';
+                        }
+                        else {
+                            console.log(data.msg);
+                            alert("错误"+data.msg);
+                        }
+                    },
+                    'json' // I expect a JSON response
+                );
+            }
+            var register = function()
+            {
+                $.post( '/cc?action=register', $('.register-form').serialize(), function(data) {
+
+                        if(data.type==1001)
+                        {
+                             window.location.href='/default/index3.jsp';
+                        }
+                        else {
+                            console.log(data.msg);
+                            alert("错误"+data.msg);
+                        }
+                    },
+                    'json' // I expect a JSON response
+                );
+            }
+            function reloadImage()
+            {
+
+
+                document.randImage.src = './checkimage.jsp?' + Math.random();
+            }
+		</script>
 	</body>
 
 </html>
