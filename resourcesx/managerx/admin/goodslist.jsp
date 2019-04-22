@@ -150,8 +150,8 @@
                 <p>Loading...</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" id="editsubmit" >Save changes</button>
+                <button id="close" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button  id="save" type="submit" class="btn btn-primary">保存</button>
             </div>
         </div>
     </div>
@@ -178,7 +178,21 @@
             e.preventDefault();
           //  $('input[name="product[name]').val("12124")
 
-        })
+        });
+
+        $('#save').click(function(event) {
+
+            event.preventDefault();
+            alert("save...")
+            $('#myModal').modal('hide');
+        });
+
+        $('#close').click(function(event) {
+
+            event.preventDefault();
+            alert("Close.....")
+            $('#myModal').modal('hide');
+        });
     });
 
 </script>

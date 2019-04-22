@@ -28,15 +28,6 @@
 
         <!-- END PAGE HEAD-->
         <!-- BEGIN PAGE BREADCRUMB -->
-        <ul class="page-breadcrumb breadcrumb" hidden>
-            <li>
-                <a href="index.html">Home</a>
-                <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <span class="active">eCommerce</span>
-            </li>
-        </ul>
         <!-- END PAGE BREADCRUMB -->
         <!-- BEGIN PAGE BASE CONTENT -->
         <div class="row">
