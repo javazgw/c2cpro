@@ -455,7 +455,7 @@
 											</div>
 											<span class="product-price">$40.99</span>
 											<div class="product-meta">
-												<a href="#" class="btn btn-round btn-cart" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+												<a href="#" onclick="javascript:addtocar(<%= "1001"%>)" class="btn btn-round btn-cart" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
 												<a href="wishlist.jsp" class="btn btn-round btn-cart" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
 												<a href="compare.jsp" class="btn btn-round btn-cart" title="Add to Compare"><i class="fa fa-exchange"></i></a>
 											</div>
@@ -618,6 +618,22 @@
 <script src="assets/js/active.js"></script>
 </div>
 
+<script>
+	function  addtocar(gcode) {
+        $.post( '/cc?action=addshopingcar&gcode='+gcode+"&num=1", function(data) {
+
+                if(data.type==1001)
+                {
+                    
+                }
+                else {
+                    log(data.msg);
+                }
+            },
+            'json' // I expect a JSON response
+        );
+    }
+</script>
 </body>
 
 </html>

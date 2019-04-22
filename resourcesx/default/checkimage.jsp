@@ -5,6 +5,12 @@
 java.awt.image.*,java.util.*,javax.imageio.*" %>
 
 
+<%--
+  ~ Copyright (c) 2019.  javazgw@gmail.com
+  ~
+  ~
+  --%>
+
 <%!
 Color getRandColor(int fc,int bc){
           Random random = new Random();
@@ -52,7 +58,8 @@ g.drawLine(x,y,x+xl,y+yl);
 
 String sRand="";
 String rand="";
-String[] strarray = {"s","2","3","4","5","6","7","8","9","a","b","c","d","e","f","g","h","j","k","m","n","p","q","r","s","t","u","v","w","x","y","z"};
+//String[] strarray = {"s","2","3","4","5","6","7","8","9","a","b","c","d","e","f","g","h","j","k","m","n","p","q","r","s","t","u","v","w","x","y","z"};
+String[] strarray = {"1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"};
 for (int i=0;i<4;i++){
       rand=strarray[random.nextInt(32)];
       sRand+=rand;

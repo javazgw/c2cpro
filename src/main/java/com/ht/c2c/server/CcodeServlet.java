@@ -8,6 +8,8 @@ package com.ht.c2c.server;
 
 import com.alibaba.fastjson.JSON;
 import com.ht.c2c.returnObject.ReturnObject;
+import com.ht.c2c.shoping.Shopingcar;
+import com.ht.c2c.shoping.Shopitem;
 import com.ht.c2c.tools.Configure;
 import com.ht.c2c.tools.SQLTools;
 
@@ -207,6 +209,75 @@ public class CcodeServlet extends HttpServlet {
         else if(action.equals("logout"))
         {
             req.getSession().removeAttribute("cname");
+        }
+
+        else if(action.equals("addshopingcar"))
+        {
+
+            ReturnObject rto = new ReturnObject();
+            Shopingcar shopingcar;
+            String gcode = req.getParameter("gcode");
+            String cname = req.getSession().getAttribute("cname").toString();
+            int num = Integer.parseInt(req.getParameter("num"));
+            if(req.getSession().getAttribute("shoppingcar")!=null) {
+                shopingcar = (Shopingcar) req.getSession().getAttribute("shoppingcar");
+            }
+            else
+            {
+                shopingcar = new Shopingcar(cname);
+                req.getSession().setAttribute("shoppingcar",shopingcar);
+
+            }
+
+            Shopitem shopitem = new Shopitem();
+            shopitem.setNum(num);
+            shopitem.setGoodsid(gcode);
+            if(shopingcar.add(shopitem)){
+                rto.setType(SUCCESS);
+
+            }
+            else
+            {
+                rto.setType(ERROR);
+                rto.setMsg("");
+            }
+            PrintWriter out = resp.getWriter();
+            out.println(rto);
+
+        }
+        else if(action.equals("removeshopingcar"))
+        {
+            Shopingcar shopingcar;
+            String gcode = req.getParameter("gcode");
+            String cname = req.getSession().getAttribute("cname").toString();
+            int num = Integer.parseInt(req.getParameter("num"));
+            if(req.getSession().getAttribute("shoppingcar")!=null) {
+                shopingcar = (Shopingcar) req.getSession().getAttribute("shoppingcar");
+            }
+            else
+            {
+                shopingcar = new Shopingcar(cname);
+                req.getSession().setAttribute("shoppingcar",shopingcar);
+
+            }
+
+            Shopitem shopitem = new Shopitem();
+            shopitem.setNum(num);
+            shopitem.setGoodsid(gcode);
+            ReturnObject rto = new ReturnObject();
+            if(shopingcar.removeItem(shopitem)){
+                rto.setType(SUCCESS);
+
+            }
+            else
+            {
+                rto.setType(ERROR);
+                rto.setMsg("");
+            }
+            PrintWriter out = resp.getWriter();
+            out.println(rto);
+
+
         }
     }
 }
