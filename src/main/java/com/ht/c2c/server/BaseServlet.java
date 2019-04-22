@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 public class BaseServlet extends HttpServlet {
@@ -61,42 +62,40 @@ public class BaseServlet extends HttpServlet {
         }
 
         //单表保存
-        else if(action.equals("save"))
-        {
-            resp.setContentType("text/html");
+        else {
+            if (action.equals("save")) {
+                resp.setContentType("text/html");
 
-            String table = req.getParameter("tb");
-            String icode = req.getParameter("icode");
-            table = "gcode";
+                String table = req.getParameter("tb");
+                String icode = req.getParameter("icode");
+                table = "gcode";
 
-            String updatesql ="update "+table;
-            StringBuffer sql = new StringBuffer();
-            sql.append(" set ");
-            Enumeration<String> paramekeys = req.getParameterNames();
-            //update gcode set gname ='xiaomi2'  where icode =''
-            while(paramekeys.hasMoreElements())
-            {
+                String updatesql = "update " + table;
+                StringBuffer sql = new StringBuffer();
+                sql.append(" set ");
+                Enumeration<String> paramekeys = req.getParameterNames();
+                ArrayList<String> paramList = new ArrayList<String>();
+                //update gcode set gname ='xiaomi2'  where icode =''
+                while (paramekeys.hasMoreElements()) {
+                    String key = paramekeys.nextElement();
+                    if (key.equals("icode") || key.equals("action"))
+                        continue;
+                    sql.append(key);
+                    sql.append("=?,");
+                    //sql.append(req.getParameter(key).replaceAll(",", "'"));
+                    //sql.append("',");
+                    paramList.add(req.getParameter(key));
+                }
+                updatesql = updatesql + sql;
+                updatesql = updatesql.substring(0, updatesql.length() - 1);
+                updatesql = updatesql + " where icode =" + req.getParameter("icode");
+                System.out.println("updatesql="+updatesql);
 
-                String key = paramekeys.nextElement();
-                if(key.equals("icode") || key.equals("action"))
-                    continue;
-                sql.append(key);
-                sql.append("='");
-                sql.append(req.getParameter(key).replaceAll(",","''"));
-                sql.append("',");
-            }
-            updatesql =updatesql+sql;
-            updatesql =updatesql.substring(0,updatesql.length()-1);
-            updatesql =updatesql+" where icode ="+req.getParameter("icode");
-            System.out.println(updatesql);
-
-            try {
-
-
-                SQLTools.getInstance().Update(updatesql);
-
-            } catch (Exception e) {
-                Configure.log(""+e.getMessage());
+                try {
+                    SQLTools.getInstance().Update(updatesql,paramList.toArray());
+                } catch (Exception e) {
+                    Configure.log("" + e.getMessage());
+                }
             }
         }
     }

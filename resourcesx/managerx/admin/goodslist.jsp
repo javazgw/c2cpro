@@ -139,12 +139,12 @@
 </div>
 <a href="#" data-toggle="modal" data-load-url="/index.jsp" data-target="#myModal">Click me</a>
 
-<div id="myModal" class="modal fade">
+<div id="myModal" class="modal fade" aria-hidden='true' data-backdrop='static'>
     <div class="modal-dialog modal-lg" >
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
+                <h4 class="modal-title">商品添加/编辑</h4>
             </div>
             <div class="modal-body">
                 <p>Loading...</p>

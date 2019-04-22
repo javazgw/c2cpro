@@ -28,25 +28,24 @@
 
         <!-- END PAGE HEAD-->
         <!-- BEGIN PAGE BREADCRUMB -->
-
         <!-- END PAGE BREADCRUMB -->
         <!-- BEGIN PAGE BASE CONTENT -->
         <div class="row">
             <div class="col-md-12">
                 <form id="editform" class="form-horizontal form-row-seperated" >
                     <div class="portlet">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="fa fa-shopping-cart"></i>Test Product </div>
-                            <div class="actions btn-set">
-                                    <button class=" " onclick="editsubmit()">
+                        <%--<div class="portlet-title" hidden>--%>
+                            <%--<div class="caption">--%>
+                                <%--<i class="fa fa-shopping-cart"></i>Test Product </div>--%>
+                            <%--<div class="actions btn-set">--%>
+                                    <%--<button class=" " onclick="editsubmit()">--%>
 
-                                    <i class="fa fa-check"></i> Save</button>
-                                <button class="btn btn-success" >
-                                    <i class="fa fa-check-circle"></i> Save & Continue Edit</button>
+                                    <%--<i class="fa fa-check"></i> Save</button>--%>
+                                <%--<button class="btn btn-success" >--%>
+                                    <%--<i class="fa fa-check-circle"></i> Save & Continue Edit</button>--%>
 
-                            </div>
-                        </div>
+                            <%--</div>--%>
+                        <%--</div>--%>
                         <div class="portlet-body">
                             <div class="tabbable-bordered">
                                 <ul class="nav nav-tabs">
@@ -160,25 +159,38 @@
 <script>
 
     document.addEventListener("DOMContentLoaded", function(){
+        $('.editsubmit').on('click',function (){
+            // $('#editform').submit(function () {
+            // $(this).ajaxSubmit(function () {
+            //     $('#output2').html("提交成功！欢迎下次再来！").show();
+            // });
 
+            $.post( '/BS?action=save', $('#editform').serialize(), function(data) {
+
+                    },
+                    'json' // I expect a JSON response
+            );
+            // return false; //阻止表单默认提交
+            // });
+        });
         //$('.summernote').summernote();
     });
 
+    $('#editsubmit').on('click',function (){
+        // $('#editform').submit(function () {
+        // $(this).ajaxSubmit(function () {
+        //     $('#output2').html("提交成功！欢迎下次再来！").show();
+        // });
 
-       function editsubmit(){
-           // $('#editform').submit(function () {
-               // $(this).ajaxSubmit(function () {
-               //     $('#output2').html("提交成功！欢迎下次再来！").show();
-               // });
+        $.post( '/BS?action=save', $('#editform').serialize(), function(data) {
 
-               $.post( '/BS?action=save', $('#editform').serialize(), function(data) {
+                },
+                'json' // I expect a JSON response
+        );
+        // return false; //阻止表单默认提交
+        // });
+    });
 
-                   },
-                   'json' // I expect a JSON response
-               );
-               // return false; //阻止表单默认提交
-           // });
-       }
    // $('.summernote').summernote();
 
     tinymce.init({ selector:'textarea' });

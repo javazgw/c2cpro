@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
+import java.sql.PreparedStatement;
 
 /**
  * Created by guangwangzhuang on 2019/4/12.
@@ -74,12 +75,33 @@ public class SQLTools {
 
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             result = stmt.executeUpdate(SqlStr);
-            if (result == 0)
+              if (result == 0)
                 System.out.println("数据未被更新" + SqlStr);
 
         } finally {
             if (stmt != null)
                 stmt.close();
+            conn.close();
+        }
+        return result;
+    }
+
+    public int Update(String SqlStr,Object[] params) throws Exception {
+        Configure.log(" update:" + SqlStr);
+        Connection conn = dataSource.getConnection();
+        PreparedStatement statement = null;
+        int result = 0;
+        try {
+            statement = conn.prepareStatement(SqlStr);
+            for (int i=0;i<params.length;i++){
+                statement.setString(i+1,params[i].toString());
+            }
+            result = statement.executeUpdate();
+            if (result == 0)
+                System.out.println("数据未被更新" + SqlStr);
+        } finally {
+            if (statement != null)
+                statement.close();
             conn.close();
         }
         return result;
