@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-﻿﻿<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Connection" %>
 <%@ page import="com.ht.c2c.tools.SQLTools" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.ResultSet" %>
@@ -621,11 +621,11 @@
 
 <script>
 	function  addtocar(gcode) {
-        $.post( '/cc?action=addshopingcar', $('.login-form').serialize(), function(data) {
+        $.post( '/cc?action=addshopingcar&gcode='+gcode+"&num=1", function(data) {
 
                 if(data.type==1001)
                 {
-                    window.location.href='/managerx/admin/main.jsp';
+                    
                 }
                 else {
                     log(data.msg);
