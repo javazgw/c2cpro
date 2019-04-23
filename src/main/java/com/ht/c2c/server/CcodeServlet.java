@@ -98,6 +98,11 @@ public class CcodeServlet extends HttpServlet {
                     {
                         rto.setType(SUCCESS);
                         req.getSession().setAttribute("cname",cname);
+                        if(remember.equals("on"))
+                        {
+                            req.getSession().setMaxInactiveInterval(-1);
+                        }
+
                         PrintWriter out = resp.getWriter();
 
                         out.println(JSON.toJSON(rto));

@@ -430,9 +430,16 @@
 							<div class="row">
 								<!-- 产品循环 Start -->
 								<%
+
+									int curpage = request.getParameter("curpage")==null?1:Integer.parseInt(request.getParameter("curpage"));
+									int onepagenum=request.getParameter("onepagenum")==null?12:Integer.parseInt(request.getParameter("onepagenum"));;
+									String pageurl = "index3.jsp?1=1";
+									String totalsql = "select count(*) as c from gcode";
+									String sql = "select * from gcode limit "+(curpage-1)*onepagenum+","+onepagenum;
+									System.out.println(sql);
 									Connection con1 = SQLTools.getInstance().getConnection();
 									Statement stmt1 = con1.createStatement();
-									ResultSet rs1 = stmt1.executeQuery("select * from gcodetype");
+									ResultSet rs1 = stmt1.executeQuery(sql);
 
 									while (rs1.next())
 									{
@@ -445,8 +452,7 @@
 											<a href="single-product.jsp"><img src="assets/img/product-1.jpg" alt="Product"></a>
 										</figure>
 										<div class="product-details">
-											<h2 class="product-title"><a href="single-product.jsp">Rival Field
-												Messenger</a></h2>
+											<h2 class="product-title"><a href="single-product.jsp"><%= rs1.getString("gname")%></a></h2>
 											<div class="rating">
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
@@ -475,27 +481,12 @@
 						</div>
 					</div>
 
-					<div class="products-settings-option d-block d-md-flex">
-						<nav class="page-pagination">
-							<ul class="pagination">
-								<li>
-									<a href="#" aria-label="Previous">&laquo;</a>
-								</li>
-								<li>
-									<a class="current" href="#">1</a>
-								</li>
-								<li>
-									<a href="#">2</a>
-								</li>
-								<li>
-									<a href="#">3</a>
-								</li>
-								<li>
-									<a href="#" aria-label="Next">&raquo;</a>
-								</li>
-							</ul>
-						</nav>
-					</div>
+
+
+
+					<jsp:include page='<%= "/public/page.jsp?pageurl="+pageurl+"&sql="+totalsql%>' ></jsp:include>
+
+
 				</div>
 			</div>
 			<!-- End 产品展示区 -->
