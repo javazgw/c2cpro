@@ -44,7 +44,7 @@
 
 		<%@ include file="header.jsp" %>
 
-		<!--== Start Page Breadcrumb ==-->
+		<!--== Start 页面导航 ==-->
 		<div class="page-breadcrumb-wrap">
 			<div class="container">
 				<div class="row">
@@ -52,13 +52,13 @@
 						<div class="page-breadcrumb">
 							<ul class="nav">
 								<li>
-									<a href="index.html">Home</a>
+									<a href="index.html">主页</a>
 								</li>
 								<li>
-									<a href="shop.jsp">Shop</a>
+									<a href="shop.jsp">商店</a>
 								</li>
 								<li>
-									<a href="#" class="active">MH02-Gray</a>
+									<a href="#" class="active">${param.gname}</a>
 								</li>
 							</ul>
 						</div>
@@ -66,17 +66,25 @@
 				</div>
 			</div>
 		</div>
-		<!--== End Page Breadcrumb ==-->
+		<!--== End 页面导航 ==-->
 
-		<!--== Page Content Wrapper Start ==-->
+		<!--== 产品介绍打包区域 Start ==-->
 		<div id="page-content-wrapper">
 			<div class="container">
 				<div class="row">
-					<!-- Single Product Page Content Start -->
+					<%
+//						String name = request.getContextPath();
+						Connection gconproduct = SQLTools.getInstance().getConnection();
+						Statement gstmtproduct = gconproduct.createStatement();
+						ResultSet grsproduct = gstmtproduct.executeQuery("select * from gcode where gcode = " );
+						while (grsproduct.next())
+						{
+					%>
+					<!-- 单一产品介绍页 Start -->
 					<div class="col-lg-12">
 						<div class="single-product-page-content">
 							<div class="row">
-								<!-- Product Thumbnail Start -->
+								<!-- 产品缩略图 Start -->
 								<div class="col-lg-5">
 									<div class="product-thumbnail-wrap">
 										<div class="product-thumb-carousel owl-carousel">
@@ -98,12 +106,12 @@
 										</div>
 									</div>
 								</div>
-								<!-- Product Thumbnail End -->
+								<!-- 产品缩略图 End -->
 
-								<!-- Product Details Start -->
+								<!-- 产品详情 Start -->
 								<div class="col-lg-7">
 									<div class="product-details">
-										<h2><a href="single-product.jsp">MH02-Gray</a></h2>
+										<h2><a><%= grsproduct.getString("gname")%></a></h2>
 
 										<div class="rating">
 											<i class="fa fa-star"></i>
@@ -113,14 +121,14 @@
 											<i class="fa fa-star-o"></i>
 										</div>
 
-										<span class="price">$52.00</span>
+										<span class="price"><%= grsproduct.getString("price")%></span>
 
 										<div class="product-info-stock-sku">
-											<span class="product-stock-status text-success">In Stock</span>
-											<span class="product-sku-status"><strong>SKU</strong> MH03</span>
+											<span class="product-stock-status text-success">有现货</span>
+											<span class="product-sku-status"><strong>品牌</strong> <%= grsproduct.getString("gname")%></span>
 										</div>
 
-										<p class="products-desc">Ideal for cold-weathered training worked lorem ipsum outdoors, the Chaz Hoodie promises superior warmth with every wear. Thick material blocks out the wind as ribbed cuffs and bottom band seal in body heat Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, reprehenderit.</p>
+										<p class="products-desc"><%= grsproduct.getString("descript")%>.</p>
 
 										<div class="shopping-option-item">
 											<h4>Color</h4>
@@ -159,26 +167,26 @@
 
 										<div class="product-btn-group">
 											<a href="wishlist.jsp" class="btn btn-round btn-cart"><i class="fa fa-heart"></i></a>
-											<a href="compare.jsp" class="btn btn-round btn-cart"><i class="fa fa-exchange"></i></a>
-											<a href="single-product-gruop.html" class="btn btn-round btn-cart"><i class="fa fa-envelope-o"></i></a>
+											<%--<a href="compare.jsp" class="btn btn-round btn-cart"><i class="fa fa-exchange"></i></a>--%>
+											<%--<a href="single-product-gruop.html" class="btn btn-round btn-cart"><i class="fa fa-envelope-o"></i></a>--%>
 										</div>
 									</div>
 								</div>
-								<!-- Product Details End -->
+								<!-- 产品详情 End -->
 							</div>
 
 							<div class="row">
 								<div class="col-lg-12">
-									<!-- Product Full Description Start -->
+									<!-- 产品描述 Start -->
 									<div class="product-full-info-reviews">
-										<!-- Single Product tab Menu -->
+										<!-- 产品描述评价菜单 -->
 										<nav class="nav" id="nav-tab">
 											<a class="active" id="description-tab" data-toggle="tab" href="#description">Description</a>
 											<a id="reviews-tab" data-toggle="tab" href="#reviews">Reviews</a>
 										</nav>
-										<!-- Single Product tab Menu -->
+										<!-- 产品描述评价菜单 -->
 
-										<!-- Single Product tab Content -->
+										<!-- 产品描述评价 -->
 										<div class="tab-content" id="nav-tabContent">
 											<div class="tab-pane fade show active" id="description">
 												<p>Stay comfortable and stay in the race no matter what the weather's up to. The Bruno Compete Hoodie's water-repellent exterior shields you from the elements, while advanced fabric technology inside wicks moisture to keep you dry.Stay comfortable and stay in the race no matter what the weather's up to. The Bruno Compete Hoodie's water-repellent exterior shields you from the elements, while advanced fabric technology inside wicks moisture to keep you dry.Stay comfortable and stay in the race no matter what the weather's up to. The Bruno Compete Hoodie's water-repellent exterior shields you from the elements, while advanced fabric technology inside wicks moisture to keep you dry.</p>
@@ -318,53 +326,25 @@
 												</div>
 											</div>
 										</div>
-										<!-- Single Product tab Content -->
+										<!-- 产品描述评价 -->
 									</div>
-									<!-- Product Full Description End -->
+									<!-- 产品描述 End -->
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- Single Product Page Content End -->
+					<!-- 单一产品介绍页 End -->
+					<%
+						}
+						rs.close() ;
+						stmt.close();
+						con.close();
+					%>
 				</div>
 			</div>
 		</div>
-		<!--== Page Content Wrapper End ==-->
+		<!--== 产品介绍打包区域 End ==-->
 
-		<!--== Start Newsletter Area ==-->
-		<div class="newsletter-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-9 m-auto">
-						<!-- Newsletter Content Start -->
-						<div class="newsletter-content-wrap text-center text-lg-left d-lg-flex">
-							<h2><i class="fa fa-envelope-square"></i> Sign up for Newsletter</h2>
-							<div class="newsletter-form-wrap">
-								<form id="subscribe-form" action="assets/php/subscribe.php" method="post">
-									<input type="email" name="newsletter_email" id="address" placeholder="Enter Your Email Address" required />
-									<button class="btn" type="submit">Subscribe</button>
-								</form>
-								<!-- Show Error & Success Message -->
-								<div id="subscribeResult"></div>
-							</div>
-						</div>
-						<!-- Newsletter Content End -->
-					</div>
-
-					<div class="col-lg-3 m-auto text-center text-lg-right">
-						<!-- Social Icons Area Start -->
-						<div class="social-icons">
-							<a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-linkedin"></i></a>
-							<a href="#"><i class="fa fa-youtube"></i></a>
-						</div>
-						<!-- Social Icons Area End -->
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--== End Newsletter Area ==-->
 
 		<%@ include file="footer.jsp" %>
 

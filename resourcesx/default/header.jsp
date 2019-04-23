@@ -167,9 +167,9 @@
                             stmt.close();
                             con.close();
                             %>
-                            <li class="category-item-parent">
-                                <a href="#" class="category-item btn-more">More Categories</a>
-                            </li>
+                            <%--<li class="category-item-parent">--%>
+                                <%--<a href="#" class="category-item btn-more">More Categories</a>--%>
+                            <%--</li>--%>
                             <!-- 类别列表循环 End -->
                         </ul>
                     </div>

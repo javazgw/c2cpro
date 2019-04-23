@@ -83,82 +83,7 @@
 											</div>
 										</div>
 										<!-- 热门产品 End -->
-
 										<!-- 热门产品 Start -->
-										<div class="single-pro-item d-flex">
-											<a href="single-product.jsp" class="product-thumb">
-												<img src="assets/img/product-3.jpg" alt="Product" />
-											</a>
-											<div class="pro-details">
-												<h2>
-													<a href="single-product.jsp">Compete Hoodie</a>
-												</h2>
-												<span class="pro-price">$30.33</span>
-											</div>
-										</div>
-										<!-- 热门产品 End -->
-
-										<!-- 热门产品 Start -->
-										<div class="single-pro-item d-flex">
-											<a href="single-product.jsp" class="product-thumb">
-												<img src="assets/img/product-2.jpg" alt="Product" />
-											</a>
-											<div class="pro-details">
-												<h2>
-													<a href="single-product.jsp">MH02-Gray</a>
-												</h2>
-												<span class="pro-price">$20.11</span>
-											</div>
-										</div>
-										<!-- 热门产品 End -->
-
-										<!-- 热门产品 Start -->
-										<div class="single-pro-item d-flex">
-											<a href="single-product.jsp" class="product-thumb">
-												<img src="assets/img/product-3.jpg" alt="Product" />
-											</a>
-											<div class="pro-details">
-												<h2>
-													<a href="single-product.jsp">Compete Hoodie</a>
-												</h2>
-												<span class="pro-price">$30.33</span>
-											</div>
-										</div>
-										<!-- 热门产品 End -->
-
-										<!-- 热门产品 Start -->
-										<div class="single-pro-item d-flex">
-											<a href="single-product.jsp" class="product-thumb">
-												<img src="assets/img/product-4.jpg" alt="Product" />
-											</a>
-											<div class="pro-details">
-												<h2>
-													<a href="single-product.jsp">MH02-Gray</a>
-												</h2>
-												<span class="pro-price">$20.11</span>
-											</div>
-										</div>
-										<!-- 热门产品 End -->
-
-										<!-- 热门产品 Start -->
-										<div class="single-pro-item d-flex">
-											<a href="single-product.jsp" class="product-thumb">
-												<img src="assets/img/product-5.jpg" alt="Product" />
-											</a>
-											<div class="pro-details">
-												<h2>
-													<a href="single-product.jsp">Compete Hoodie</a>
-												</h2>
-												<span class="pro-price">$30.33</span>
-											</div>
-										</div>
-										<!-- 热门产品 End -->
-									</div>
-								</div>
-
-								<div class="sidebar-carousel-item">
-									<div class="product-small-list">
-										<!-- Single Product Start -->
 										<div class="single-pro-item d-flex">
 											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-1.jpg" alt="Product" />
@@ -170,69 +95,8 @@
 												<span class="pro-price">$30.33</span>
 											</div>
 										</div>
-										<!-- Single Product End -->
-
-										<!-- Single Product Start -->
-										<div class="single-pro-item d-flex">
-											<a href="single-product.jsp" class="product-thumb">
-												<img src="assets/img/product-2.jpg" alt="Product" />
-											</a>
-											<div class="pro-details">
-												<h2>
-													<a href="single-product.jsp">MH02-Gray</a>
-												</h2>
-												<span class="pro-price">$20.11</span>
-											</div>
-										</div>
-										<!-- Single Product End -->
-
-										<!-- Single Product Start -->
-										<div class="single-pro-item d-flex">
-											<a href="single-product.jsp" class="product-thumb">
-												<img src="assets/img/product-3.jpg" alt="Product" />
-											</a>
-											<div class="pro-details">
-												<h2>
-													<a href="single-product.jsp">Compete Hoodie</a>
-												</h2>
-												<span class="pro-price">$30.33</span>
-											</div>
-										</div>
-										<!-- Single Product End -->
-
-										<!-- Single Product Start -->
-										<div class="single-pro-item d-flex">
-											<a href="single-product.jsp" class="product-thumb">
-												<img src="assets/img/product-4.jpg" alt="Product" />
-											</a>
-											<div class="pro-details">
-												<h2>
-													<a href="single-product.jsp">MH02-Gray</a>
-												</h2>
-												<span class="pro-price">$20.11</span>
-											</div>
-										</div>
-										<!-- Single Product End -->
-
-										<!-- Single Product Start -->
-										<div class="single-pro-item d-flex">
-											<a href="single-product.jsp" class="product-thumb">
-												<img src="assets/img/product-5.jpg" alt="Product" />
-											</a>
-											<div class="pro-details">
-												<h2>
-													<a href="single-product.jsp">Compete Hoodie</a>
-												</h2>
-												<span class="pro-price">$30.33</span>
-											</div>
-										</div>
-										<!-- Single Product End -->
-									</div>
-								</div>
-
-								<div class="sidebar-carousel-item">
-									<div class="product-small-list">
-										<!-- Single Product Start -->
+										<!-- 热门产品 End -->
+										<!-- 热门产品 Start -->
 										<div class="single-pro-item d-flex">
 											<a href="single-product.jsp" class="product-thumb">
 												<img src="assets/img/product-1.jpg" alt="Product" />
@@ -244,63 +108,7 @@
 												<span class="pro-price">$30.33</span>
 											</div>
 										</div>
-										<!-- Single Product End -->
-
-										<!-- Single Product Start -->
-										<div class="single-pro-item d-flex">
-											<a href="single-product.jsp" class="product-thumb">
-												<img src="assets/img/product-2.jpg" alt="Product" />
-											</a>
-											<div class="pro-details">
-												<h2>
-													<a href="single-product.jsp">MH02-Gray</a>
-												</h2>
-												<span class="pro-price">$20.11</span>
-											</div>
-										</div>
-										<!-- Single Product End -->
-
-										<!-- Single Product Start -->
-										<div class="single-pro-item d-flex">
-											<a href="single-product.jsp" class="product-thumb">
-												<img src="assets/img/product-3.jpg" alt="Product" />
-											</a>
-											<div class="pro-details">
-												<h2>
-													<a href="single-product.jsp">Compete Hoodie</a>
-												</h2>
-												<span class="pro-price">$30.33</span>
-											</div>
-										</div>
-										<!-- Single Product End -->
-
-										<!-- Single Product Start -->
-										<div class="single-pro-item d-flex">
-											<a href="single-product.jsp" class="product-thumb">
-												<img src="assets/img/product-4.jpg" alt="Product" />
-											</a>
-											<div class="pro-details">
-												<h2>
-													<a href="single-product.jsp">MH02-Gray</a>
-												</h2>
-												<span class="pro-price">$20.11</span>
-											</div>
-										</div>
-										<!-- Single Product End -->
-
-										<!-- Single Product Start -->
-										<div class="single-pro-item d-flex">
-											<a href="single-product.jsp" class="product-thumb">
-												<img src="assets/img/product-5.jpg" alt="Product" />
-											</a>
-											<div class="pro-details">
-												<h2>
-													<a href="single-product.jsp">Compete Hoodie</a>
-												</h2>
-												<span class="pro-price">$30.33</span>
-											</div>
-										</div>
-										<!-- Single Product End -->
+										<!-- 热门产品 End -->
 									</div>
 								</div>
 							</div>
@@ -430,11 +238,11 @@
 							<div class="row">
 								<!-- 产品循环 Start -->
 								<%
-									Connection con1 = SQLTools.getInstance().getConnection();
-									Statement stmt1 = con1.createStatement();
-									ResultSet rs1 = stmt1.executeQuery("select * from gcodetype");
+									Connection gcon = SQLTools.getInstance().getConnection();
+									Statement gstmt = gcon.createStatement();
+									ResultSet grs = gstmt.executeQuery("select * from gcode");
 
-									while (rs1.next())
+									while (grs.next())
 									{
 
 								%>
@@ -442,11 +250,10 @@
 								<div class="col-lg-4 col-sm-6">
 									<div class="single-product-item">
 										<figure class="product-thumb">
-											<a href="single-product.jsp"><img src="assets/img/product-1.jpg" alt="Product"></a>
+											<a href="single-product.jsp?gcode=<%= grs.getString("gcode")%>&gname=<%= grs.getString("gname")%>"><img src="assets/img/product-1.jpg" alt="Product"></a>
 										</figure>
 										<div class="product-details">
-											<h2 class="product-title"><a href="single-product.jsp">Rival Field
-												Messenger</a></h2>
+											<h2 class="product-title"><a href="single-product.jsp"><%= grs.getString("gname")%></a></h2>
 											<div class="rating">
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
@@ -454,11 +261,11 @@
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
 											</div>
-											<span class="product-price">$40.99</span>
+											<span class="product-price"><%= grs.getString("price")%></span>
 											<div class="product-meta">
 												<a href="#" onclick="javascript:addtocar(<%= "1001"%>)" class="btn btn-round btn-cart" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-												<a href="wishlist.jsp" class="btn btn-round btn-cart" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-												<a href="compare.jsp" class="btn btn-round btn-cart" title="Add to Compare"><i class="fa fa-exchange"></i></a>
+												<%--<a href="wishlist.jsp" class="btn btn-round btn-cart" title="Add to Wishlist"><i class="fa fa-heart"></i></a>--%>
+												<%--<a href="compare.jsp" class="btn btn-round btn-cart" title="Add to Compare"><i class="fa fa-exchange"></i></a>--%>
 											</div>
 										</div>
 									</div>
