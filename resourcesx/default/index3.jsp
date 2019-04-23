@@ -434,9 +434,9 @@
 									int curpage = request.getParameter("curpage")==null?1:Integer.parseInt(request.getParameter("curpage"));
 									int onepagenum=request.getParameter("onepagenum")==null?12:Integer.parseInt(request.getParameter("onepagenum"));;
 									String pageurl = "index3.jsp?1=1";
-									String totalsql = "select count(*) as c from gcode";
+									String totalsql = "select count(*) as c from gcode ";
 									String sql = "select * from gcode limit "+(curpage-1)*onepagenum+","+onepagenum;
-									System.out.println(sql);
+
 									Connection con1 = SQLTools.getInstance().getConnection();
 									Statement stmt1 = con1.createStatement();
 									ResultSet rs1 = stmt1.executeQuery(sql);
