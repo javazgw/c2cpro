@@ -44,7 +44,7 @@
 
 		<%@ include file="header.jsp" %>
 
-		<!--== Start Page Breadcrumb ==-->
+		<!--== Start 页面导航 ==-->
 		<div class="page-breadcrumb-wrap">
 			<div class="container">
 				<div class="row">
@@ -52,10 +52,10 @@
 						<div class="page-breadcrumb">
 							<ul class="nav">
 								<li>
-									<a href="index.html">Home</a>
+									<a href="index.html">主页</a>
 								</li>
 								<li>
-									<a href="shop.jsp">Shop</a>
+									<a href="shop.jsp">商店</a>
 								</li>
 								<li>
 									<a href="shop.jsp" class="active">Compare</a>

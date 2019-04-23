@@ -52,13 +52,13 @@
 						<div class="page-breadcrumb">
 							<ul class="nav">
 								<li>
-									<a href="index.html">Home</a>
+									<a href="index.html">主页</a>
 								</li>
 								<li>
-									<a href="shop.html">Shop</a>
+									<a href="shop.html">商店</a>
 								</li>
 								<li>
-									<a href="shop.html" class="active">Member Area</a>
+									<a href="shop.html" class="active">登录</a>
 								</li>
 							</ul>
 						</div>

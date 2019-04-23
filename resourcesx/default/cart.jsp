@@ -44,7 +44,7 @@
 
 		<%@ include file="header.jsp" %>
 
-		<!--== Start Page Breadcrumb ==-->
+		<!--== Start 页面导航 ==-->
 		<div class="page-breadcrumb-wrap">
 			<div class="container">
 				<div class="row">
@@ -52,13 +52,13 @@
 						<div class="page-breadcrumb">
 							<ul class="nav">
 								<li>
-									<a href="index.html">Home</a>
+									<a href="index.html">主页</a>
 								</li>
 								<li>
-									<a href="shop.jsp">Shop</a>
+									<a href="shop.jsp">商店</a>
 								</li>
 								<li>
-									<a href="shop.jsp" class="active">Cart</a>
+									<a href="shop.jsp" class="active">购物车</a>
 								</li>
 							</ul>
 						</div>
@@ -66,27 +66,28 @@
 				</div>
 			</div>
 		</div>
-		<!--== End Page Breadcrumb ==-->
+		<!--== End 页面导航 ==-->
 
-		<!--== Page Content Wrapper Start ==-->
+		<!--== 页面内容封装 Start ==-->
 		<div id="page-content-wrapper">
 			<div class="container">
-				<!-- Cart Page Content Start -->
+				<!-- 购物车页面内容 Start -->
 				<div class="row">
 					<div class="col-lg-12">
-						<!-- Cart Table Area -->
+						<!-- 购物车列表区 Start -->
 						<div class="cart-table table-responsive">
 							<table class="table table-bordered">
 								<thead>
 									<tr>
-										<th class="pro-thumbnail">Thumbnail</th>
-										<th class="pro-title">Product</th>
-										<th class="pro-price">Price</th>
-										<th class="pro-quantity">Quantity</th>
-										<th class="pro-subtotal">Total</th>
-										<th class="pro-remove">Remove</th>
+										<th class="pro-thumbnail">缩略图</th>
+										<th class="pro-title">名称</th>
+										<th class="pro-price">价格</th>
+										<th class="pro-quantity">数量</th>
+										<th class="pro-subtotal">合计</th>
+										<th class="pro-remove">移除</th>
 									</tr>
 								</thead>
+								<!-- 购物车列表 End -->
 								<tbody>
 									<tr>
 										<td class="pro-thumbnail">
@@ -104,59 +105,12 @@
 											<a href="#"><i class="fa fa-trash-o"></i></a>
 										</td>
 									</tr>
-									<tr>
-										<td class="pro-thumbnail">
-											<a href="#"><img class="img-fluid" src="assets/img/product-2.jpg" alt="Product" /></a>
-										</td>
-										<td class="pro-title">
-											<a href="#">Aquet Drone D 420</a>
-										</td>
-										<td class="pro-price"><span>$275.00</span></td>
-										<td class="pro-quantity">
-											<div class="pro-qty"><input type="text" value="2"></div>
-										</td>
-										<td class="pro-subtotal"><span>$550.00</span></td>
-										<td class="pro-remove">
-											<a href="#"><i class="fa fa-trash-o"></i></a>
-										</td>
-									</tr>
-									<tr>
-										<td class="pro-thumbnail">
-											<a href="#"><img class="img-fluid" src="assets/img/product-3.jpg" alt="Product" /></a>
-										</td>
-										<td class="pro-title">
-											<a href="#">Game Station X 22</a>
-										</td>
-										<td class="pro-price"><span>$295.00</span></td>
-										<td class="pro-quantity">
-											<div class="pro-qty"><input type="text" value="1"></div>
-										</td>
-										<td class="pro-subtotal"><span>$295.00</span></td>
-										<td class="pro-remove">
-											<a href="#"><i class="fa fa-trash-o"></i></a>
-										</td>
-									</tr>
-									<tr>
-										<td class="pro-thumbnail">
-											<a href="#"><img class="img-fluid" src="assets/img/product-4.jpg" alt="Product" /></a>
-										</td>
-										<td class="pro-title">
-											<a href="#">Roxxe Headphone Z 75 </a>
-										</td>
-										<td class="pro-price"><span>$110.00</span></td>
-										<td class="pro-quantity">
-											<div class="pro-qty"><input type="text" value="1"></div>
-										</td>
-										<td class="pro-subtotal"><span>$110.00</span></td>
-										<td class="pro-remove">
-											<a href="#"><i class="fa fa-trash-o"></i></a>
-										</td>
-									</tr>
 								</tbody>
+								<!-- 购物车列表 End -->
 							</table>
 						</div>
-
-						<!-- Cart Update Option -->
+						<!-- 购物车列表区 End -->
+						<!-- 购物车更新选项 Start -->
 						<div class="cart-update-option d-block d-lg-flex">
 							<div class="apply-coupon-wrapper">
 								<form action="#" method="post" class=" d-block d-md-flex">
@@ -168,6 +122,7 @@
 								<a href="#" class="btn">Update Cart</a>
 							</div>
 						</div>
+						<!-- 购物车更新选项 End -->
 					</div>
 				</div>
 
@@ -198,45 +153,11 @@
 						</div>
 					</div>
 				</div>
-				<!-- Cart Page Content End -->
+				<!-- 购物车页面内容 End -->
 			</div>
 		</div>
-		<!--== Page Content Wrapper End ==-->
+		<!--== 页面内容封装 End ==-->
 
-		<!--== Start Newsletter Area ==-->
-		<div class="newsletter-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-9 m-auto">
-						<!-- Newsletter Content Start -->
-						<div class="newsletter-content-wrap text-center text-lg-left d-lg-flex">
-							<h2><i class="fa fa-envelope-square"></i> Sign up for Newsletter</h2>
-							<div class="newsletter-form-wrap">
-								<form id="subscribe-form" action="assets/php/subscribe.php" method="post">
-									<input type="email" name="newsletter_email" id="address" placeholder="Enter Your Email Address" required />
-									<button class="btn" type="submit">Subscribe</button>
-								</form>
-								<!-- Show Error & Success Message -->
-								<div id="subscribeResult"></div>
-							</div>
-						</div>
-						<!-- Newsletter Content End -->
-					</div>
-
-					<div class="col-lg-3 m-auto text-center text-lg-right">
-						<!-- Social Icons Area Start -->
-						<div class="social-icons">
-							<a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-linkedin"></i></a>
-							<a href="#"><i class="fa fa-youtube"></i></a>
-						</div>
-						<!-- Social Icons Area End -->
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--== End Newsletter Area ==-->
 
 		<%@ include file="footer.jsp" %>
 

@@ -58,7 +58,7 @@
 									<a href="shop.jsp">商店</a>
 								</li>
 								<li>
-									<a href="#" class="active">${param.gname}</a>
+									<a href="#" class="active">${param.name}</a>
 								</li>
 							</ul>
 						</div>
@@ -73,7 +73,7 @@
 			<div class="container">
 				<div class="row">
 					<%
-                        String gcode = request.getParameter("gcode");
+                        String gcode = request.getParameter("code");
 //						String name = request.getContextPath();
 						Connection gconproduct = SQLTools.getInstance().getConnection();
 						Statement gstmtproduct = gconproduct.createStatement();
@@ -165,12 +165,7 @@
 											</div>
 
 											<a href="cart.jsp" class="btn btn-cart-large"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
-										</div>
-
-										<div class="product-btn-group">
-											<a href="wishlist.jsp" class="btn btn-round btn-cart"><i class="fa fa-heart"></i></a>
-											<%--<a href="compare.jsp" class="btn btn-round btn-cart"><i class="fa fa-exchange"></i></a>--%>
-											<%--<a href="single-product-gruop.html" class="btn btn-round btn-cart"><i class="fa fa-envelope-o"></i></a>--%>
+											<%--<a href="#" onclick="javascript:addtocar(<%= "1001"%>)" class="btn btn-round btn-cart" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>--%>
 										</div>
 									</div>
 								</div>
@@ -338,9 +333,9 @@
 					<!-- 单一产品介绍页 End -->
 					<%
 						}
-						rs.close() ;
-						stmt.close();
-						con.close();
+						grsproduct.close() ;
+						gstmtproduct.close();
+						gconproduct.close();
 					%>
 				</div>
 			</div>

@@ -67,64 +67,70 @@
                 <!-- 购物车 Start -->
                 <div class="col-12 col-md-3 col-xl-2 m-auto text-center text-lg-right mt-xs-15">
                     <div class="minicart-wrapper">
-                        <button class="btn btn-minicart">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购物车 <sup class="cart-count">3</sup></button>
+                        <%
+                            if ( session.getAttribute("cname")==null ){
+                        %>
+                        <button onclick="location='login-register.jsp'" class="btn btn-minicart">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购物车 <sup class="cart-count">0</sup></button>
                         <div class="minicart-content">
                             <div class="mini-cart-body">
-                                <!-- Single Cart Item Start -->
-                                <div class="single-cart-item d-flex">
-                                    <figure class="product-thumb">
-                                        <a href="single-product.jsp"><img src="assets/img/product-1.jpg" alt="Products" /></a>
-                                    </figure>
+                        <%
+                            }else {
 
-                                    <div class="product-details">
-                                        <h2><a href="single-product.jsp">Sprite Yoga Companion</a></h2>
-                                        <div class="cal d-flex align-items-center">
-                                            <span class="quantity">3</span>
-                                            <span class="multiplication">X</span>
-                                            <span class="price">$77.00</span>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="remove-icon"><i class="fa fa-trash-o"></i></a>
-                                </div>
-                                <!-- Single Cart Item End -->
+                                String cname = session.getAttribute("cname").toString();
+                                Connection spcon = SQLTools.getInstance().getConnection();
+                                Statement spstmt = spcon.createStatement();
+                                ResultSet sprs = spstmt.executeQuery("select a.num,b.gname,b.price,b.imagesid from(select * from shoppingcar where cname ='"+cname+"') as a left join (select * from gcode ) as b on a.gcode = b.gcode");
 
-                                <!-- Single Cart Item Start -->
-                                <div class="single-cart-item d-flex">
-                                    <figure class="product-thumb">
-                                        <a href="single-product.jsp"><img src="assets/img/product-2.jpg" alt="Products" /></a>
-                                    </figure>
-                                    <div class="product-details">
-                                        <h2><a href="single-product.jsp">Yoga Companion Kit</a></h2>
-                                        <div class="cal d-flex align-items-center">
-                                            <span class="quantity">2</span>
-                                            <span class="multiplication">X</span>
-                                            <span class="price">$6.00</span>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="remove-icon"><i class="fa fa-trash-o"></i></a>
-                                </div>
-                                <!-- Single Cart Item End -->
+                                Connection cntcon = SQLTools.getInstance().getConnection();
+                                Statement cntstmt = cntcon.createStatement();
+                                ResultSet cntrs = cntstmt.executeQuery("select count(*) as cnt from(select * from shoppingcar where cname ='"+cname+"') as a left join (select * from gcode ) as b on a.gcode = b.gcode");
+                                cntrs.next();
+                        %>
 
-                                <!-- Single Cart Item Start -->
-                                <div class="single-cart-item d-flex">
-                                    <figure class="product-thumb">
-                                        <a href="single-product.jsp"><img src="assets/img/product-3.jpg" alt="Products" /></a>
-                                    </figure>
-                                    <div class="product-details">
-                                        <h2><a href="#">Sprite Yoga Companion Kit</a></h2>
-                                        <div class="cal d-flex align-items-center">
-                                            <span class="quantity">1</span>
-                                            <span class="multiplication">X</span>
-                                            <span class="price">$116.00</span>
+                        <button class="btn btn-minicart">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购物车 <sup class="cart-count"><%= cntrs.getString("cnt")%></sup></button>
+                        <div class="minicart-content">
+                            <div class="mini-cart-body">
+                                <%
+                                    cntrs.close() ;
+                                    cntstmt.close();
+                                    cntcon.close();
+
+                                    while (sprs.next())
+                                    {
+
+                                %>
+                                    <!-- 购物车商品 Start -->
+                                    <div class="single-cart-item d-flex">
+                                        <figure class="product-thumb">
+                                            <a href="single-product.jsp"><img src="<%= sprs.getString("imagesid")%>" alt="Products" /></a>
+                                            <%--<%= sprs.getString("imagesid")%>--%>
+                                        </figure>
+
+                                        <div class="product-details">
+                                            <h2><a href="single-product.jsp"><%= sprs.getString("gname")%></a></h2>
+                                            <div class="cal d-flex align-items-center">
+                                                <span class="quantity"><%= sprs.getString("num")%></span>
+                                                <span class="multiplication">X</span>
+                                                <span class="price"><%= sprs.getString("price")%></span>
+                                            </div>
                                         </div>
+                                        <a href="#" class="remove-icon"><i class="fa fa-trash-o"></i></a>
                                     </div>
-                                    <a href="single-product.jsp" class="remove-icon"><i class="fa fa-trash-o"></i></a>
+                                    <!-- 购物车商品 End -->
+                            <%
+
+                                    }
+                                    sprs.close() ;
+                                    spstmt.close();
+                                    spcon.close();
+                             %>
+                                <div class="mini-cart-footer">
+                                    <a href="checkout.jsp" class="btn">Checkout</a>
                                 </div>
-                                <!-- Single Cart Item End -->
-                            </div>
-                            <div class="mini-cart-footer">
-                                <a href="checkout.jsp" class="btn">Checkout</a>
-                            </div>
+                                <%
+                                }
+                            %>
+                                </div>
                         </div>
                     </div>
                 </div>
