@@ -28,6 +28,8 @@
     <servlet>
         <servlet-name>init</servlet-name>
         <servlet-class>com.ht.c2c.server.Init</servlet-class>
+        <load-on-startup>1</load-on-startup>
+
     </servlet>
     <servlet>
         <servlet-name>test</servlet-name>

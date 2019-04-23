@@ -1,5 +1,6 @@
 package com.ht.c2c.server;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,5 +35,24 @@ public class Init extends HttpServlet {
             out.println("<h3>你tmd 什么都没提交</h3>");
         }
     }
+    public void init(ServletConfig config) {
+        try {
+            super.init();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+        System.out.println("================>[Init]加载缓存.");
+        try {
+            Cache.getInstance().addCache("GCODE_CACHE","select * from gcode");
+            Cache.getInstance().addCache("GCOETYPE_CACHE","select * from gcodetype");
+
+            System.out.println("================>[Init]加载缓存完成.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 
     }
