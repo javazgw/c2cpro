@@ -3,6 +3,7 @@
 <%@ page import="com.ht.c2c.tools.SQLTools" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.ResultSet" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
@@ -430,6 +431,9 @@
 							<div class="row">
 								<!-- 产品循环 Start -->
 								<%
+
+
+
 
 									int curpage = request.getParameter("curpage")==null?1:Integer.parseInt(request.getParameter("curpage"));
 									int onepagenum=request.getParameter("onepagenum")==null?12:Integer.parseInt(request.getParameter("onepagenum"));;
