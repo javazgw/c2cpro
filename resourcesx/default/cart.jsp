@@ -35,12 +35,19 @@
 		<script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 
 		<!--[if lt IE 9]>
-    <script src="http://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+		<script src="http://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
 	</head>
 
 	<body>
+		<%
+			if(session.getAttribute("cname")==null){
+		%>
+		<jsp:forward page="login-register.jsp" />;
+		<%
+		}else {
+		%>
 
 		<%@ include file="header.jsp" %>
 
@@ -87,6 +94,16 @@
 										<th class="pro-remove">移除</th>
 									</tr>
 								</thead>
+
+								<%
+									String cname = session.getAttribute("cname").toString();
+									Connection cartcon = SQLTools.getInstance().getConnection();
+									Statement cartstmt = cartcon.createStatement();
+									ResultSet cartrs = cartstmt.executeQuery("select a.num,b.gname,b.price from(select * from shoppingcar where cname ='"+cname+"') as a left join (select * from gcode ) as b on a.gcode = b.gcode");
+									while (cartrs.next())
+									{
+								%>
+
 								<!-- 购物车列表 End -->
 								<tbody>
 									<tr>
@@ -94,22 +111,35 @@
 											<a href="#"><img class="img-fluid" src="assets/img/product-1.jpg" alt="Product" /></a>
 										</td>
 										<td class="pro-title">
-											<a href="#">Zeon Zen 4 Pro</a>
+											<a href="#"><%= cartrs.getString("gname")%></a>
 										</td>
-										<td class="pro-price"><span>$295.00</span></td>
+										<td class="pro-price"><span><%= cartrs.getString("price")%></span></td>
 										<td class="pro-quantity">
-											<div class="pro-qty"><input type="text" value="1"></div>
+											<%
+												request.setAttribute("num",cartrs.getString("num"));
+												request.setAttribute("price",cartrs.getString("price"));
+											%>
+											<div class="pro-qty"><input type="text" value="${num}"></div>
 										</td>
-										<td class="pro-subtotal"><span>$295.00</span></td>
+										<td class="pro-subtotal"><span>${(price * num)}</span></td>
 										<td class="pro-remove">
 											<a href="#"><i class="fa fa-trash-o"></i></a>
 										</td>
 									</tr>
 								</tbody>
 								<!-- 购物车列表 End -->
+
+								<%
+									}
+										cartrs.close() ;
+										cartstmt.close();
+										cartcon.close();
+								%>
+
 							</table>
 						</div>
 						<!-- 购物车列表区 End -->
+
 						<!-- 购物车更新选项 Start -->
 						<div class="cart-update-option d-block d-lg-flex">
 							<div class="apply-coupon-wrapper">
@@ -180,3 +210,6 @@
 	</body>
 
 </html>
+<%
+	}
+%>

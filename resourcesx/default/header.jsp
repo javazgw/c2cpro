@@ -29,7 +29,7 @@
                     <div class="site-setting-menu">
                         <ul class="nav justify-content-center justify-content-md-end">
                             <li><a href="my-account.jsp">我的账户<%= session.getAttribute("cname")==null?"":session.getAttribute("cname")%></a></li>
-                            <li><a href="wishlist.jsp">购物车</a></li>
+                            <li><a href="cart.jsp">购物车</a></li>
                             <li><a href="login-register.jsp">登录</a></li>
                         </ul>
                     </div>
