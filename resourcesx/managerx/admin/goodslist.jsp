@@ -183,14 +183,14 @@
         $('#save').click(function(event) {
 
             event.preventDefault();
-            alert("save...")
+         //   alert("save...")
             $('#myModal').modal('hide');
         });
 
         $('#close').click(function(event) {
 
             event.preventDefault();
-            alert("Close.....")
+         //   alert("Close.....")
             $('#myModal').modal('hide');
         });
     });

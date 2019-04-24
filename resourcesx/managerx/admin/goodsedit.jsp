@@ -1,7 +1,9 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="com.ht.c2c.tools.SQLTools" %>
 <%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.ResultSet" %><%--
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="com.ht.c2c.tools.Encryption" %>
+<%--
   Created by IntelliJ IDEA.
   User: javazgw
   Date: 2019/4/15
@@ -29,7 +31,7 @@
         <!-- END PAGE HEAD-->
         <!-- BEGIN PAGE BREADCRUMB -->
         <!-- END PAGE BREADCRUMB -->
-        <!-- BEGIN PAGE BASE CONTENT -->
+        <!-- BEGIN PAGE BASE CONTENT enctype ="multipart/form-data"-->
         <div class="row">
             <div class="col-md-12">
                 <form id="editform" class="form-horizontal form-row-seperated" >
@@ -50,7 +52,7 @@
                             <div class="tabbable-bordered">
                                 <ul class="nav nav-tabs">
                                     <li class="active">
-                                        <a href="#tab_general" data-toggle="tab"> General </a>
+                                        <a href="#tab_general" data-toggle="tab"> 基本信息 </a>
                                     </li>
 
                                 </ul>
@@ -58,7 +60,7 @@
                                     <div class="tab-pane active" id="tab_general">
                                         <div class="form-body">
                                             <div class="form-group">
-                                                <label class="col-md-2 control-label">Name:
+                                                <label class="col-md-2 control-label">商品名称:
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-10">
@@ -69,17 +71,45 @@
                                                 <input type="text" class="form-control" name="gname" placeholder="" value="<%= rs.getString("gname")%>"> </div>
                                             </div>
 
-
-
-
                                             <div class="form-group">
-                                                <label class="col-md-2 control-label">Price:
+                                                <label class="col-md-2 control-label">单价:
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-10">
                                                     <input type="text" class="form-control" name="price" placeholder="" value="<%= rs.getBigDecimal("price")%>" > </div>
                                             </div>
 
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">折扣:
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" name="discout" placeholder="" value="<%= rs.getBigDecimal("discout")%>" > </div>
+                                            </div>
+
+                                            <div class="form-group ">
+                                                <label class="control-label col-md-3">图片：</label>
+                                                <div class="col-md-9">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+                                                        <%
+                                                            if (rs.getString("image")!=null){
+                                                        %>
+                                                                <img src=<%=rs.getString("image")%>>
+                                                        <%
+                                                            }
+                                                        %>
+                                                        </div>
+                                                        <div>
+                                                            <span class="btn red btn-outline btn-file">
+                                                                <span class="fileinput-new"> 选择文件 </span>
+                                                                <span class="fileinput-exists"> 修改 </span>
+                                                                <input type="file" accept="image/*" name="image"> </span>
+                                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 删除 </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <%--<div class="form-group">--%>
                                                 <%--<label class="col-md-2 control-label">商品描述:--%>
                                                     <%--<span class="required"> * </span>--%>
@@ -104,8 +134,6 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-10">
-
-
 
                                                     <a class="summernote" name="descript" rows="6"  onupdated="$('#summernote').summernote('code', this.data.value);">
                                                     <%= rs.getString("descript")%>
@@ -159,35 +187,47 @@
 <script>
 
     document.addEventListener("DOMContentLoaded", function(){
-        $('.editsubmit').on('click',function (){
-            // $('#editform').submit(function () {
-            // $(this).ajaxSubmit(function () {
-            //     $('#output2').html("提交成功！欢迎下次再来！").show();
-            // });
-
-            $.post( '/BS?action=save', $('#editform').serialize(), function(data) {
-
-                    },
-                    'json' // I expect a JSON response
-            );
-            // return false; //阻止表单默认提交
-            // });
-        });
         //$('.summernote').summernote();
     });
+    var imageData=null;
+    $('input[type=file]').on('change', function () {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    imageData=reader.result;
+                    //console.log(reader.result);  //或者 e.target.result都是一样的，都是base64码
+                }
+                reader.readAsDataURL(this.files[0])
+//filses就是input[type=file]文件列表，files[0]就是第一个文件，这里就是将选择的第一个图片文件转化为base64的码
+            }
+    );
 
-    $('#editsubmit').on('click',function (){
-        // $('#editform').submit(function () {
+    $('#save').on('click',function () {
+       //$('#editform').submit();
         // $(this).ajaxSubmit(function () {
         //     $('#output2').html("提交成功！欢迎下次再来！").show();
         // });
-
-        $.post( '/BS?action=save', $('#editform').serialize(), function(data) {
-
-                },
-                'json' // I expect a JSON response
-        );
-        // return false; //阻止表单默认提交
+        <%--var data = $('#editform').serialize();--%>
+        <%--data = data+"&imagedata="+reader;--%>
+        <%--$.post( '/BS?action=save&ext_tName=<%=Encryption.sampleEncodeAndDecode("gcode")%>',data, function(data) {--%>
+        <%--},--%>
+        <%--'josn' // I expect a JSON response--%>
+        <%--);--%>
+        var formData = new FormData($('#editform')[0]);
+        console.log("formData="+formData);
+        if (imageData !=null)
+             formData.append("image",imageData);
+        $.ajax({
+            url: '/BS?action=save&ext_tName=<%=Encryption.sampleEncodeAndDecode("gcode")%>',
+            type: 'POST',
+            data: formData,
+            dataType: 'JSON',
+            cache: false,
+            processData: false,
+            contentType: false
+        }).done(function(ret){
+            console.log(ret);
+        });
+        //return false; //阻止表单默认提交
         // });
     });
 
@@ -195,7 +235,7 @@
 
     tinymce.init({ selector:'textarea' });
 
-</script>
+ </script>
 <%--<script src="../assets/global/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>--%>
 
 <%--<script src="../assets/global/plugins/bootstrap-markdown/lib/markdown.js" type="text/javascript"></script>--%>

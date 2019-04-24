@@ -58,6 +58,8 @@
 <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 
+<script src="../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
 <%--<script>--%>
     <%--$('.ls-modal').on('click', function(e){--%>
         <%--e.preventDefault();--%>
