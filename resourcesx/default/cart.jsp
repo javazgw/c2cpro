@@ -2,6 +2,7 @@
 <%@ page import="com.ht.c2c.tools.SQLTools" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.math.BigDecimal" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -100,6 +101,7 @@
 									Connection cartcon = SQLTools.getInstance().getConnection();
 									Statement cartstmt = cartcon.createStatement();
 									ResultSet cartrs = cartstmt.executeQuery("select a.num,b.gname,b.price from(select * from shoppingcar where cname ='"+cname+"') as a left join (select * from gcode ) as b on a.gcode = b.gcode");
+
 									while (cartrs.next())
 									{
 								%>
@@ -116,12 +118,17 @@
 										<td class="pro-price"><span><%= cartrs.getString("price")%></span></td>
 										<td class="pro-quantity">
 											<%
-												request.setAttribute("num",cartrs.getString("num"));
-												request.setAttribute("price",cartrs.getString("price"));
+//												request.setAttribute("num",cartrs.getString("num"));
+//												request.setAttribute("price",cartrs.getString("price"));
+												BigDecimal price = cartrs.getBigDecimal("price");
+												int num = cartrs.getInt("num");
+												BigDecimal n = new BigDecimal(num);
+												price = price.multiply(n);
+												price.setScale(2);
 											%>
-											<div class="pro-qty"><input type="text" value="${num}"></div>
+											<div class="pro-qty"><input type="text" value="<%= num%>"></div>
 										</td>
-										<td class="pro-subtotal"><span>${(price * num)}</span></td>
+										<td class="pro-subtotal"><span><%= price%></span></td>
 										<td class="pro-remove">
 											<a href="#"><i class="fa fa-trash-o"></i></a>
 										</td>
