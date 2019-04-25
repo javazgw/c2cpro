@@ -115,20 +115,11 @@
 										<td class="pro-title">
 											<a href="#"><%= cartrs.getString("gname")%></a>
 										</td>
-										<td class="pro-price"><span><%= cartrs.getString("price")%></span></td>
+										<td class="pro-price"><span class="price"><%= cartrs.getString("price")%></span></td>
 										<td class="pro-quantity">
-											<%
-//												request.setAttribute("num",cartrs.getString("num"));
-//												request.setAttribute("price",cartrs.getString("price"));
-												BigDecimal price = cartrs.getBigDecimal("price");
-												int num = cartrs.getInt("num");
-												BigDecimal n = new BigDecimal(num);
-												price = price.multiply(n);
-												price.setScale(2);
-											%>
-											<div class="pro-qty"><input type="text" value="<%= num%>"></div>
+											<div class="pro-qty"><input class="num" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else if(this.value.length>4){this.value=this.value.substr(0,4)}else if (this.value.length==0){this.value=1} else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"  type="text" value="<%= cartrs.getString("num")%>"></div>
 										</td>
-										<td class="pro-subtotal"><span><%= price%></span></td>
+										<td class="pro-subtotal"><span class="mod"></span></td>
 										<td class="pro-remove">
 											<a href="#"><i class="fa fa-trash-o"></i></a>
 										</td>
@@ -137,10 +128,12 @@
 								<!-- 购物车列表 End -->
 
 								<%
+
 									}
 										cartrs.close() ;
 										cartstmt.close();
 										cartcon.close();
+									}
 								%>
 
 							</table>
@@ -156,7 +149,7 @@
 								</form>
 							</div>
 							<div class="cart-update">
-								<a href="#" class="btn">Update Cart</a>
+								<a href="#" class="btn" >Update Cart</a>
 							</div>
 						</div>
 						<!-- 购物车更新选项 End -->
@@ -214,9 +207,30 @@
 
 		<!--=== Active Js ===-->
 		<script src="assets/js/active.js"></script>
+        <script language="javascript" type="text/javascript">
+            function get(cl) {
+                return document.getElementsByClassName(cl);
+            }
+            $(document).ready(function(){
+                var n = get("num");
+                var p = get("price");
+                var m = get("mod");
+                for (var i = 0; i < m.length; i++){
+                    var reg = n[i].value*p[i].innerHTML;
+                    reg = reg.toFixed(2);
+                    reg = parseFloat(reg)
+                    m[i].innerHTML = reg.toLocaleString();
+                }
+                $("input").blur(function() {
+                    for (var i = 0; i < m.length; i++){
+                        var reg = n[i].value*p[i].innerHTML;
+                        reg = reg.toFixed(2);
+                        reg = parseFloat(reg)
+                        m[i].innerHTML = reg.toLocaleString();
+                    }
+                });
+            });
+        </script>
 	</body>
 
 </html>
-<%
-	}
-%>
