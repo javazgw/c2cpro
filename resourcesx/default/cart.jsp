@@ -101,14 +101,14 @@
 									Connection cartcon = SQLTools.getInstance().getConnection();
 									Statement cartstmt = cartcon.createStatement();
 									ResultSet cartrs = cartstmt.executeQuery("select a.num,b.gname,b.price from(select * from shoppingcar where cname ='"+cname+"') as a left join (select * from gcode ) as b on a.gcode = b.gcode");
-
+                                    int i = 1;
 									while (cartrs.next())
 									{
 								%>
 
 								<!-- 购物车列表 End -->
 								<tbody>
-									<tr>
+									<tr id="itemid<%= i%>">
 										<td class="pro-thumbnail">
 											<a href="#"><img class="img-fluid" src="assets/img/product-1.jpg" alt="Product" /></a>
 										</td>
@@ -121,14 +121,14 @@
 										</td>
 										<td class="pro-subtotal"><span class="mod"></span></td>
 										<td class="pro-remove">
-											<a href="#"><i class="fa fa-trash-o"></i></a>
+											<i data-id="itemid<%= i%>" onclick="del(this)" class="fa fa-trash-o"></i>
 										</td>
 									</tr>
 								</tbody>
 								<!-- 购物车列表 End -->
 
 								<%
-
+                                            i++;
 									}
 										cartrs.close() ;
 										cartstmt.close();
@@ -142,14 +142,22 @@
 
 						<!-- 购物车更新选项 Start -->
 						<div class="cart-update-option d-block d-lg-flex">
-							<div class="apply-coupon-wrapper">
-								<form action="#" method="post" class=" d-block d-md-flex">
-									<input type="text" placeholder="Enter Your Coupon Code" />
-									<button class="btn">Apply Coupon</button>
-								</form>
-							</div>
+							<div class="apply-coupon-wrapper"></div>
 							<div class="cart-update">
-								<a href="#" class="btn" >Update Cart</a>
+                                <script>
+                                    function alt(){
+                                        var n = get("num");
+                                        var p = get("price");
+                                        var m = get("mod");
+                                        var tottt = 0;
+                                        for (var i = 0; i < m.length; i++){
+                                            tottt +=parseInt(p[i].innerHTML*n[i].value*100)/100;
+                                            //alert('num='+n[i].value+'...price='+p[i].innerHTML+'...mod='+m[i].innerHTML)
+                                            alert(tottt)
+                                        }
+                                    };
+                                </script>
+								<a href="#" class="btn" onclick="alt()">更新购物车</a>
 							</div>
 						</div>
 						<!-- 购物车更新选项 End -->
@@ -160,26 +168,26 @@
 					<div class="col-lg-6 ml-auto">
 						<!-- Cart Calculation Area -->
 						<div class="cart-calculator-wrapper">
-							<h3>Cart Totals</h3>
+							<h3> &nbsp;&nbsp;总计</h3>
 							<div class="cart-calculate-items">
 								<div class="table-responsive">
 									<table class="table table-bordered">
 										<tr>
-											<td>Sub Total</td>
-											<td>$230</td>
+											<td>&nbsp;小 计</td>
+											<td id="tot"></td>
 										</tr>
 										<tr>
-											<td>Shipping</td>
+											<td>&nbsp;邮 费</td>
 											<td>$70</td>
 										</tr>
 										<tr>
-											<td>Total</td>
+											<td>&nbsp;合 计</td>
 											<td class="total-amount">$300</td>
 										</tr>
 									</table>
 								</div>
 							</div>
-							<a href="checkout.jsp" class="btn">Proceed To Checkout</a>
+							<a href="checkout.jsp" class="btn">结算</a>
 						</div>
 					</div>
 				</div>
@@ -215,21 +223,40 @@
                 var n = get("num");
                 var p = get("price");
                 var m = get("mod");
-                for (var i = 0; i < m.length; i++){
+                for (var tot = 0, i = 0; i < m.length; i++){
                     var reg = n[i].value*p[i].innerHTML;
                     reg = reg.toFixed(2);
                     reg = parseFloat(reg)
                     m[i].innerHTML = reg.toLocaleString();
+                    tot +=parseInt(p[i].innerHTML*n[i].value*100)/100;
                 }
+                document.getElementById("tot").innerText = tot;
                 $("input").blur(function() {
-                    for (var i = 0; i < m.length; i++){
+                    for (var tott = 0,i = 0; i < m.length; i++){
                         var reg = n[i].value*p[i].innerHTML;
                         reg = reg.toFixed(2);
                         reg = parseFloat(reg)
                         m[i].innerHTML = reg.toLocaleString();
+                        tott +=parseInt(p[i].innerHTML*n[i].value*100)/100;
                     }
+                    document.getElementById("tot").innerText = tott;
                 });
             });
+            function del(obj){
+                var id=$(obj).data("id");
+                $("#"+id).remove();
+                var n = get("num");
+                var p = get("price");
+                var m = get("mod");
+                for (var tot = 0, i = 0; i < m.length; i++){
+                    var reg = n[i].value*p[i].innerHTML;
+                    reg = reg.toFixed(2);
+                    reg = parseFloat(reg)
+                    m[i].innerHTML = reg.toLocaleString();
+                    tot +=parseInt(p[i].innerHTML*n[i].value*100)/100;
+                }
+                document.getElementById("tot").innerText = tot;
+            }
         </script>
 	</body>
 
