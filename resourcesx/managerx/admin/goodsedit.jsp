@@ -13,14 +13,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
 //@// TODO: 2019/4/18  ckeditor 有bug，图片修改在背景，偶尔出不来编辑器。
-    String gcode = request.getParameter("gcode");
-    System.out.println(gcode);
+    String icode = request.getParameter("icode");
     Connection con = SQLTools.getInstance().getConnection();
     Statement stmt = con.createStatement();
-    ResultSet rs = stmt.executeQuery("select * from gcode where gcode ="+gcode);
-
-    while (rs.next())
-    {
+    ResultSet rs = stmt.executeQuery("select * from gcode where icode ="+icode);
+    boolean bUpdate = rs.next();
+//    while (rs.next())
+//    {
 
 %>
 <div class="page-content-wrapper">
@@ -61,23 +60,30 @@
                                     <div class="tab-pane active" id="tab_general">
                                         <div class="form-body">
                                             <div class="form-group">
+                                                <label class="col-md-2 control-label">商品码:
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <input type="hidden"  class="form-control" name="icode"  placeholder="" value="<%= bUpdate?rs.getString("icode"):""%>">
+                                                    <input type="text" class="form-control" name="gcode" placeholder="" value="<%= bUpdate?rs.getString("gcode"):""%>"> </div>
+                                            </div>
+
+                                            <div class="form-group">
                                                 <label class="col-md-2 control-label">商品名称:
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <input type="hidden"  class="form-control" name="icode"  placeholder="" value="<%= rs.getString("icode")%>">
-
-
-
-                                                <input type="text" class="form-control" name="gname" placeholder="" value="<%= rs.getString("gname")%>"> </div>
+                                                    <input type="text" class="form-control" name="gname" placeholder="" value="<%= bUpdate?rs.getString("gname"):""%>"> </div>
                                             </div>
+
+
 
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">单价:
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="price" placeholder="" value="<%= rs.getBigDecimal("price")%>" > </div>
+                                                    <input type="text" class="form-control" name="price" placeholder="" value="<%= bUpdate?rs.getBigDecimal("price"):""%>" > </div>
                                             </div>
 
                                             <div class="form-group">
@@ -85,7 +91,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="discout" placeholder="" value="<%= rs.getBigDecimal("discout")%>" > </div>
+                                                    <input type="text" class="form-control" name="discout" placeholder="" value="<%= bUpdate?rs.getBigDecimal("discout"):""%>" > </div>
                                             </div>
 
                                             <div class="form-group ">
@@ -94,7 +100,7 @@
                                                     <div class="fileinput fileinput-new" data-provides="fileinput">
                                                         <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
                                                         <%
-                                                            if (rs.getString("image")!=null){
+                                                            if (bUpdate && rs.getString("image") != null){
                                                         %>
                                                                 <img src=<%=rs.getString("image")%>>
                                                         <%
@@ -119,7 +125,7 @@
 
                                                 <div class="col-md-10" >
                                                 <textarea class="ckeditor form-control" id="ckeditor" name="descript" rows="6">
-                                                      <%= rs.getString("descript")%>
+                                                      <%= bUpdate?rs.getString("descript"):""%>
                                                 </textarea>
                                                 </div>
                                             </div>
@@ -166,7 +172,7 @@
 </div>
 
 <%
-    }
+//    }
 
     rs.close() ;
     stmt.close();
@@ -207,9 +213,14 @@
         var formData = new FormData($('#editform')[0]);
         if (imageData !=null)
              formData.append("image",imageData);
-        formData.append("descript",CKEditor.getData());
-        console.log("formData CKEditor="+CKEditor);
-        console.log("formData CKEditor2="+CKEditor.getData());
+        formData.set("descript",CKEditor.getData());
+        console.log("formData gname="+formData.get("gname"));
+        if (formData.get("gname")==null || "" == formData.get("gname").trim()){
+            alert("商品名称不能为空！");
+            return;
+        }
+//        console.log("formData CKEditor="+CKEditor);
+//        console.log("formData CKEditor2="+CKEditor.getData());
         $.ajax({
             url: '/BS?action=save&ext_tName=<%=Encryption.sampleEncodeAndDecode("gcode")%>',
             type: 'POST',

@@ -23,29 +23,29 @@
                 <div class="portlet ">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="fa fa-shopping-cart"></i>Order Listing </div>
+                            <i class="fa fa-shopping-cart"></i>商品列表</div>
                         <div class="actions">
-                            <a href="javascript:;" class="btn btn-circle btn-info">
+                            <a href="javascript:newGoodes();" class="btn btn-circle btn-info">
                                 <i class="fa fa-plus"></i>
-                                <span class="hidden-xs"> New Order </span>
+                                <span class="hidden-xs">新建商品</span>
                             </a>
-                            <div class="btn-group">
-                                <a class="btn btn-circle btn-default dropdown-toggle" href="javascript:;" data-toggle="dropdown">
-                                    <i class="fa fa-share"></i>
-                                    <span class="hidden-xs"> Tools </span>
-                                    <i class="fa fa-angle-down"></i>
-                                </a>
-                                <div class="dropdown-menu pull-right">
-                                    <li>
-                                        <a href="javascript:;"> 导出到pdf </a>
-                                    </li>
+                            <%--<div class="btn-group">--%>
+                                <%--<a class="btn btn-circle btn-default dropdown-toggle" href="javascript:;" data-toggle="dropdown">--%>
+                                    <%--<i class="fa fa-share"></i>--%>
+                                    <%--<span class="hidden-xs"> Tools </span>--%>
+                                    <%--<i class="fa fa-angle-down"></i>--%>
+                                <%--</a>--%>
+                                <%--<div class="dropdown-menu pull-right">--%>
+                                    <%--<li>--%>
+                                        <%--<a href="javascript:;"> 导出到pdf </a>--%>
+                                    <%--</li>--%>
 
-                                    <li>
-                                        <a href="javascript:;"> 打印</a>
-                                    </li>
+                                    <%--<li>--%>
+                                        <%--<a href="javascript:;"> 打印</a>--%>
+                                    <%--</li>--%>
 
-                                </div>
-                            </div>
+                                <%--</div>--%>
+                            <%--</div>--%>
                         </div>
                     </div>
                     <div class="portlet-body">
@@ -111,7 +111,7 @@
                                             <button class="btn btn-sm btn-success filter-submit margin-bottom">
                                                 <i class="fa fa-search"></i> 删除</button>
                                         </div>
-                                        <button class="btn btn-sm btn-default filter-cancel edit" data-id="<%= rs.getString("gcode")%>">
+                                        <button class="btn btn-sm btn-default filter-cancel edit" data-id="<%= rs.getString("icode")%>">
                                             <i class="fa fa-times" data-toggle="modal" data-target="#edit" ></i> 修改</button>
                                     </td>
                                 </tr>
@@ -169,7 +169,7 @@
         $('.edit').on('click', function (e) {
             e.preventDefault();
 
-            $('#myModal').modal('show').find('.modal-body').load('goodsedit.jsp?gcode='+$(this).data('id'));
+            $('#myModal').modal('show').find('.modal-body').load('goodsedit.jsp?icode='+$(this).data('id'));
 
             // $('input[name="product[name]').val("1212")
         });
@@ -194,5 +194,9 @@
             $('#myModal').modal('hide').find('.modal-body');
         });
     });
+
+    function newGoodes() {
+        $('#myModal').modal('show').find('.modal-body').load('goodsedit.jsp?icode=0');
+    }
 
 </script>

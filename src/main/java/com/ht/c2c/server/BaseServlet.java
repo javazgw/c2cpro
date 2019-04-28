@@ -83,7 +83,10 @@ public class BaseServlet extends HttpServlet {
                 String icode = req.getParameter("icode");
                 ArrayList<String> paramList = new ArrayList<String>();
                 String updatesql = "update " + tableName;
+                String inserttsql = "insert into " + tableName;
                 StringBuffer sql = new StringBuffer();
+                StringBuffer iSqlCol = new StringBuffer();
+                StringBuffer iSqlVal = new StringBuffer();
                 sql.append(" set ");
                  if (ServletFileUpload.isMultipartContent(req)){
                     // 配置上传参数
@@ -123,10 +126,14 @@ public class BaseServlet extends HttpServlet {
                                     if (fileNmae != null) {
                                         sql.append(key + "path=?,");
                                         paramList.add(fileNmae);
+                                        iSqlCol.append(key + "path,");
+                                        iSqlVal.append("?,");
                                     }
                                 }else{
                                     sql.append(key);
                                     sql.append("=?,");
+                                    iSqlCol.append(key+",");
+                                    iSqlVal.append("?,");
                                     //sql.append(req.getParameter(key).replaceAll(",", "'"));
                                     //sql.append("',");
                                     paramList.add(item.getString("utf-8"));
@@ -147,14 +154,25 @@ public class BaseServlet extends HttpServlet {
                              continue;
                          sql.append(key);
                          sql.append("=?,");
+                         iSqlCol.append(key+",");
+                         iSqlVal.append("?,");
                          //sql.append(req.getParameter(key).replaceAll(",", "'"));
                          //sql.append("',");
                          paramList.add(req.getParameter(key));
                      }
                 }
-                updatesql = updatesql + sql;
-                updatesql = updatesql.substring(0, updatesql.length() - 1);
-                updatesql = updatesql + " where icode =" + icode;
+
+                if (icode != null && !icode.trim().equals("")) {
+                    updatesql = updatesql + sql;
+                    updatesql = updatesql.substring(0, updatesql.length() - 1);
+                    updatesql = updatesql + " where icode =" + icode;
+                }else{
+                    inserttsql = inserttsql + "("+iSqlCol;
+                    inserttsql = inserttsql.substring(0, inserttsql.length() - 1)+")";
+                    inserttsql = inserttsql + " value ("+iSqlVal;
+                    inserttsql = inserttsql.substring(0, inserttsql.length() - 1)+")";
+                    updatesql = inserttsql;
+                }
              //   System.out.println("updatesql="+updatesql);
                 try {
                     SQLTools.getInstance().Update(updatesql,paramList.toArray());
