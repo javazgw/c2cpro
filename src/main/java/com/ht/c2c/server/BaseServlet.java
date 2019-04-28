@@ -111,6 +111,8 @@ public class BaseServlet extends HttpServlet {
                                     icode = item.getString("utf-8");
                                     continue;
                                 }
+
+                                System.out.println("key="+key+" data="+item.getString("utf-8"));
                                 // 处理不在表单中的字段
                                 if (!item.isFormField()) {
                                     String fileNmae = item.getName();

@@ -184,14 +184,14 @@
 
             event.preventDefault();
          //   alert("save...")
-            $('#myModal').modal('hide');
+            $('#myModal').modal('hide').find('.modal-body');
         });
 
         $('#close').click(function(event) {
 
             event.preventDefault();
          //   alert("Close.....")
-            $('#myModal').modal('hide');
+            $('#myModal').modal('hide').find('.modal-body');
         });
     });
 

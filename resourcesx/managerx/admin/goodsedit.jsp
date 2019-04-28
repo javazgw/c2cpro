@@ -57,6 +57,7 @@
 
                                 </ul>
                                 <div class="tab-content">
+                                    <%--<form id="editform" class="form-horizontal form-row-seperated" >--%>
                                     <div class="tab-pane active" id="tab_general">
                                         <div class="form-body">
                                             <div class="form-group">
@@ -88,8 +89,8 @@
                                             </div>
 
                                             <div class="form-group ">
-                                                <label class="control-label col-md-3">图片：</label>
-                                                <div class="col-md-9">
+                                                <label class="control-label col-md-2">图片：</label>
+                                                <div class="col-md-10">
                                                     <div class="fileinput fileinput-new" data-provides="fileinput">
                                                         <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
                                                         <%
@@ -110,67 +111,54 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">商品描述:
+                                                    <span class="required"> * </span>
+                                                </label>
+
+                                                <div class="col-md-10" >
+                                                <textarea class="ckeditor form-control" id="ckeditor" name="descript" rows="6">
+                                                      <%= rs.getString("descript")%>
+                                                </textarea>
+                                                </div>
+                                            </div>
                                             <%--<div class="form-group">--%>
-                                                <%--<label class="col-md-2 control-label">商品描述:--%>
+                                                <%--<label class="col-md-2 control-label">商品详情：--%>
                                                     <%--<span class="required"> * </span>--%>
                                                 <%--</label>--%>
-
-
                                                 <%--<div class="col-md-10">--%>
-                                                    <%--<textarea class="ckeditor form-control" name="desc" rows="6">--%>
-                                                        <%--<%= rs.getString("desc")%>--%>
 
-                                                    <%--</textarea>--%>
+                                                    <%--<a class="summernote" name="descript" rows="6"  onupdated="$('#summernote').summernote('code', this.data.value);">--%>
+                                                    <%--&lt;%&ndash;<%= rs.getString("descript")%>&ndash;%&gt;--%>
+                                                    <%--预览--%>
+                                                    <%--</a>--%>
                                                 <%--</div>--%>
-
-
                                             <%--</div>--%>
 
+                                            <%--<div class="form-group">--%>
+                                                <%--<label class="col-md-2 control-label">--%>
+                                                    <%--&lt;%&ndash;<span class="required"> * </span>&ndash;%&gt;--%>
+                                                <%--</label>--%>
+                                                <%--<div class="col-md-10">--%>
+                                                     <%--<textarea><%= rs.getString("descript")%>--%>
+                                                     <%--</textarea>--%>
 
-
-
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label">note:
-                                                    <span class="required"> * </span>
-                                                </label>
-                                                <div class="col-md-10">
-
-                                                    <a class="summernote" name="descript" rows="6"  onupdated="$('#summernote').summernote('code', this.data.value);">
-                                                    <%= rs.getString("descript")%>
-
-                                                    </a>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label">note:
-                                                    <span class="required"> * </span>
-                                                </label>
-                                                <div class="col-md-10">
-                                                     <textarea><%= rs.getString("descript")%>
-</textarea>
-
-                                                    </textarea>
-                                                </div>
-                                            </div>
-
-
-
-
-
-
-
+                                                <%--</div>--%>
+                                            <%--</div>--%>
 
                                         </div>
                                     </div>
 
+                            <%--</form>--%>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </form>
-            </div>
+             </div>
         </div>
         <!-- END PAGE BASE CONTENT -->
     </div>
@@ -184,6 +172,9 @@
     stmt.close();
     con.close();
 %>
+
+<script src="../assets/global/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
+
 <script>
 
     document.addEventListener("DOMContentLoaded", function(){
@@ -200,7 +191,8 @@
 //filses就是input[type=file]文件列表，files[0]就是第一个文件，这里就是将选择的第一个图片文件转化为base64的码
             }
     );
-
+     var CKEditor = CKEDITOR.replace('ckeditor');
+    console.log("CKEditor status ="+CKEditor.status);
     $('#save').on('click',function () {
        //$('#editform').submit();
         // $(this).ajaxSubmit(function () {
@@ -213,9 +205,11 @@
         <%--'josn' // I expect a JSON response--%>
         <%--);--%>
         var formData = new FormData($('#editform')[0]);
-        console.log("formData="+formData);
         if (imageData !=null)
              formData.append("image",imageData);
+        formData.append("descript",CKEditor.getData());
+        console.log("formData CKEditor="+CKEditor);
+        console.log("formData CKEditor2="+CKEditor.getData());
         $.ajax({
             url: '/BS?action=save&ext_tName=<%=Encryption.sampleEncodeAndDecode("gcode")%>',
             type: 'POST',
@@ -231,12 +225,12 @@
         // });
     });
 
+  //  CKEDITOR.replace("#ckeditor");
    // $('.summernote').summernote();
 
-    tinymce.init({ selector:'textarea' });
+//    tinymce.init({ selector:'textarea' });
 
  </script>
-<%--<script src="../assets/global/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>--%>
 
 <%--<script src="../assets/global/plugins/bootstrap-markdown/lib/markdown.js" type="text/javascript"></script>--%>
 <%--<script src="../assets/global/plugins/bootstrap-markdown/js/bootstrap-markdown.js" type="text/javascript"></script>--%>
