@@ -44,9 +44,9 @@
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="main.jsp?url=list.jsp" class="nav-link ">
+                        <a href="main.jsp?url=gtypelist.jsp" class="nav-link ">
                             <i class="icon-tag"></i>
-                            <span class="title">订单列表</span>
+                            <span class="title">商品类型</span>
                         </a>
                     </li>
                     <li class="nav-item  active open">

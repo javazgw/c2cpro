@@ -1,11 +1,17 @@
-<%@ page import="com.ht.c2c.tools.SQLTools" %>
 <%@ page import="java.sql.Connection" %>
+<%@ page import="com.ht.c2c.tools.SQLTools" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.ResultSet" %><%--
+  ~ Copyright (c) 2019.  javazgw@gmail.com
+  ~
+  ~
+  --%>
+
+<%--
   Created by IntelliJ IDEA.
   User: zgw
-  Date: 2019/4/17
-  Time: 5:23 PM
+  Date: 2019/4/30
+  Time: 11:31 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,11 +19,11 @@
 
 <%
     //分页配置
-    String pageurl = "main.jsp?url=goodslist.jsp";
-    String totalsql = "select count(*) as c from gcode ";
+    String pageurl = "main.jsp?url=gtypelist.jsp";
+    String totalsql = "select count(*) as c from gcodetype ";
     int curpage = request.getParameter("curpage")==null?1:Integer.parseInt(request.getParameter("curpage"));
     int onepagenum=request.getParameter("onepagenum")==null?12:Integer.parseInt(request.getParameter("onepagenum"));;
-    String sql = "select * from gcode limit "+(curpage-1)*onepagenum+","+onepagenum;
+    String sql = "select * from gcodetype limit "+(curpage-1)*onepagenum+","+onepagenum;
 
 %>
 <div class="page-content-wrapper">
@@ -33,28 +39,28 @@
                 <div class="portlet ">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="fa fa-shopping-cart"></i>商品列表</div>
+                            <i class="fa fa-shopping-cart"></i>商品分类</div>
                         <div class="actions">
                             <a href="javascript:newGoodes();" class="btn btn-circle btn-info">
                                 <i class="fa fa-plus"></i>
                                 <span class="hidden-xs">新建商品</span>
                             </a>
                             <%--<div class="btn-group">--%>
-                                <%--<a class="btn btn-circle btn-default dropdown-toggle" href="javascript:;" data-toggle="dropdown">--%>
-                                    <%--<i class="fa fa-share"></i>--%>
-                                    <%--<span class="hidden-xs"> Tools </span>--%>
-                                    <%--<i class="fa fa-angle-down"></i>--%>
-                                <%--</a>--%>
-                                <%--<div class="dropdown-menu pull-right">--%>
-                                    <%--<li>--%>
-                                        <%--<a href="javascript:;"> 导出到pdf </a>--%>
-                                    <%--</li>--%>
+                            <%--<a class="btn btn-circle btn-default dropdown-toggle" href="javascript:;" data-toggle="dropdown">--%>
+                            <%--<i class="fa fa-share"></i>--%>
+                            <%--<span class="hidden-xs"> Tools </span>--%>
+                            <%--<i class="fa fa-angle-down"></i>--%>
+                            <%--</a>--%>
+                            <%--<div class="dropdown-menu pull-right">--%>
+                            <%--<li>--%>
+                            <%--<a href="javascript:;"> 导出到pdf </a>--%>
+                            <%--</li>--%>
 
-                                    <%--<li>--%>
-                                        <%--<a href="javascript:;"> 打印</a>--%>
-                                    <%--</li>--%>
+                            <%--<li>--%>
+                            <%--<a href="javascript:;"> 打印</a>--%>
+                            <%--</li>--%>
 
-                                <%--</div>--%>
+                            <%--</div>--%>
                             <%--</div>--%>
                         </div>
                     </div>
@@ -77,11 +83,10 @@
                                     <th width="1%">
                                         <input type="checkbox" class="group-checkable"> </th>
                                     <th width="10%"> icode </th>
-                                    <th width="15%"> gcode </th>
-                                    <th width="15%"> gname </th>
-                                    <th width="10%"> price </th>
-                                    <th width="10%"> discout </th>
-                                    <th width="15%"> imageid </th>
+                                    <th width="15%"> typecode </th>
+                                    <th width="15%"> typename </th>
+                                    <th width="10%"> image </th>
+
 
                                     <th width="10%"> Actions </th>
                                 </tr>
@@ -104,24 +109,18 @@
                                 <tr role="row" class="filter">
                                     <td> </td>
                                     <td>
-                                        <input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getInt("icode")%>">  </td>
+                                        <b> <%= rs.getInt("icode")%> <b/> </td>
                                     <td>
-                                        <input type="text" class="form-control form-filter input-sm" name="product_name" value ="<%= rs.getString("gcode")%>"> </td>
+                                        <b> <%= rs.getString("typecode")%><b/> </td>
                                     <td>
-                                        <input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("gname")%>">
+
+                                        <b> <%= rs.getString("typename")%><b/>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getBigDecimal("price")%>">
+
+
+                                            <input   type="image" src=<%=rs.getString("image")%> width="80px" height="80px" >
                                     </td>
-                                    <td>
-                                        <input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getBigDecimal("discout")%>">
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("imagesid")%>">
-                                    </td>
-                                    <%--<td>--%>
-                                    <%--<input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("desc")%>" >--%>
-                                    <%--</td>--%>
 
 
                                     <td>
@@ -162,10 +161,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">商品添加/编辑</h4>
+                <h4 class="modal-title">商品类型添加/编辑</h4>
             </div>
             <div class="modal-body">
-                <p>Loading...</p>
+                <p>加载...</p>
             </div>
             <div class="modal-footer">
                 <button id="close" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -187,34 +186,34 @@
         $('.edit').on('click', function (e) {
             e.preventDefault();
 
-            $('#myModal').modal('show').find('.modal-body').load('goodsedit.jsp?icode='+$(this).data('id'));
+            $('#myModal').modal('show').find('.modal-body').load('gtypeedit.jsp?icode='+$(this).data('id'));
 
             // $('input[name="product[name]').val("1212")
         });
 
         $('#myModal').on('shown.bs.modal', function (e) {
             e.preventDefault();
-          //  $('input[name="product[name]').val("12124")
+            //  $('input[name="product[name]').val("12124")
 
         });
 
         $('#save').click(function(event) {
 
             event.preventDefault();
-         //   alert("save...")
+            //   alert("save...")
             $('#myModal').modal('hide').find('.modal-body');
         });
 
         $('#close').click(function(event) {
 
             event.preventDefault();
-         //   alert("Close.....")
+            //   alert("Close.....")
             $('#myModal').modal('hide').find('.modal-body');
         });
     });
 
     function newGoodes() {
-        $('#myModal').modal('show').find('.modal-body').load('goodsedit.jsp?icode=0');
+        $('#myModal').modal('show').find('.modal-body').load('gtypeedit.jsp?icode=0');
     }
 
 </script>

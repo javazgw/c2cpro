@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Enumeration;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -124,9 +125,14 @@ public class BaseServlet extends HttpServlet {
                                    // System.out.println("fileNmae="+fileNmae+" data="+new String(fileData));
                                     //paramList.add(new String(fileData));
                                     if (fileNmae != null) {
-                                        sql.append(key + "path=?,");
-                                        paramList.add(fileNmae);
-                                        iSqlCol.append(key + "path,");
+//                                        sql.append(key + "path=?,"); //原来
+                                        sql.append(key + "=?,");
+                                        //paramList.add(fileNmae); //原来
+//                                        Base64.getEncoder().encode(item.getString())
+                                        String imageBase64String = new String(Base64.getEncoder().encode(fileData));
+                                        paramList.add( imageBase64String);
+                                       // iSqlCol.append(key + "path,"); //原来
+                                        iSqlCol.append(key + ",");
                                         iSqlVal.append("?,");
                                     }
                                 }else{
