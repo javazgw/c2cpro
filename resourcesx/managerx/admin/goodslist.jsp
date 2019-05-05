@@ -66,14 +66,15 @@
                                 <tr role="row" class="heading">
                                     <th width="1%">
                                         <input type="checkbox" class="group-checkable"> </th>
-                                    <th width="10%"> icode </th>
-                                    <th width="15%"> gcode </th>
-                                    <th width="15%"> gname </th>
-                                    <th width="10%"> price </th>
-                                    <th width="10%"> discout </th>
-                                    <th width="15%"> imageid </th>
-                                    <th width="10%"> desc </th>
-                                    <th width="10%"> Actions </th>
+                                    <th width="10%"> ID </th>
+                                    <th width="15%"> SKU </th>
+                                    <th width="15%"> 商品名称 </th>
+                                    <th width="15%"> 商品大类 </th>
+                                    <th width="10%"> 单价 </th>
+                                    <th width="10%"> 折扣 </th>
+                                    <%--<th width="15%"> imageid </th>--%>
+                                    <%--<th width="10%"> desc </th>--%>
+                                    <th width="10%"> 操作 </th>
                                 </tr>
 <%
     Connection con = SQLTools.getInstance().getConnection();
@@ -82,25 +83,35 @@
 
      while (rs.next())
      {
+         String typecode=rs.getString("typecode");
+         if (typecode==null)
+             typecode="";
          %>
         <tr role="row" class="filter">
-                                    <td> </td>
-                                    <td>
-                                        <input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getInt("icode")%>">  </td>
-                                    <td>
-                                        <input type="text" class="form-control form-filter input-sm" name="product_name" value ="<%= rs.getString("gcode")%>"> </td>
-                                    <td>
-                                        <input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("gname")%>">
-                                    </td>
+            <td> </td>
             <td>
-                <input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getBigDecimal("price")%>">
+                <input type="text" class="form-control form-filter input-sm" name="icode" value ="<%= rs.getInt("icode")%>">  </td>
+            <td>
+                <input type="text" class="form-control form-filter input-sm" name="gcode" value ="<%= rs.getString("gcode")%>"> </td>
+            <td>
+                <input type="text" class="form-control form-filter input-sm" name="gname" value ="<%= rs.getString("gname")%>">
             </td>
             <td>
-                <input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getBigDecimal("discout")%>">
+                <select  class="form-control form-filter input-sm" name="typecode">
+                    <option value="1001" <%=(typecode.equals("1001"))?"selected=\"selected\"":""%>>电脑</option>
+                    <option value="1010" <%=(typecode.equals("1010"))?"selected=\"selected\"":""%>>打印机</option>
+                    <option value="1020" <%=(typecode.equals("1020"))?"selected=\"selected\"":""%>>硬盘</option>
+                </select>
             </td>
             <td>
-                <input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("imagesid")%>">
+                <input type="text" class="form-control form-filter input-sm" name="price" value ="<%= rs.getBigDecimal("price")%>">
             </td>
+            <td>
+                <input type="text" class="form-control form-filter input-sm" name="discout" value ="<%= rs.getBigDecimal("discout")%>">
+            </td>
+            <%--<td>--%>
+                <%--<input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("imagesid")%>">--%>
+            <%--</td>--%>
             <%--<td>--%>
                 <%--<input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("desc")%>" >--%>
             <%--</td>--%>
