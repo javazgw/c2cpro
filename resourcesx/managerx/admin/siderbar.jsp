@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.*" %><%--
   Created by IntelliJ IDEA.
   User: javazgw
   Date: 2019/4/15
@@ -18,12 +18,97 @@
         <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
         <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
         <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+
+        <%
+            String openurl = request.getParameter("url");
+            if (openurl ==null ) openurl = "list.jsp";
+            System.out.println("openurl = "+openurl);
+            LinkedHashMap<String,String> ht = new LinkedHashMap<String,String>();
+            ht.put("商品","");
+            ht.put("仪表盘","list.jsp");
+
+            ht.put("订单","list.jsp");
+            ht.put("商品类型","gtypelist.jsp");
+            ht.put("产品管理","goodslist.jsp");
+            ht.put("产品编辑","edit.jsp");
+            ht.put("产品编辑","edit.jsp");
+
+
+
+            ht.put("客户管理","");
+            ht.put("客户列表","list.jsp");
+
+
+        %>
         <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
 
             <li class="heading">
                 <h3 class="uppercase">Pages</h3>
             </li>
-            <li class="nav-item  active open">
+
+            <%
+
+               //Set<String> enumeration =  ht.keySet();
+                boolean hasarrow  =false;
+                boolean isopenfirst = true;
+
+                for(String key :ht.keySet())
+               {
+
+                    String url = ht.get(key);
+                    System.out.println(key);
+                    if("".equals(url))
+                    {
+
+                        if(hasarrow)
+                        {
+                            %>
+                            </ul>
+                             </li>
+                            <%
+                        }
+                        //else
+                       // {
+                            %>
+                    <li class="nav-item  active <%= isopenfirst?"open":""%>">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-basket"></i>
+                            <span class="title"><%= key%></span>
+                            <span class="selected"></span>
+                            <span class="arrow <%= isopenfirst?" open":""%>"></span>
+                        </a>
+                    <ul class="sub-menu"  style="display: <%= isopenfirst?"block":"none"%>;">
+
+                            <%
+                       // }
+                        hasarrow = true;
+                        isopenfirst=false;
+
+                    }
+                    else
+                    {
+                        %>
+                        <li class="nav-item   <%= (openurl.equals(ht.get(key))?"active open":"")%>">
+                            <a href="main.jsp?url=<%= ht.get(key)%>" class="nav-link ">
+                                <i class="icon-home"></i>
+                                <span class="title"><%= key%></span>
+                                <%= (openurl.equals(ht.get(key))?"<span class=\"selected\"></span>":"")%>
+
+                            </a>
+                        </li>
+                        <%
+                    }
+               }
+
+               %>
+
+                    </ul>
+                    </li>
+
+                        <%
+            %>
+
+         <%--  <li class="nav-item  active open">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-basket"></i>
                     <span class="title">eCommerce</span>
@@ -63,7 +148,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li>--%>
 
         </ul>
         <!-- END SIDEBAR MENU -->
