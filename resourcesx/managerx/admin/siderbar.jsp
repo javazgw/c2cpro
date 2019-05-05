@@ -38,12 +38,16 @@
             ht.put("客户管理","");
             ht.put("客户列表","list.jsp");
 
+            ht.put("后台操作","");
+            ht.put("后台人员管理","list.jsp");
+            ht.put("设置","list.jsp");
+
 
         %>
         <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
 
             <li class="heading">
-                <h3 class="uppercase">Pages</h3>
+                <h3 class="uppercase">菜单</h3>
             </li>
 
             <%
