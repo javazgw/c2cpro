@@ -214,7 +214,7 @@
         if (imageData !=null)
              formData.append("image",imageData);
         formData.set("descript",CKEditor.getData());
-        console.log("formData gname="+formData.get("gname"));
+        //console.log("formData gname="+formData.get("gname"));
         if (formData.get("gname")==null || "" == formData.get("gname").trim()){
             alert("商品名称不能为空！");
             return;
