@@ -167,12 +167,39 @@
 
 <script>
 
+    function base64ToBlob(base64, mime)
+    {
+        mime = mime || '';
+        var sliceSize = 1024;
+        var byteChars = window.atob(base64);
+        var byteArrays = [];
 
+        for (var offset = 0, len = byteChars.length; offset < len; offset += sliceSize) {
+            var slice = byteChars.slice(offset, offset + sliceSize);
+
+            var byteNumbers = new Array(slice.length);
+            for (var i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+
+            var byteArray = new Uint8Array(byteNumbers);
+
+            byteArrays.push(byteArray);
+        }
+
+        return new Blob(byteArrays, {type: mime});
+    }
     $('#save').on('click',function () {
 
 
         var formData = new FormData($('#editform')[0]);
-       // var formData = new FormData($('#editform')[0]);
+        //@todo bug 只取第一个
+        var imageblob =$('#uploadImage_0').attr("src");
+        //var base64ImageContent = imageblob.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+        //var blob = base64ToBlob(base64ImageContent, 'image/png');
+
+        formData.set("image",imageblob) ;
+        // var formData = new FormData($('#editform')[0]);
         $.ajax({
             url: '/BS?action=save&ext_tName=<%=Encryption.sampleEncodeAndDecode("gcodetype")%>',
             type: 'POST',
