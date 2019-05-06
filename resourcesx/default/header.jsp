@@ -54,8 +54,8 @@
                 <!-- 搜索 Start -->
                 <div class="col-8 col-md-7 col- m-auto ">
                     <div class="search-box-wrap">
-                        <form class="search-form d-flex" action="#" method="get">
-                            <input type="search" name="search" placeholder="输入并按Enter键" />
+                        <form class="search-form d-flex" action="javascript:searchgcode()" method="post">
+                            <input type="search" name="search" placeholder="输入并按Enter键" value='<%= request.getParameter("searchstr")==null?"":request.getParameter("searchstr")%>'/>
                             <button class="btn btn-search"><img src="assets/img/icons/icon-search.png"
                                                                 alt="Search Icon"/>
                             </button>
@@ -429,3 +429,11 @@
     </div>
     <!-- End 开始主菜单 -->
 </header>
+<script>
+
+    var searchgcode = function()
+    {
+        var search = $("input[name='search']").val();
+        window.location.href = "/default/index3.jsp?searchstr="+search;
+    }
+</script>

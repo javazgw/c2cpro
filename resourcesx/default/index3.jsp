@@ -230,12 +230,28 @@
 
 
 
+									String searchstr = request.getParameter("searchstr");
+									if(!(searchstr==null || searchstr.equals("")))
+									{
+										searchstr = searchstr.replaceAll("( +)",")|(");
+										searchstr ="("+searchstr+")";
+										System.out.println(searchstr);
+									}
+									else
+									{
+										searchstr = "%";
+									}
+									request.setAttribute("searchstr",searchstr);
+
 
 									int curpage = request.getParameter("curpage")==null?1:Integer.parseInt(request.getParameter("curpage"));
 									int onepagenum=request.getParameter("onepagenum")==null?12:Integer.parseInt(request.getParameter("onepagenum"));;
 									String pageurl = "index3.jsp?1=1";
-									String totalsql = "select count(*) as c from gcode ";
-									String sql = "select * from gcode limit "+(curpage-1)*onepagenum+","+onepagenum;
+									String totalsql = "select count(*) as c from gcode where gname REGEXP '"+searchstr+"'";
+									request.setAttribute("pagesql",totalsql);
+									request.setAttribute("pageurl",pageurl);
+
+									String sql = "select * from gcode where gname REGEXP '"+searchstr+"' limit "+(curpage-1)*onepagenum+","+onepagenum;
 
 									Connection con1 = SQLTools.getInstance().getConnection();
 									Statement stmt1 = con1.createStatement();
@@ -284,7 +300,8 @@
 
 
 
-					<jsp:include page='<%= "/public/page.jsp?pageurl="+pageurl+"&sql="+totalsql%>' ></jsp:include>
+					<%--<jsp:include page='<%= "/public/page.jsp?pageurl="+pageurl+"&sql="+totalsql%>' ></jsp:include>--%>
+					<jsp:include page='<%= "/public/page.jsp" %>' ></jsp:include>
 
 
 				</div>

@@ -15,11 +15,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
+    /**
+     *
+     * 要传递 pagesql  request.setAttribute("totalsql",totalsql);totalsql 计算数据总数的sql语句
+     * 要传递 pageurl   request.setAttribute("pageurl",pageurl); pageurl 一般是当前页面
+     *
+     * 譬如 String pageurl = "index3.jsp?1=1";
+     * 									String totalsql = "select count(*) as c from gcode where gname REGEXP '"+searchstr+"'";
+     * 									request.setAttribute("pagesql",totalsql);
+     * 									request.setAttribute("pageurl",pageurl);
+     *
+     * 要在数据查询结束后加入此语句  因为要等待setAttribute
+     * <jsp:include page='< %= "/public/page.jsp" % >' ></jsp:include>
+     */
 
-    String pagesql =request.getParameter("sql")==null?"":request.getParameter("sql");
 
-    String url = request.getParameter("pageurl")==null?"":request.getParameter("pageurl");
 
+
+   // String pagesql =request.getParameter("sql")==null?"":request.getParameter("sql");
+    String  pagesql = request.getAttribute("pagesql")+"";
+    //pagesql = java.net.URLDecoder.decode(pagesql,"utf-8");
+    //System.out.println("pagesql = "+pagesql);
+    //String url = request.getParameter("pageurl")==null?"":request.getParameter("pageurl");
+    String url = request.getAttribute("pageurl")+"";
 
     int curpage = request.getParameter("curpage")==null?1:Integer.parseInt(request.getParameter("curpage"));
     int totalpagenum ,onepagenum=12,itemnum;
