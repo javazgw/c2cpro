@@ -1,7 +1,9 @@
 <%@ page import="com.ht.c2c.tools.SQLTools" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.ResultSet" %><%--
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="com.ht.c2c.dataBase.DataSet" %>
+<%@ page import="com.ht.c2c.server.Cache" %><%--
   Created by IntelliJ IDEA.
   User: zgw
   Date: 2019/4/17
@@ -110,9 +112,21 @@
             </td>
             <td>
                 <select  class="form-control form-filter input-sm" name="typecode">
-                    <option value="1001" <%=(typecode.equals("1001"))?"selected=\"selected\"":""%>>电脑</option>
-                    <option value="1010" <%=(typecode.equals("1010"))?"selected=\"selected\"":""%>>打印机</option>
-                    <option value="1020" <%=(typecode.equals("1020"))?"selected=\"selected\"":""%>>硬盘</option>
+                    <%
+                        DataSet dataSet = Cache.getInstance().getCahe("GCOETYPE_CACHE");
+                        int rows = dataSet.getRowCount();
+                        for (int i=0;i<rows;i++)
+                        {
+                            String typecode2 = dataSet.getValue(i,"typecode");
+                            if (!typecode2.equals(typecode))
+                                continue;
+                            String typename2 = dataSet.getValue(i,"typename");
+                    %>
+                         <option value="<%=typecode2%>" <%=(typecode2.equals(typecode))?"selected=\"selected\"":""%>><%=typename2%></option>
+                    <%
+                            break;
+                        }
+                    %>
                 </select>
             </td>
             <td>
