@@ -235,11 +235,12 @@
 									{
 										searchstr = searchstr.replaceAll("( +)",")|(");
 										searchstr ="("+searchstr+")";
-										System.out.println(searchstr);
+
 									}
 									else
 									{
-										searchstr = "%";
+										searchstr = ".";
+
 									}
 									request.setAttribute("searchstr",searchstr);
 
@@ -250,9 +251,8 @@
 									String totalsql = "select count(*) as c from gcode where gname REGEXP '"+searchstr+"'";
 									request.setAttribute("pagesql",totalsql);
 									request.setAttribute("pageurl",pageurl);
-
+		//							String sql = "select * from gcode limit "+(curpage-1)*onepagenum+","+onepagenum;
 									String sql = "select * from gcode where gname REGEXP '"+searchstr+"' limit "+(curpage-1)*onepagenum+","+onepagenum;
-
 									Connection con1 = SQLTools.getInstance().getConnection();
 									Statement stmt1 = con1.createStatement();
 									ResultSet rs1 = stmt1.executeQuery(sql);
