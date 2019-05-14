@@ -109,12 +109,14 @@ public class SQLTools {
 
     public DataSet query(String sql) throws SQLException {
 
+
         Connection conn  =dataSource.getConnection();
 
         Statement stmt = conn.createStatement();
+        Configure.log(" q:"+sql);
         ResultSet rs = stmt.executeQuery(sql);
         DataSet ds = new DataSet();
-        Configure.log(" q:"+sql);
+
         int count = 0;
         try {
             while (rs.next()) {

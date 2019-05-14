@@ -17,6 +17,8 @@
     //分页配置
     String pageurl = "main.jsp?url=goodslist.jsp";
     String totalsql = "select count(*) as c from gcode ";
+    request.setAttribute("pagesql",totalsql);
+    request.setAttribute("pageurl",pageurl);
     int curpage = request.getParameter("curpage")==null?1:Integer.parseInt(request.getParameter("curpage"));
     int onepagenum=request.getParameter("onepagenum")==null?12:Integer.parseInt(request.getParameter("onepagenum"));;
     String sql = "select * from gcode limit "+(curpage-1)*onepagenum+","+onepagenum;
@@ -94,6 +96,8 @@
     Connection con = SQLTools.getInstance().getConnection();
      Statement stmt = con.createStatement();
      ResultSet rs = stmt.executeQuery(sql);
+     //分页
+
 
      while (rs.next())
      {
@@ -162,7 +166,9 @@
                                 %>
                                 </tbody>
                             </table>
-                            <jsp:include page='<%= "/public/page.jsp?pageurl="+pageurl+"&sql="+totalsql%>' ></jsp:include>
+
+                            <jsp:include page='<%= "/public/page.jsp" %>' ></jsp:include>
+
                         </div>
                     </div>
                 </div>

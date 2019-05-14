@@ -36,10 +36,10 @@
 
 
             ht.put("客户管理","");
-            ht.put("客户列表","list.jsp");
+            ht.put("客户列表","ccode.jsp");
 
             ht.put("后台操作","");
-            ht.put("后台人员管理","list.jsp");
+            ht.put("后台人员管理","bcode.jsp");
             ht.put("设置","list.jsp");
 
 
@@ -60,7 +60,7 @@
                {
 
                     String url = ht.get(key);
-                    System.out.println(key);
+                    System.out.println(key+"--"+url+"-"+openurl);
                     if("".equals(url))
                     {
 
@@ -74,14 +74,16 @@
                         //else
                        // {
                             %>
-                    <li class="nav-item  active <%= isopenfirst?"open":""%>">
+                    <%--<li class="nav-item  active <%= isopenfirst?"open":""%>">--%>
+                    <li class="nav-item  active open">
                         <a href="javascript:;" class="nav-link nav-toggle">
                             <i class="icon-basket"></i>
                             <span class="title"><%= key%></span>
                             <span class="selected"></span>
                             <span class="arrow <%= isopenfirst?" open":""%>"></span>
                         </a>
-                    <ul class="sub-menu"  style="display: <%= isopenfirst?"block":"none"%>;">
+                    <%--<ul class="sub-menu"  style="display: <%= (openurl.equals(url)?"block":"none")%>;">--%>
+                    <ul class="sub-menu"  style="display: block;">
 
                             <%
                        // }
@@ -93,6 +95,7 @@
                     {
                         %>
                         <li class="nav-item   <%= (openurl.equals(ht.get(key))?"active open":"")%>">
+                        <%--<li class="nav-item   active open">--%>
                             <a href="main.jsp?url=<%= ht.get(key)%>" class="nav-link ">
                                 <i class="icon-home"></i>
                                 <span class="title"><%= key%></span>

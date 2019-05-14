@@ -47,6 +47,9 @@ public class Init extends HttpServlet {
             Cache.getInstance().addCache("GCOETYPE_CACHE","select * from gcodetype");
 
             System.out.println("================>[Init]加载缓存完成.");
+            System.out.println("部署要删除");
+            System.out.println("http://localhost:8080/default/index3.jsp");
+            System.out.println("http://localhost:8080/managerx/admin/main.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }
