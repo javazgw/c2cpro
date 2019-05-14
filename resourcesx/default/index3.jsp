@@ -239,7 +239,7 @@
 									}
 									else
 									{
-										searchstr = "%";
+										searchstr = ".";
 
 									}
 									request.setAttribute("searchstr",searchstr);

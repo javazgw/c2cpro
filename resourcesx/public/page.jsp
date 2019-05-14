@@ -41,6 +41,7 @@
 
     int curpage = request.getParameter("curpage")==null?1:Integer.parseInt(request.getParameter("curpage"));
     int totalpagenum ,onepagenum=12,itemnum;
+    String searchstr = request.getParameter("searchstr");
 
     DataSet ds = SQLTools.getInstance().query(pagesql);
     itemnum = Integer.parseInt(ds.getValue(0,"c"));
@@ -52,10 +53,10 @@
     <nav class="page-pagination">
         <ul class="pagination">
             <li>
-                <a href="<%= url+"&curpage="+1+"&onepagenum="+onepagenum%>" >第一页</a>
+                <a href="<%= url+"&curpage="+1+"&onepagenum="+onepagenum%><% if(!(request.getParameter("searchstr")==null)){%><%= "&searchstr="+searchstr%> <%}%>" >第一页</a>
             </li>
             <li>
-                <a href="<%= url+"&curpage="+((curpage-1)<=1?1:curpage-1)+"&onepagenum="+onepagenum %>" aria-label="Previous">&laquo;</a>
+                <a href="<%= url+"&curpage="+((curpage-1)<=1?1:curpage-1)+"&onepagenum="+onepagenum %><% if(!(request.getParameter("searchstr")==null)){%><%="&searchstr="+searchstr%> <%}%>" aria-label="Previous">&laquo;</a>
             </li>
 
 <%
@@ -81,7 +82,7 @@
                 isnoshow = false;
             %>
             <li>
-                <a <%= curpage==i?"class=\"current\"":"" %> href="<%= url+"&curpage="+i+"&onepagenum="+onepagenum%>"><%= i%></a>
+                <a <%= curpage==i?"class=\"current\"":"" %> href="<%= url+"&curpage="+i+"&onepagenum="+onepagenum %><% if(!(request.getParameter("searchstr")==null)){%><%= "&searchstr="+searchstr%> <%}%>"><%= i%></a>
             </li>
             <%
 
@@ -92,7 +93,7 @@
 
 %>
             <li>
-                <a <%= curpage==i?"class=\"current\"":"" %> href="<%= url+"&curpage="+i+"&onepagenum="+onepagenum%>"><%= i%></a>
+                <a <%= curpage==i?"class=\"current\"":"" %> href="<%= url+"&curpage="+i+"&onepagenum="+onepagenum%><% if(!(request.getParameter("searchstr")==null)){%><%= "&searchstr="+searchstr%> <%}%>"><%= i%></a>
             </li>
             <%
                     }
@@ -101,10 +102,10 @@
 
 
             <li>
-                <a href="<%= url+"&curpage="+((curpage+1)>=totalpagenum ?totalpagenum:curpage+1)+"&onepagenum="+onepagenum%>" aria-label="Next">&raquo;</a>
+                <a href="<%= url+"&curpage="+((curpage+1)>=totalpagenum ?totalpagenum:curpage+1)+"&onepagenum="+onepagenum%><% if(!(request.getParameter("searchstr")==null)){%><%= "&searchstr="+searchstr%> <%}%>" aria-label="Next">&raquo;</a>
             </li>
             <li>
-                <a href="<%= url+"&curpage="+totalpagenum+"&onepagenum="+onepagenum%>" >最后一页</a>
+                <a href="<%= url+"&curpage="+totalpagenum+"&onepagenum="+onepagenum%><% if(!(request.getParameter("searchstr")==null)){%><%="&searchstr="+searchstr%> <%}%>" >最后一页</a>
             </li>
         </ul>
     </nav>
