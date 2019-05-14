@@ -27,7 +27,7 @@
             ht.put("商品","");
             ht.put("仪表盘","list.jsp");
 
-            ht.put("订单","list.jsp");
+            ht.put("订单","order.jsp");
             ht.put("商品类型","gtypelist.jsp");
             ht.put("产品管理","goodslist.jsp");
             ht.put("产品编辑","edit.jsp");
@@ -94,12 +94,12 @@
                     else
                     {
                         %>
-                        <li class="nav-item   <%= (openurl.equals(ht.get(key))?"active open":"")%>">
+                        <li class="nav-item   <%= (openurl.startsWith(ht.get(key))?"active open":"")%>">
                         <%--<li class="nav-item   active open">--%>
                             <a href="main.jsp?url=<%= ht.get(key)%>" class="nav-link ">
                                 <i class="icon-home"></i>
                                 <span class="title"><%= key%></span>
-                                <%= (openurl.equals(ht.get(key))?"<span class=\"selected\"></span>":"")%>
+                                <%= (openurl.startsWith(ht.get(key))?"<span class=\"selected\"></span>":"")%>
 
                             </a>
                         </li>

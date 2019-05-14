@@ -46,6 +46,9 @@
     itemnum = Integer.parseInt(ds.getValue(0,"c"));
     totalpagenum = itemnum/onepagenum+ ((itemnum%onepagenum==0)?0:1);
 
+//一页就不要显示了吧
+    if(totalpagenum<=1)
+        return;
 %>
 
 <div class="products-settings-option d-block d-md-flex">
