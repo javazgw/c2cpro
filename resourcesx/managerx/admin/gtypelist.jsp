@@ -24,7 +24,8 @@
     int curpage = request.getParameter("curpage")==null?1:Integer.parseInt(request.getParameter("curpage"));
     int onepagenum=request.getParameter("onepagenum")==null?12:Integer.parseInt(request.getParameter("onepagenum"));;
     String sql = "select * from gcodetype limit "+(curpage-1)*onepagenum+","+onepagenum;
-
+    request.setAttribute("pagesql",totalsql);
+    request.setAttribute("pageurl",pageurl);
 %>
 <div class="page-content-wrapper">
     <!-- BEGIN CONTENT BODY -->
@@ -143,7 +144,8 @@
                                 %>
                                 </tbody>
                             </table>
-                            <jsp:include page='<%= "/public/page.jsp?pageurl="+pageurl+"&sql="+totalsql%>' ></jsp:include>
+
+                            <jsp:include page='<%= "/public/page.jsp" %>' ></jsp:include>
                         </div>
                     </div>
                 </div>
