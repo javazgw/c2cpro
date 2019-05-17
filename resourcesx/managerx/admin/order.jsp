@@ -41,7 +41,7 @@
     sql = "select * from orderlist  where 1=1 and ordercode like '%"+q_ordercode+"%' and orderdate between '"+q_orderdatefrom+"' and '"+q_orderdateto+"' and " +
             " cname like '"+q_buyer+"' and addr like '"+q_addr +"' and status='"+q_status+"'  ";
 
-    totalsql = "select count(*) from ("+sql+") as a ;";
+    totalsql = "select count(*) as c from ("+sql+") as a ;";
 
     //sql = sql + " limit "+(curpage-1)*onepagenum+ ","+onepagenum;
 
@@ -83,7 +83,7 @@
                         <tr role="row" class="filter"><td rowspan="1" colspan="1"> </td><td rowspan="1" colspan="1">
                             <input type="text" class="form-control form-filter input-sm" name="order_id"> </td><td rowspan="1" colspan="1">
                             <div class="input-group date date-picker margin-bottom-5" data-date-format="dd/mm/yyyy">
-                                <input type="text" class="form-control form-filter input-sm" readonly="" name="order_date_from" placeholder="从">
+                                <input type="text" class="form-control form-filter input-sm" readonly="" name="order_date_from" id="order_date_from" placeholder="从">
                                 <span class="input-group-btn">
                                                                 <button class="btn btn-sm default" type="button">
                                                                     <i class="fa fa-calendar"></i>
@@ -91,7 +91,7 @@
                                                             </span>
                             </div>
                             <div class="input-group date date-picker" data-date-format="dd/mm/yyyy">
-                                <input type="text" class="form-control form-filter input-sm" readonly="" name="order_date_to" placeholder="到">
+                                <input type="text" class="form-control form-filter input-sm" readonly="" name="order_date_to" id="order_date_to" placeholder="到">
                                 <span class="input-group-btn">
                                                                 <button class="btn btn-sm default" type="button">
                                                                     <i class="fa fa-calendar"></i>
@@ -235,7 +235,7 @@
     </div>
     <!-- END CONTENT BODY -->
 </div>
-<a href="#" data-toggle="modal" data-load-url="/index.jsp" data-target="#myModal">Click me</a>
+
 
 <div id="myModal" class="modal fade" aria-hidden='true' data-backdrop='static'>
     <div class="modal-dialog modal-lg" >
@@ -261,7 +261,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
-
+        //$('#order_date_from').datetimepicker();
         $('#search').on('click', function (e) {
             e.preventDefault();
 

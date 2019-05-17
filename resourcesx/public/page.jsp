@@ -30,7 +30,7 @@
      */
 
 
-
+try{
 
    // String pagesql =request.getParameter("sql")==null?"":request.getParameter("sql");
     String  pagesql = request.getAttribute("pagesql")+"";
@@ -52,8 +52,8 @@
         return;
 %>
 
-<div class="products-settings-option d-block d-md-flex">
-    <nav class="page-pagination">
+<div class="products-settings-option d-block d-md-flex portlet">
+    <nav class="page-pagination portlet-body text-center">
         <ul class="pagination">
             <li>
                 <a href="<%= url+"&curpage="+1+"&onepagenum="+onepagenum%><% if(!(request.getParameter("searchstr")==null)){%><%= "&searchstr="+searchstr%> <%}%>" >第一页</a>
@@ -101,6 +101,8 @@
             <%
                     }
                 }
+
+
 %>
 
 
@@ -113,3 +115,16 @@
         </ul>
     </nav>
 </div>
+<%
+    }
+    catch (Exception e)
+    {
+        %>
+        <div>
+
+            发生了错误，此错误要联系系统管理员，他代码没写好。调用此处的地方出问题了
+            <%= e.getMessage()%>
+        </div>
+    <%
+    }
+%>

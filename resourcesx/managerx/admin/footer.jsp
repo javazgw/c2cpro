@@ -6,16 +6,27 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="page-footer">
-        <div class="page-footer-inner"> 2019 &copy; power by httech.
-        <a href="http://www.htfa.cn" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">httech</a>
+<%--<div class="page-footer">--%>
+        <%--<div class="page-footer-inner"> 2019 &copy; power by httech.--%>
+        <%--<a href="http://www.htfa.cn" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">httech</a>--%>
+    <%--</div>--%>
+    <%--<div class="scroll-to-top">--%>
+        <%--<i class="icon-arrow-up"></i>--%>
+    <%--</div>--%>
+<%--</div>--%>
+
+<div class="portlet page-footer">
+
+    <div class="portlet-body">
+
+        <p class="text-center"> 2019 &copy; power by httech.
+        <a href="http://www.htfa.cn" title="汉廷电商" target="_blank">httech</a>
+        </p>
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>
     </div>
 </div>
-
-
 <!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>
 <script src="../assets/global/plugins/excanvas.min.js"></script>
@@ -34,7 +45,15 @@
 <script src="../assets/global/scripts/datatable.js" type="text/javascript"></script>
 <script src="../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
 <script src="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+<%--<script src="../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>--%>
+
+<script src="../assets/global/plugins/moment.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
 <script src="../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+
+
 <script src="../assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
 <script src="../assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
@@ -55,11 +74,11 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
 
-<script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+<%--<script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>--%>
 <!-- END THEME LAYOUT SCRIPTS -->
 
 <script src="../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
-
+<script src="../assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
 <%--<script>--%>
     <%--$('.ls-modal').on('click', function(e){--%>
         <%--e.preventDefault();--%>
