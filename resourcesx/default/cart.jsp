@@ -19,7 +19,7 @@
 		<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
 
 		<!--== Google Fonts ==-->
-		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700" rel="stylesheet">
+		<%--<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700" rel="stylesheet">--%>
 
 		<!--=== Bootstrap CSS ===-->
 		<link href="assets/css/vendor/bootstrap.min.css" rel="stylesheet">
