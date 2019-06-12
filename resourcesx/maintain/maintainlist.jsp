@@ -15,6 +15,8 @@
     <link href="/default/assets/css/vendor/bootstrap.min.css" rel="stylesheet">
     <link href="https://www.bootcss.com/p/layoutit/css/bootstrap-combined.min.css" rel="stylesheet">
     <link href="/default/assets/css/style.css" rel="stylesheet">
+
+
     <script src="/default/assets/js/vendor/jquery-3.3.1.min.js"></script>
     <script src="/default/assets/js/vendor/bootstrap.min.js"></script>
 
