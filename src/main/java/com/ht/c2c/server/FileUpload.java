@@ -64,7 +64,7 @@ public class FileUpload extends HttpServlet {
                     if (item.isFormField()) { //表单输入域
                         System.out.println(item.getFieldName());
                     } else { // 文件上传域
-                        String name = item.getName();
+                        String name = System.currentTimeMillis()+item.getName().substring(item.getName().lastIndexOf("."),item.getName().length());//item.getName();
                         if (!name.equals("")) {
                             int index = name.indexOf("\\");
                             File uploadedFile;
