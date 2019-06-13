@@ -150,7 +150,7 @@
 
             out["HTname"] =  $("#name").val();
             out["HTdescript"] =  $("#desc").val();
-
+            //内码
             out["HTicode"] = "123";
             out["HTtable"] = "maintain";
 

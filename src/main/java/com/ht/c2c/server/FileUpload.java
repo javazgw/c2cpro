@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.UUID;
@@ -48,6 +49,7 @@ public class FileUpload extends HttpServlet {
     private File fileUploadPath;
     private static final String fileDirectory = "/uploaddata";
     private Hashtable<String,String> tableht = new Hashtable<String,String>();
+    private ArrayList<String> arrayList = new ArrayList<>();
     public void init() {
         System.out.println("init upload");
         String realPath = this.getServletConfig().getServletContext().getRealPath("/");
@@ -69,6 +71,8 @@ public class FileUpload extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("init upload");
+        arrayList.clear();
+        tableht.clear();
         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         if (isMultipart) {
             ServletContext servletContext = this.getServletConfig().getServletContext();
@@ -102,8 +106,10 @@ public class FileUpload extends HttpServlet {
                                 uploadedFile = new File(fileUploadPath,
                                         File.separator + name);
                             } else {
+
                                 uploadedFile = new File(fileUploadPath, File.separator + name.substring(name.lastIndexOf(File.separator) + 1));
                             }
+                            arrayList.add(uploadedFile.getPath());
                             item.write(uploadedFile);
                             JSONObject file = new JSONObject();
                             file.put("name", name);
@@ -135,6 +141,7 @@ public class FileUpload extends HttpServlet {
 
     public void insertIntoDB(Hashtable<String,String> ht) throws Exception {
 
+        String linkcode = UUID.randomUUID().toString();
         //replace into tbl_name(col_name, ...) values(...)
             String sql = "replace into " +ht.get("HTtable")+" ( ";
             String values=" values (";
@@ -155,15 +162,23 @@ public class FileUpload extends HttpServlet {
                     }
                 }
             }
-
-        sql = sql.substring(0,sql.length()-1);
-        values =values.substring(0,values.length()-1);
+        sql += "linkcode";
+            values +="'"+linkcode+"'";
+       // sql = sql.substring(0,sql.length()-1);
+        //values =values.substring(0,values.length()-1);
         sql +=")";
         values +=")";
         sql =sql+ values;
 
 
         SQLTools.getInstance().Update(sql);
+
+
+        for(String path:arrayList)
+        {
+            String imagesql = "insert into images (linkcode,imagepath) values('"+linkcode+"','"+path+"')";
+            SQLTools.getInstance().Update(imagesql);
+        }
 
 
 
