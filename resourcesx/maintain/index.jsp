@@ -8,6 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang=zh>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
     <title>维修记录</title>
     <%--<link href="/default/assets/css/vendor/bootstrap.min.css" rel="stylesheet">--%>
     <%--<link href="https://www.bootcss.com/p/layoutit/css/bootstrap-combined.min.css" rel="stylesheet">--%>
@@ -96,9 +100,9 @@
                 <fieldset>
                     <legend>故障申报</legend>
                     <div class="control-group">
-                        <label class="control-label" for="test1">故障描述</label>
+                        <label class="control-label" for="desc">故障描述</label>
                         <div class="controls">
-                            <input id="test1" type="text" />
+                            <input id="desc" type="text" />
                         </div>
                     </div>
 
@@ -119,7 +123,7 @@
 
                     <span class="help-block"></span>
 
-                    <button type="submit" class="btn">提交</button>
+
 
                 </fieldset>
             </form>
@@ -135,6 +139,7 @@
     var id_str = '';
     $("#input-fas").fileinput({
         language: 'zh',
+        textEncoding:"UTF-8",
         theme: "fas",
         uploadUrl: "/up",
         showUpload:true,
@@ -143,12 +148,17 @@
         uploadExtraData: function() {  // callback example
             var out = {}, key, i = 0;
 
-            out["zgwname"] =  $("#test1").val();
-             return out;
+            out["HTname"] =  $("#name").val();
+            out["HTdescript"] =  $("#desc").val();
+
+            out["HTicode"] = "123";
+            out["HTtable"] = "maintain";
+
+            return out;
         }
     }).on('filebatchpreupload', function(event, data, id, index) {
-        $('#kv-success-2').html('<h4>上传状态</h4><ul></ul>').hide();
-        console.log("filebatchpreupload1");
+       /* $('#kv-success-2').html('<h4>上传状态</h4><ul></ul>').hide();
+        console.log("filebatchpreupload1");*/
     }).on('filebatchuploadsuccess', function(event, data) {
       /*  var out = '';
         $.each(data.files, function(key, file) {
@@ -180,13 +190,6 @@
             id_str = id_str+data.response.id+',';
         }
         console.log("fileuploaded "+data.response.id+"-"+data.files);
-    /*    var out = '';
-        $.each(data.files, function(key, file) {
-            var fname = file.name;
-            out = out + '<li>' + '上传文件 # ' + (key + 1) + ' - '  +  fname + ' 成功。' + '</li>';
-            console.log("filebatchuploadsuccess2-"+out);
-        });
-*/
 
         console.log("response = "+data.response);
     });
@@ -197,5 +200,7 @@
             response = data.response, reader = data.reader;
         alert (extra.bdInteli + " " +  response.uploaded);
     });*/
+
+
 </script>
 </html>
