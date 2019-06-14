@@ -93,6 +93,10 @@
                                                             {
                                                                 String typecode2 = dataSet.getValue(i,"typecode");
                                                                 String typename2 = dataSet.getValue(i,"typename");
+                                                                if(typename2==null ||typecode2==null )
+                                                                {
+                                                                    break;
+                                                                }
                                                         %>
                                                             <option value="<%=typecode2%>" <%=(typecode2.equals(typecode))?"selected=\"selected\"":""%>><%=typename2%></option>
                                                         <%

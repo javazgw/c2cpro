@@ -1,3 +1,16 @@
+<%--
+  ~ Copyright (c) 2019.  javazgw@gmail.com
+  ~
+  ~
+  --%>
+
+<%--
+  Created by IntelliJ IDEA.
+  User: zgw
+  Date: 2019/6/14
+  Time: 2:00 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page import="com.ht.c2c.tools.SQLTools" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.Statement" %>
@@ -15,13 +28,13 @@
 
 <%
     //分页配置
-    String pageurl = "main.jsp?url=goodslist.jsp";
-    String totalsql = "select count(*) as c from gcode ";
+    String pageurl = "main.jsp?url=weblist.jsp";
+    String totalsql = "select count(*) as c from cms ";
     request.setAttribute("pagesql",totalsql);
     request.setAttribute("pageurl",pageurl);
     int curpage = request.getParameter("curpage")==null?1:Integer.parseInt(request.getParameter("curpage"));
     int onepagenum=request.getParameter("onepagenum")==null?12:Integer.parseInt(request.getParameter("onepagenum"));;
-    String sql = "select * from gcode limit "+(curpage-1)*onepagenum+","+onepagenum;
+    String sql = "select * from cms limit "+(curpage-1)*onepagenum+","+onepagenum;
 
 %>
 <div class="page-content-wrapper">
@@ -44,21 +57,21 @@
                                 <span class="hidden-xs">新建商品</span>
                             </a>
                             <%--<div class="btn-group">--%>
-                                <%--<a class="btn btn-circle btn-default dropdown-toggle" href="javascript:;" data-toggle="dropdown">--%>
-                                    <%--<i class="fa fa-share"></i>--%>
-                                    <%--<span class="hidden-xs"> Tools </span>--%>
-                                    <%--<i class="fa fa-angle-down"></i>--%>
-                                <%--</a>--%>
-                                <%--<div class="dropdown-menu pull-right">--%>
-                                    <%--<li>--%>
-                                        <%--<a href="javascript:;"> 导出到pdf </a>--%>
-                                    <%--</li>--%>
+                            <%--<a class="btn btn-circle btn-default dropdown-toggle" href="javascript:;" data-toggle="dropdown">--%>
+                            <%--<i class="fa fa-share"></i>--%>
+                            <%--<span class="hidden-xs"> Tools </span>--%>
+                            <%--<i class="fa fa-angle-down"></i>--%>
+                            <%--</a>--%>
+                            <%--<div class="dropdown-menu pull-right">--%>
+                            <%--<li>--%>
+                            <%--<a href="javascript:;"> 导出到pdf </a>--%>
+                            <%--</li>--%>
 
-                                    <%--<li>--%>
-                                        <%--<a href="javascript:;"> 打印</a>--%>
-                                    <%--</li>--%>
+                            <%--<li>--%>
+                            <%--<a href="javascript:;"> 打印</a>--%>
+                            <%--</li>--%>
 
-                                <%--</div>--%>
+                            <%--</div>--%>
                             <%--</div>--%>
                         </div>
                     </div>
@@ -81,74 +94,44 @@
                                     <th width="1%">
                                         <input type="checkbox" class="group-checkable"> </th>
                                     <th width="10%"> ID </th>
-                                    <th width="15%"> SKU </th>
-                                    <th width="15%"> 商品名称 </th>
-                                    <th width="15%"> 商品大类 </th>
-                                    <th width="10%"> 单价 </th>
-                                    <th width="10%"> 折扣 </th>
+                                    <th width="15%"> 标题 </th>
+                                    <th width="15%"> 作者 </th>
+
                                     <%--<th width="15%"> imageid </th>--%>
                                     <%--<th width="10%"> desc </th>--%>
                                     <th width="10%"> 操作 </th>
                                 </tr>
                                 </thead>
                                 <tbody>
-<%
-    Connection con = SQLTools.getInstance().getConnection();
-     Statement stmt = con.createStatement();
-     ResultSet rs = stmt.executeQuery(sql);
-     //分页
+                                <%
+                                    Connection con = SQLTools.getInstance().getConnection();
+                                    Statement stmt = con.createStatement();
+                                    ResultSet rs = stmt.executeQuery(sql);
+                                    //分页
 
 
-     while (rs.next())
-     {
-         String typecode=rs.getString("typecode");
-         if (typecode==null)
-             typecode="";
-         %>
-        <tr role="row" class="filter">
-            <td> </td>
-            <td>
-                <input type="text" class="form-control form-filter input-sm" name="icode" value ="<%= rs.getInt("icode")%>">  </td>
-            <td>
-                <input type="text" class="form-control form-filter input-sm" name="gcode" value ="<%= rs.getString("gcode")%>"> </td>
-            <td>
-                <input type="text" class="form-control form-filter input-sm" name="gname" value ="<%= rs.getString("gname")%>">
-            </td>
-            <td>
-                <select  class="form-control form-filter input-sm" name="typecode">
-                    <%
-                        DataSet dataSet = Cache.getInstance().getCahe("GCOETYPE_CACHE");
-                        int rows = dataSet.getRowCount();
-                        for (int i=0;i<rows;i++)
-                        {
-                            String typecode2 = dataSet.getValue(i,"typecode");
-                            if(typecode2==null)
-                            {
-                                break;
-                            }
-                            if (!typecode2.equals(typecode))
-                                continue;
-                            String typename2 = dataSet.getValue(i,"typename");
-                    %>
-                         <option value="<%=typecode2%>" <%=(typecode2.equals(typecode))?"selected=\"selected\"":""%>><%=typename2%></option>
-                    <%
-                            break;
-                        }
-                    %>
-                </select>
-            </td>
-            <td>
-                <input type="text" class="form-control form-filter input-sm" name="price" value ="<%= rs.getBigDecimal("price")%>">
-            </td>
-            <td>
-                <input type="text" class="form-control form-filter input-sm" name="discout" value ="<%= rs.getBigDecimal("discout")%>">
-            </td>
-            <%--<td>--%>
-                <%--<input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("imagesid")%>">--%>
-            <%--</td>--%>
-            <%--<td>--%>
-                <%--<input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("desc")%>" >--%>
-            <%--</td>--%>
+                                    while (rs.next())
+                                    {
+                                        String typecode=rs.getString("type");
+                                        if (typecode==null)
+                                            typecode="";
+                                %>
+                                <tr role="row" class="filter">
+                                    <td> </td>
+                                    <td>
+                                        <input type="text" class="form-control form-filter input-sm" name="id" value ="<%= rs.getInt("icode")%>">  </td>
+                                    <td>
+                                        <input type="text" class="form-control form-filter input-sm" name="title" value ="<%= rs.getString("title")%>"> </td>
+                                    <td>
+                                        <input type="text" class="form-control form-filter input-sm" name="user" value ="<%= rs.getString("user")%>">
+                                    </td>
+
+                                    <%--<td>--%>
+                                    <%--<input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("imagesid")%>">--%>
+                                    <%--</td>--%>
+                                    <%--<td>--%>
+                                    <%--<input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("desc")%>" >--%>
+                                    <%--</td>--%>
 
                                     <td>
                                         <div class="margin-bottom-5">
@@ -190,7 +173,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">商品添加/编辑</h4>
+                <h4 class="modal-title">添加/编辑</h4>
             </div>
             <div class="modal-body">
                 <p>Loading...</p>
@@ -215,34 +198,34 @@
         $('.edit').on('click', function (e) {
             e.preventDefault();
 
-            $('#myModal').modal('show').find('.modal-body').load('goodsedit.jsp?icode='+$(this).data('id'));
+            $('#myModal').modal('show').find('.modal-body').load('webedit.jsp?icode='+$(this).data('id'));
 
             // $('input[name="product[name]').val("1212")
         });
 
         $('#myModal').on('shown.bs.modal', function (e) {
             e.preventDefault();
-          //  $('input[name="product[name]').val("12124")
+            //  $('input[name="product[name]').val("12124")
 
         });
 
         $('#save').click(function(event) {
 
             event.preventDefault();
-         //   alert("save...")
-            $('#myModal').modal('hide').find('.modal-body');
+            //   alert("save...")
+            //$('#myModal').modal('hide').find('.modal-body');
         });
 
         $('#close').click(function(event) {
 
             event.preventDefault();
-         //   alert("Close.....")
+            //   alert("Close.....")
             $('#myModal').modal('hide').find('.modal-body');
         });
     });
 
     function newGoodes() {
-        $('#myModal').modal('show').find('.modal-body').load('goodsedit.jsp?icode=0');
+        $('#myModal').modal('show').find('.modal-body').load('webedit.jsp?icode=0');
     }
 
 </script>

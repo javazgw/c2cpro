@@ -39,6 +39,9 @@
                         故障提交时间
                     </th>
                     <th>
+                        提交人
+                    </th>
+                    <th>
                         状态
                     </th>
                 </tr>
@@ -48,11 +51,11 @@
                 int curpage = request.getParameter("curpage")==null?1:Integer.parseInt(request.getParameter("curpage"));
                 int onepagenum=request.getParameter("onepagenum")==null?12:Integer.parseInt(request.getParameter("onepagenum"));;
                 String pageurl = "maintainlist.jsp?1=1";
-                String totalsql = "select count(*) as c from gcode ";
+                String totalsql = "select count(*) as c from maintain order by createdate desc ";
                 request.setAttribute("pagesql",totalsql);
                 request.setAttribute("pageurl",pageurl);
                 //							String sql = "select * from gcode limit "+(curpage-1)*onepagenum+","+onepagenum;
-                String sql = "select * from gcode  limit "+(curpage-1)*onepagenum+","+onepagenum;
+                String sql = "select * from maintain  limit "+(curpage-1)*onepagenum+","+onepagenum;
                 Connection con1 = SQLTools.getInstance().getConnection();
                 Statement stmt1 = con1.createStatement();
                 ResultSet rs1 = stmt1.executeQuery(sql);
@@ -63,16 +66,19 @@
                 %>
                 <tr>
                     <td>
-                        1
+                        <%=rs1.getString("icode")%>
                     </td>
                     <td>
-                        监控画面没显示
+                        <%=rs1.getString("descript")%>
                     </td>
                     <td>
-                        01/04/2019
+                        <%=rs1.getString("createdate")%>
                     </td>
                     <td>
-                        Default
+                        <%=rs1.getString("name")%>
+                    </td>
+                    <td>
+                        <%=rs1.getString("status")%>
                     </td>
                 </tr>
                 <%--<tr class="success">
