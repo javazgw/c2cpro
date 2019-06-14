@@ -14,6 +14,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Enumeration;
+
+import com.ht.c2c.websocket.WebSocketObject;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -79,6 +81,9 @@ public class BaseServlet extends HttpServlet {
                 if (tableName==null)
                     return;
                 tableName = Encryption.sampleEncodeAndDecode(tableName);
+                //临时处理
+                if("maintain".equals(tableName))
+                    deelWebsocket();
 
 //                String table = req.getParameter("tb");
                 String icode = req.getParameter("icode");
@@ -189,4 +194,9 @@ public class BaseServlet extends HttpServlet {
         }
     }
 
+
+ public void deelWebsocket()
+ {
+     WebSocketObject.getInstance().fireWorkspaceChanged();
+ }
 }

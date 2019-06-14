@@ -3,6 +3,7 @@ package com.ht.c2c.server;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ht.c2c.tools.SQLTools;
+import com.ht.c2c.websocket.WebSocketObject;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.FileCleanerCleanup;
@@ -153,6 +154,13 @@ public class FileUpload extends HttpServlet {
                     String str = key.substring(key.indexOf("HT")+2);
                     if(str.trim().equals("table"))
                     {
+                        //特殊处理maintain表,触发长连接
+
+                        if(ht.get(key).trim().equals("maintain"))
+                        {
+
+                            WebSocketObject.getInstance().fireWorkspaceChanged();
+                        }
                         continue;
                     }
                     else
