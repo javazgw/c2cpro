@@ -13,7 +13,8 @@
 <head>
     <title>维修单列表</title>
     <link href="/default/assets/css/vendor/bootstrap.min.css" rel="stylesheet">
-    <link href="https://www.bootcss.com/p/layoutit/css/bootstrap-combined.min.css" rel="stylesheet">
+    <%--<link href="https://www.bootcss.com/p/layoutit/css/bootstrap-combined.min.css" rel="stylesheet">--%>
+    <link href="/assets/bootstrap-combined.min.css" rel="stylesheet">
     <link href="/default/assets/css/style.css" rel="stylesheet">
 
 
@@ -26,6 +27,7 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
+            <div class="span8">
             <table class="table table-bordered table-hover table-condensed">
                 <thead>
                 <tr>
@@ -37,6 +39,9 @@
                     </th>
                     <th>
                         故障提交时间
+                    </th>
+                    <th>
+                        位置
                     </th>
                     <th>
                         提交人
@@ -55,14 +60,19 @@
                 request.setAttribute("pagesql",totalsql);
                 request.setAttribute("pageurl",pageurl);
                 //							String sql = "select * from gcode limit "+(curpage-1)*onepagenum+","+onepagenum;
-                String sql = "select * from maintain  limit "+(curpage-1)*onepagenum+","+onepagenum;
+                String sql = "select * from maintain  order by createdate desc limit "+(curpage-1)*onepagenum+","+onepagenum;
                 Connection con1 = SQLTools.getInstance().getConnection();
                 Statement stmt1 = con1.createStatement();
                 ResultSet rs1 = stmt1.executeQuery(sql);
 
+                String linkcode = "";
+                int num = 0;
                 while (rs1.next())
                 {
-
+                    if(num==0) {
+                        linkcode = rs1.getString("linkcode");
+                    }
+                    num++;
                 %>
                 <tr>
                     <td>
@@ -73,6 +83,9 @@
                     </td>
                     <td>
                         <%=rs1.getString("createdate")%>
+                    </td>
+                    <td>
+                        <%=rs1.getString("addr")%>
                     </td>
                     <td>
                         <%=rs1.getString("name")%>
@@ -145,10 +158,39 @@
 %>
                 </tbody>
             </table>
+
+            </div>
+
+            <div class="span4">
+
+                <%
+
+                    String sql2 = "select * from images where linkcode = '"+linkcode+"'";
+                    Connection con2 = SQLTools.getInstance().getConnection();
+                    Statement stmt2 = con2.createStatement();
+                    ResultSet rs2 = stmt2.executeQuery(sql2);
+                    while(rs2.next())
+                    {
+                %>
+                <img alt="240x240" style="height:240px;width:240px" src="<%=rs2.getString("imagepath")%>" />
+
+                <%
+                    }
+
+                    rs2.close() ;
+                    stmt2.close();
+                    con2.close();
+                    %>
+
+            </div>
+
+
             <div class="row-fluid">
                 <div class="span12">
                     <jsp:include page='<%= "/public/page.jsp" %>' ></jsp:include>
                 </div>
+
+
             </div>
         </div>
 
@@ -158,4 +200,75 @@
 
 
 </body>
+
+
+<script language="javascript" type="text/javascript">
+    function openWebSocket() {
+        var wsurl = getHost().replace("http://", "ws://");
+        if ('WebSocket' in window)
+            printws = new WebSocket(wsurl + "/../websocket/maintain");
+        else if ('MozWebSocket' in window)
+            printws = new MozWebSocket(wsurl + "/../websocket/maintain");
+        else
+            alert("not support");
+
+        printws.onmessage = function (evt) {
+
+            console.log(evt.data);
+            window.location.reload( true );
+
+        };
+        printws.onclose = function (evt) {
+            // alert("socket close");
+            printws = null;
+            retryConnect();
+        };
+        printws.onopen = function (evt) {
+            //alert("socket open");
+        };
+
+    }
+
+    function retryConnect()
+    {
+        var retryid = 0;
+        // alert(""+printws);
+        if(printws==null)
+        {
+            setTimeout("openWebSocket()",5000);
+        }
+
+        else
+        {
+            if(retryid!=0)
+                clearTimeout(retryid);
+        }
+    }
+    window.onload = function (){
+//$(document).ready(function() {
+
+//init socket
+
+        openWebSocket();
+
+
+    }
+    var host;
+    function getHost(){
+        if(typeof(host)=="undefined"){
+            var curWwwPath=window.document.location.href;
+            //获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+            var pathName=window.document.location.pathname;
+            var pos=curWwwPath.indexOf(pathName);
+            //获取主机地址，如： http://localhost:8083
+            var localhostPaht=curWwwPath.substring(0,pos);
+            //获取带"/"的项目名，如：/uimcardprj
+            var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+            //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
+            host =(localhostPaht+projectName);
+        }
+        return host;
+    }
+
+</script>
 </html>

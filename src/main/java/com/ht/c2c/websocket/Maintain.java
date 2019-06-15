@@ -21,7 +21,8 @@ public class Maintain {
                 if(event.state==WebSocketObject.CHANGED)
                 {
                     try {
-                        session.getBasicRemote().sendText("change");
+                        if(session.isOpen())
+                            session.getBasicRemote().sendText("change");
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }

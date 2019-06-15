@@ -110,7 +110,7 @@ public class FileUpload extends HttpServlet {
 
                                 uploadedFile = new File(fileUploadPath, File.separator + name.substring(name.lastIndexOf(File.separator) + 1));
                             }
-                            arrayList.add(uploadedFile.getPath());
+                            arrayList.add(uploadedFile.getPath().substring(uploadedFile.getPath().indexOf(fileDirectory)));
                             item.write(uploadedFile);
                             JSONObject file = new JSONObject();
                             file.put("name", name);
@@ -141,7 +141,7 @@ public class FileUpload extends HttpServlet {
     }
 
     public void insertIntoDB(Hashtable<String,String> ht) throws Exception {
-
+        boolean firemaintain = false;
         String linkcode = UUID.randomUUID().toString();
         //replace into tbl_name(col_name, ...) values(...)
             String sql = "replace into " +ht.get("HTtable")+" ( ";
@@ -159,7 +159,9 @@ public class FileUpload extends HttpServlet {
                         if(ht.get(key).trim().equals("maintain"))
                         {
 
-                            WebSocketObject.getInstance().fireWorkspaceChanged();
+
+                            firemaintain = true;
+
                         }
                         continue;
                     }
@@ -187,7 +189,11 @@ public class FileUpload extends HttpServlet {
             String imagesql = "insert into images (linkcode,imagepath) values('"+linkcode+"','"+path+"')";
             SQLTools.getInstance().Update(imagesql);
         }
-
+        //触发维单
+        if(firemaintain)
+        {
+            WebSocketObject.getInstance().fireWorkspaceChanged();
+        }
 
 
     }

@@ -58,58 +58,78 @@
 
     <!-- bootstrap 4.x is supported. You can also use the bootstrap css 3.3.x versions -->
     <%--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">--%>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    <%--<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />--%>
+    <link href="/assets/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
     <!-- if using RTL (Right-To-Left) orientation, load the RTL CSS file after fileinput.css by uncommenting below -->
     <!-- link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/css/fileinput-rtl.min.css" media="all" rel="stylesheet" type="text/css" /-->
     <!-- the font awesome icon library if using with `fas` theme (or Bootstrap 4.x). Note that default icons used in the plugin are glyphicons that are bundled only with Bootstrap 3.x. -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <%--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">--%>
+    <link rel="stylesheet" href="/assets/css/all.css" crossorigin="anonymous">
+    <%--<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>--%>
+    <script src="/assets/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
     <!-- piexif.min.js is needed for auto orienting image files OR when restoring exif data in resized images and when you
         wish to resize images before upload. This must be loaded before fileinput.min.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/plugins/piexif.min.js" type="text/javascript"></script>
+    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/plugins/piexif.min.js" type="text/javascript"></script>--%>
+    <script src="/assets/piexif.min.js" type="text/javascript"></script>
     <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview.
         This must be loaded before fileinput.min.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/plugins/sortable.min.js" type="text/javascript"></script>
+    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/plugins/sortable.min.js" type="text/javascript"></script>--%>
+    <script src="/assets/sortable.min.js" type="text/javascript"></script>
     <!-- purify.min.js is only needed if you wish to purify HTML content in your preview for
         HTML files. This must be loaded before fileinput.min.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/plugins/purify.min.js" type="text/javascript"></script>
+    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/plugins/purify.min.js" type="text/javascript"></script>--%>
+    <script src="/assets/purify.min.js" type="text/javascript"></script>
     <!-- popper.min.js below is needed if you use bootstrap 4.x (for popover and tooltips). You can also use the bootstrap js
        3.3.x versions without popper.min.js. -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>--%>
+    <script src="/assets/popper.min.js"></script>
     <!-- bootstrap.min.js below is needed if you wish to zoom and preview file content in a detail modal
         dialog. bootstrap 4.x is supported. You can also use the bootstrap js 3.3.x versions. -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <%--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>--%>
+    <%--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>--%>
+    <script src="/assets/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <!-- the main fileinput plugin file -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/fileinput.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/locales/zh.js"></script>
+    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/fileinput.min.js"></script>--%>
+    <script src="/assets/fileinput.min.js"></script>
+    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/locales/zh.js"></script>--%>
+    <script src="/assets/zh.js"></script>
     <!-- following theme script is needed to use the Font Awesome 5.x theme (`fas`) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/themes/fas/theme.min.js"></script>
+    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/themes/fas/theme.min.js"></script>--%>
+    <script src="/assets/theme.min.js"></script>
     <!-- optionally if you need translation for your language then include the locale file as mentioned below (replace LANG.js with your language locale) -->
 
-    <%--<link href="/default/assets/css/vendor/font-awesome.css" rel="stylesheet">--%>
+    <link href="/default/assets/css/vendor/font-awesome.css" rel="stylesheet">
 </head>
 
 
 <body>
 
+<%
+    String icode = request.getParameter("icode");
+    String addr = request.getParameter("addr");
+    if(icode==null)
+    {
+        icode = "";
+    }
 
+%>
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
             <form   class="form-horizontal">
                 <fieldset>
                     <legend>故障申报</legend>
-                    <div class="control-group">
+                    <div class="form-group">
                         <label class="control-label" for="desc">故障描述</label>
                         <div class="controls">
-                            <input id="desc" type="text" />
+                            <input id="desc" type="text" class="form-control"/>
                         </div>
                     </div>
 
-                    <div class="control-group">
+                    <div class="form-group">
                         <label class="control-label" for="name">故障申报人姓名</label>
                         <div class="controls">
-                            <input id="name" type="text" />
+                            <input id="name" type="text" class="form-control" />
                         </div>
                     </div>
 
@@ -130,6 +150,7 @@
 
         </div>
     </div>
+    <button id ="tijiao" class="btn-o">提交</button>
     <div id="kv-error-2" style="margin-top:10px;display:none"></div>
     <div id="kv-success-2" class="alert alert-success fade in" style="margin-top:10px;display:none"></div>
 
@@ -142,7 +163,8 @@
         textEncoding:"UTF-8",
         theme: "fas",
         uploadUrl: "/up",
-        showUpload:true,
+        showRemove:false,
+        showUpload:false,
         allowedFileTypes: ["image", "video"],
         maxFileCount: 5,
         uploadExtraData: function() {  // callback example
@@ -151,8 +173,15 @@
             out["HTname"] =  $("#name").val();
             out["HTdescript"] =  $("#desc").val();
             //内码
-            out["HTicode"] = "123";
+            <% if(icode!=null  && !icode.equals("") ) { %>
+                out["HTicode"] = <%=icode%>;
+            <% }%>
+
+            <% if(addr!=null  && !addr.equals("") ) { %>
+                out["HTaddr"] = "<%=addr%>";
+            <% }%>
             out["HTtable"] = "maintain";
+            out["HTstatus"] = "待处理";
 
             return out;
         }
@@ -171,7 +200,7 @@
 
         var form = data.form, files = data.files, extra = data.extra,
             response = data.response, reader = data.reader;
-        alert (extra.bdInteli + " " +  response.uploaded);
+        // alert (extra.bdInteli + " " +  response.uploaded);
     }).on("fileuploaded", function (event, data, previewId, index) {
         console.log("fileuploaded-");
     }).on('fileerror', function(event, data, msg) {
@@ -201,6 +230,14 @@
         alert (extra.bdInteli + " " +  response.uploaded);
     });*/
 
+
+  /*  $('#tijiao').on('click',function () {
+        $('#input-fas').fileinput('upload');
+    });*/
+    $( "#tijiao" ).click(function() {
+
+        $('#input-fas').fileinput('upload');
+    });
 
 </script>
 </html>
