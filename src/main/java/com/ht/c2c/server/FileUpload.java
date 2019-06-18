@@ -49,8 +49,7 @@ public class FileUpload extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private File fileUploadPath;
     private static final String fileDirectory = "/uploaddata";
-    private Hashtable<String,String> tableht = new Hashtable<String,String>();
-    private ArrayList<String> arrayList = new ArrayList<>();
+
     public void init() {
         System.out.println("init upload");
         String realPath = this.getServletConfig().getServletContext().getRealPath("/");
@@ -72,8 +71,8 @@ public class FileUpload extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("init upload");
-        arrayList.clear();
-        tableht.clear();
+         Hashtable<String,String> tableht = new Hashtable<String,String>();
+         ArrayList<String> arrayList = new ArrayList<>();
         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         if (isMultipart) {
             ServletContext servletContext = this.getServletConfig().getServletContext();
@@ -127,7 +126,7 @@ public class FileUpload extends HttpServlet {
                 }
             //插入表单提交的信息到数据库
                 if(tableht.size()>0) {
-                    insertIntoDB(tableht);
+                    insertIntoDB(tableht,arrayList);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -140,9 +139,14 @@ public class FileUpload extends HttpServlet {
         }
     }
 
-    public void insertIntoDB(Hashtable<String,String> ht) throws Exception {
+    /**
+     * ht 里要有HTicode
+     * @param ht
+     * @throws Exception
+     */
+    public void insertIntoDB(Hashtable<String,String> ht,ArrayList<String> arrayList) throws Exception {
         boolean firemaintain = false;
-        String linkcode = UUID.randomUUID().toString();
+        String linkcode = ht.get("HTicode");//UUID.randomUUID().toString();
         //replace into tbl_name(col_name, ...) values(...)
             String sql = "replace into " +ht.get("HTtable")+" ( ";
             String values=" values (";
