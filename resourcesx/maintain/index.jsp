@@ -242,7 +242,7 @@
             $("#response").html("提交成功,1秒后跳转");
             // window.location.reload( true );
 
-            setTimeout("window.location.reload( true )",1000)
+            // setTimeout("window.location.reload( true )",1000)
             return false;
         }
 

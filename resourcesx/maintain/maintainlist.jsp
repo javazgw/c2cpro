@@ -20,7 +20,7 @@
 
     <script src="./../default/assets/js/vendor/jquery-3.3.1.min.js"></script>
     <script src="./../default/assets/js/vendor/bootstrap.min.js"></script>
-
+    <script src="./../js/ht.js"></script>
 </head>
 
 <body>
@@ -174,7 +174,7 @@
                     while(rs2.next())
                     {
                 %>
-                <img alt="240x240" style="height:240px;width:240px" src="..<%=rs2.getString("imagepath")%>" />
+                <img alt="240x240" style="height:240px;width:240px" src="<%=oss()+"/cms"+rs2.getString("imagepath")+"?x-oss-process=style/htfa"%>" />
 
                 <%
                     }
@@ -208,9 +208,9 @@
     function openWebSocket() {
         var wsurl = getHost().replace("http://", "ws://");
         if ('WebSocket' in window)
-            printws = new WebSocket(wsurl + "/../websocket/maintain");
+            printws = new WebSocket(wsurl + "/../cms/websocket/maintain");
         else if ('MozWebSocket' in window)
-            printws = new MozWebSocket(wsurl + "/../websocket/maintain");
+            printws = new MozWebSocket(wsurl + "/../cms/websocket/maintain");
         else
             alert("not support");
 
@@ -274,3 +274,8 @@
 
 </script>
 </html>
+<%!
+    private String oss() {
+        return "http://htfa.oss-cn-shenzhen.aliyuncs.com";
+    }
+%>

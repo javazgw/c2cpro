@@ -4,3 +4,10 @@ function uuidv4() {
         return v.toString(16);
     });
 }
+
+function oss()
+{
+
+
+    return "htfa.oss-cn-shenzhen.aliyuncs.com";
+}
