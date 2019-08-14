@@ -84,9 +84,9 @@
                                         <input type="checkbox" class="group-checkable"> </th>
                                     <th width="10%"> ID </th>
                                     <th width="15%"> 描述 </th>
-                                    <th width="15%"> 商品名称 </th>
-                                    <th width="15%"> 商品大类 </th>
-                                    <th width="10%"> 单价 </th>
+                                    <th width="15%"> 地址 </th>
+                                    <th width="15%"> 电话 </th>
+                                    <th width="10%"> 状态 </th>
                                     <th width="10%"> 折扣 </th>
                                     <%--<th width="15%"> imageid </th>--%>
                                     <%--<th width="10%"> desc </th>--%>
