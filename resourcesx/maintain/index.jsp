@@ -122,6 +122,7 @@
                 <h4>
                     故障申报!
                 </h4>
+                <button class="btn btn-primary" onclick="window.location.href='./maintainquery.jsp?addr=<%=addr%>'">查询历史故障申报</button>
             </div>
         </div>
         <div class="span12">
@@ -242,7 +243,7 @@
             $("#response").html("提交成功,1秒后跳转");
             // window.location.reload( true );
 
-            // setTimeout("window.location.reload( true )",1000)
+             setTimeout("window.location.href='./maintainquery.jsp?addr=<%=addr%>'",1000)
             return false;
         }
 

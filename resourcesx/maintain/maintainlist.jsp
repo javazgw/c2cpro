@@ -203,12 +203,16 @@
 
 </body>
 
-
+<%
+    String appContext = request.getContextPath();
+    String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort() + appContext;
+%>
 <script language="javascript" type="text/javascript">
     function openWebSocket() {
-        var wsurl = getHost().replace("http://", "ws://");
+        // var wsurl = getHost().replace("http://", "ws://");
+        var wsurl = "<%=basePath%>".replace("http://", "ws://");
         if ('WebSocket' in window)
-            printws = new WebSocket(wsurl + "/../cms/websocket/maintain");
+            printws = new WebSocket(wsurl + "/websocket/maintain");
         else if ('MozWebSocket' in window)
             printws = new MozWebSocket(wsurl + "/../cms/websocket/maintain");
         else

@@ -80,7 +80,7 @@ public class BaseServlet extends HttpServlet {
                 String tableName = req.getParameter("ext_tName");
                 if (tableName==null)
                     return;
-                tableName = Encryption.sampleEncodeAndDecode(tableName);
+//                tableName = Encryption.sampleEncodeAndDecode(tableName);
                 //临时处理
                 if("maintain".equals(tableName))
                     deelWebsocket();

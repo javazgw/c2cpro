@@ -21,6 +21,9 @@
     ResultSet rs = stmt.executeQuery("select * from maintain where icode ='"+icode+"'");
     boolean bUpdate = rs.next();
 
+
+    String[] statusarray = new String[]{"待处理","短时间处理","较长时间处理","等待集中处理","处理完毕"};
+
 //    while (rs.next())
 //    {
 %>
@@ -62,31 +65,55 @@
                                     <div class="tab-pane active" id="tab_general">
                                         <div class="form-body">
                                             <div class="form-group">
-                                                <label class="col-md-2 control-label">商品码:
+                                                <label class="col-md-2 control-label">申报人:
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <input type="hidden"  class="form-control" name="icode"  placeholder="" value="<%= bUpdate?rs.getString("icode"):""%>">
-                                                    <input type="text" class="form-control" name="gcode" placeholder="" value="<%= bUpdate?rs.getString("descript"):""%>"> </div>
+                                                    <input type="hidden"  class="form-control" name="icode"  placeholder="" value="<%= bUpdate?"'"+rs.getString("icode")+"'":""%>">
+                                                    <input type="text" class="form-control"  placeholder="" value="<%= bUpdate?rs.getString("name"):""%>"> </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-md-2 control-label">商品名称:
+                                                <label class="col-md-2 control-label">信息描述:
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="gname" placeholder="" value="<%= bUpdate?rs.getString("descript"):""%>"> </div>
+                                                    <input type="text" class="form-control"  placeholder="" value="<%= bUpdate?rs.getString("descript"):""%>"> </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">处理结果描述:
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" name="resultdesc" placeholder="" value="<%= bUpdate?rs.getString("resultdesc"):""%>"> </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-md-2 control-label">商品大类:
+                                                <label class="col-md-2 control-label">状态:
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-10">
 
-                                                </div>
-                                            </div>
 
+
+                                                <select  class="form-control form-filter input-sm" name="status">
+                                                    <%
+
+                                                        for (int i=0;i<statusarray.length;i++)
+                                                        {
+
+                                                    %>
+                                                    <option value="<%=statusarray[i]%>" <%=(statusarray[i].equals(rs.getString("status")))?"selected=\"selected\"":""%>><%=statusarray[i]%></option>
+                                                    <%
+
+                                                        }
+                                                    %>
+                                                </select>
+
+
+                                            </div>
 
 
 
@@ -151,8 +178,10 @@
     stmt.close();
     con.close();
 %>
-
-<script src="../assets/global/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
+<%
+    String appContext = request.getContextPath();
+    String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort() + appContext;
+%>
 
 <script>
 
@@ -170,35 +199,16 @@
     ////filses就是input[type=file]文件列表，files[0]就是第一个文件，这里就是将选择的第一个图片文件转化为base64的码
     //            }
     //    );
-    var CKEditor = CKEDITOR.replace('ckeditor');
-    console.log("CKEditor status ="+CKEditor.status);
-    $('#save').on('click',function () {
-        //$('#editform').submit();
-        // $(this).ajaxSubmit(function () {
-        //     $('#output2').html("提交成功！欢迎下次再来！").show();
-        // });
-        <%--var data = $('#editform').serialize();--%>
-        <%--data = data+"&imagedata="+reader;--%>
-        <%--$.post( '/BS?action=save&ext_tName=<%=Encryption.sampleEncodeAndDecode("gcode")%>',data, function(data) {--%>
-        <%--},--%>
-        <%--'josn' // I expect a JSON response--%>
-        <%--);--%>
-        var formData = new FormData($('#editform')[0]);
-//        if (imageData !=null)
-//             formData.append("image",imageData);
-        formData.set("descript",CKEditor.getData());
 
-        var imageblob =$('#uploadImage_0').attr("src");
-        formData.set("image",imageblob);
-        //console.log("formData gname="+formData.get("gname"));
-        if (formData.get("gname")==null || "" == formData.get("gname").trim()){
-            alert("商品名称不能为空！");
-            return;
-        }
-//        console.log("formData CKEditor="+CKEditor);
-//        console.log("formData CKEditor2="+CKEditor.getData());
+    $('#save').on('click',function () {
+
+        var formData = new FormData($('#editform')[0]);
+
+
+
         $.ajax({
-            url: '/BS?action=save&ext_tName=<%=Encryption.sampleEncodeAndDecode("gcode")%>',
+            <%--url: '/BS?action=save&ext_tName=<%=Encryption.sampleEncodeAndDecode("maintain")%>',--%>
+            url: '<%=basePath%>/BS?action=save&ext_tName=maintain',
             type: 'POST',
             data: formData,
             dataType: 'JSON',
@@ -208,8 +218,7 @@
         }).done(function(ret){
             console.log(ret);
         });
-        //return false; //阻止表单默认提交
-        // });
+
     });
 
 

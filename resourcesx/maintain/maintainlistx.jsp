@@ -28,7 +28,7 @@
 <%--<jsp:include flush="true" page="../managerx/admin/top.jsp"></jsp:include>--%>
 <div class="page-content-wrapper">
     <!-- BEGIN CONTENT BODY -->
-    <div class="page-content">
+    <div class="page">
 
 
         <!-- BEGIN PAGE BASE CONTENT -->
@@ -39,12 +39,12 @@
                 <div class="portlet ">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="fa fa-shopping-cart"></i>商品列表</div>
+                            <i class="fa fa-shopping-cart"></i>维修单处理</div>
                         <div class="actions">
-                            <a href="javascript:newGoodes();" class="btn btn-circle btn-info">
-                                <i class="fa fa-plus"></i>
-                                <span class="hidden-xs">新建商品</span>
-                            </a>
+                            <%--<a href="javascript:newGoodes();" class="btn btn-circle btn-info">--%>
+                                <%--<i class="fa fa-plus"></i>--%>
+                                <%--<span class="hidden-xs">新建商品</span>--%>
+                            <%--</a>--%>
                             <%--<div class="btn-group">--%>
                             <%--<a class="btn btn-circle btn-default dropdown-toggle" href="javascript:;" data-toggle="dropdown">--%>
                             <%--<i class="fa fa-share"></i>--%>
@@ -80,14 +80,17 @@
                             <table class="table table-striped1 table-bordered table-hover table-checkable" id="datatable_products">
                                 <thead>
                                 <tr role="row" class="heading">
-                                    <th width="1%">
-                                        <input type="checkbox" class="group-checkable"> </th>
-                                    <th width="10%"> ID </th>
+                                    <%--<th width="1%">--%>
+                                        <%--<input type="checkbox" class="group-checkable"> </th>--%>
+                                    <th width="10%"> 申报人 </th>
                                     <th width="15%"> 描述 </th>
-                                    <th width="15%"> 地址 </th>
+
                                     <th width="15%"> 电话 </th>
+                                    <th width="15%"> 地址 </th>
+                                    <th width="15%"> 申报日期 </th>
+                                    <th width="10%"> 处理结果描述 </th>
+                                    <th width="10%"> 最后处理日期 </th>
                                     <th width="10%"> 状态 </th>
-                                    <th width="10%"> 折扣 </th>
                                     <%--<th width="15%"> imageid </th>--%>
                                     <%--<th width="10%"> desc </th>--%>
                                     <th width="10%"> 操作 </th>
@@ -106,27 +109,37 @@
 
                                 %>
                                 <tr role="row" class="filter">
-                                    <td> </td>
-                                    <td>
+
+                                    <td hidden="hidden">
                                             <%= rs.getString("icode")%>
                                     <td>
+                                        <%= rs.getString("name")%>
+                                    <td>
                                         <%= rs.getString("descript")%>
+
+                                    </td>
                                     <td>
-                                        <input type="text" class="form-control form-filter input-sm" name="gname" value ="<%= rs.getString("name")%>">
+                                        <%= rs.getString("tel")%>
+
+
                                     </td>
 
                                     <td>
-                                        <input type="text" class="form-control form-filter input-sm" name="price" value ="<%= rs.getString("createdate")%>">
+                                        <%= rs.getString("addr")%>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control form-filter input-sm" name="discout" value ="<%= rs.getString("addr")%>">
+                                        <%= rs.getString("createdate")%>
                                     </td>
 
                                     <td>
-                                        <input type="text" class="form-control form-filter input-sm" name="discout" value ="<%= rs.getString("resultdesc")%>">
+
+                                        <%= rs.getString("resultdesc")%>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control form-filter input-sm" name="discout" value ="<%= rs.getString("status")%>">
+                                        <%= rs.getString("deeldate")%>
+                                    </td>
+                                    <td>
+                                        <%= rs.getString("status")%>
                                     </td>
                                     <%--<td>--%>
                                     <%--<input type="text" class="form-control form-filter input-sm" name="product_id" value ="<%= rs.getString("imagesid")%>">--%>
