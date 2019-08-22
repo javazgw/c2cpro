@@ -147,6 +147,28 @@
                         </div>
                     </div>
 
+<%
+    if(addr==null || addr.trim().equals("")) {
+
+%>
+
+                        <div class="form-group" >
+                            <label class="control-label" for="addr" > 申报地址 </label >
+                            <div class="controls" >
+                                <input id = "addr" type = "text" class="form-control" />
+                            </div >
+                        </div >
+                        <%
+    }
+else
+    {
+        %>
+        <input type="hidden"  id = "addr" type = "text" class="form-control" value="<%=addr%>"/>
+                        <%
+    }
+                        %>
+
+
                     <div class="control-group">
                         <label class="control-label" for="input-fas">图片信息</label>
                         <div class="file-loading">

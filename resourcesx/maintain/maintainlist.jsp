@@ -208,6 +208,7 @@
     String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort() + appContext;
 %>
 <script language="javascript" type="text/javascript">
+    playaudio();
     function openWebSocket() {
         // var wsurl = getHost().replace("http://", "ws://");
         var wsurl = "<%=basePath%>".replace("http://", "ws://");
@@ -221,6 +222,7 @@
         printws.onmessage = function (evt) {
 
             console.log(evt.data);
+
             window.location.reload( true );
 
         };
@@ -276,6 +278,11 @@
         return host;
     }
 
+    function playaudio()
+    {
+        var audio = new Audio('/audio/ding.mp3');
+        audio.play();
+    }
 </script>
 </html>
 <%!

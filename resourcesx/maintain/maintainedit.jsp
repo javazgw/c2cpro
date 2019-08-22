@@ -70,6 +70,7 @@
                                                 </label>
                                                 <div class="col-md-10">
                                                     <input type="hidden"  class="form-control" name="icode"  placeholder="" value="<%= bUpdate?"'"+rs.getString("icode")+"'":""%>">
+                                                    <input type="hidden"  class="form-control" name="deeldate"  placeholder="" value="<%= "now()"%>">
                                                     <input type="text" class="form-control"  placeholder="" value="<%= bUpdate?rs.getString("name"):""%>"> </div>
                                             </div>
 
