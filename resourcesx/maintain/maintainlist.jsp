@@ -280,7 +280,7 @@
 
     function playaudio()
     {
-        var audio = new Audio('/audio/ding.mp3');
+        var audio = new Audio('../audio/ding.mp3');
         audio.play();
     }
 </script>

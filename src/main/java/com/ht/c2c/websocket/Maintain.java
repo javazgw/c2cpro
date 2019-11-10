@@ -41,12 +41,21 @@ public class Maintain {
 
     @OnClose
     public void onClose(Session session, CloseReason closeReason){
+
+        System.out.print(closeReason.getReasonPhrase());
         System.out.println("onClose");
     }
 
     @OnError
     public void onError(Session session, Throwable throwable){
+
+
         System.out.println("error");
+        System.out.println(throwable.getMessage());
+        System.out.println(throwable.toString());
+        System.out.println(throwable.getCause());
+        System.out.println();
+        throwable.printStackTrace();
     }
 
 }
