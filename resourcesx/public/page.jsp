@@ -40,7 +40,7 @@ try{
     String url = request.getAttribute("pageurl")+"";
 
     int curpage = request.getParameter("curpage")==null?1:Integer.parseInt(request.getParameter("curpage"));
-    int totalpagenum ,onepagenum=12,itemnum;
+    int totalpagenum ,onepagenum=24,itemnum;
     String searchstr = request.getParameter("searchstr");
 
     DataSet ds = SQLTools.getInstance().query(pagesql);

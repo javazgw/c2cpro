@@ -23,7 +23,7 @@
     <script src="./../js/ht.js"></script>
 </head>
 
-<body>
+<body id = "home">
 <div class="container-fluid">
     <div class="row-fluid">
 
@@ -55,7 +55,7 @@
                     <tbody>
                     <%
                         int curpage = request.getParameter("curpage")==null?1:Integer.parseInt(request.getParameter("curpage"));
-                        int onepagenum=request.getParameter("onepagenum")==null?12:Integer.parseInt(request.getParameter("onepagenum"));;
+                        int onepagenum=request.getParameter("onepagenum")==null?24:Integer.parseInt(request.getParameter("onepagenum"));;
                         String pageurl = "maintainlist.jsp?1=1";
                         String totalsql = "select count(*) as c from maintain order by createdate desc ";
                         request.setAttribute("pagesql",totalsql);
@@ -194,7 +194,11 @@
 
 
             </div>
-
+        <div class="intro">
+            <div class="start"></div>
+            <h1>没错，我们神乎其技</h1>
+            <div class="start">光的响应速度</div>
+        </div>
 
     </div>
 
@@ -284,6 +288,39 @@
         audio.play();
     }
 </script>
+
+
+
+<style>
+
+
+    #home {
+        background: url("./images/cover.jpg");
+        background-color: #222;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        padding: 0;
+    }
+    .intro {
+        position: absolute;
+        width: 100%;
+
+        left: 0;
+        text-align: center;
+        -webkit-transform: translate(0%, -50%);
+        -moz-transform: translate(0%, -50%);
+        -ms-transform: translate(0%, -50%);
+        -o-transform: translate(0%, -50%);
+        transform: translate(0%, -50%);
+        padding: 0 15px;
+    }
+
+</style>
 </html>
 <%!
     private String oss() {
