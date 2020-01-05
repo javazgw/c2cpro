@@ -91,13 +91,18 @@ public class Redis {
 
     public static  void main(String[] argc)
     {
-        Redis.getInstance().setKeyValue("zgw","1231");
-        Redis.getInstance().setList("zgw2","1231","333","444");
-        Hashtable<String,String> ht = new Hashtable<>();
-        ht.put("zzz","3333");
-        ht.put("zzz1","3222333");
-        ht.put("zzz2","223333");
-        Redis.getInstance().setHash("zgw3",ht);
+        long curtime = System.currentTimeMillis();
+        for(int i = 0 ;i<1000;i++) {
+            Redis.getInstance().setKeyValue("zgw"+i, "1231");
+            Redis.getInstance().setList("zgw2"+i, "1231", "333", "444");
+            Hashtable<String, String> ht = new Hashtable<>();
+            ht.put("zzz", "3333");
+            ht.put("zzz1", "3222333");
+            ht.put("zzz2", "223333");
+            Redis.getInstance().setHash("zgw3"+i, ht);
+        }
+        long curtime2 = System.currentTimeMillis();
+        System.out.println((curtime2-curtime) /1000);
     }
 
 }
