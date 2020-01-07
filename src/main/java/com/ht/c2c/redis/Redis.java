@@ -6,10 +6,12 @@
 
 package com.ht.c2c.redis;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.ht.c2c.dataBase.Cell;
 import com.ht.c2c.dataBase.Row;
 import com.ht.c2c.tools.Configure;
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -91,7 +93,7 @@ public class Redis {
         jedis.rpush(key,strings);
     }
 
-    //has
+    //hash
     public void setHash(String key, Map<String,String> map)
     {
         jedis.hmset(key,map);
@@ -102,6 +104,12 @@ public class Redis {
         return jedis.hgetAll(key);
     }
 
+    public JSON getHashJson(String key)
+    {
+        Map map =  getHash(key);
+        JSONObject json = new JSONObject(map);
+        return json;
+    }
     public void delHash(String key)
     {
         jedis.del(key);
@@ -137,6 +145,8 @@ public class Redis {
         Row row  = new Row();
         row.addCell(cell);
 
+
+        System.out.println(Redis.getInstance().getHashJson("zgw30"));
 
     }
 

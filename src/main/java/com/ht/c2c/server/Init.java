@@ -15,7 +15,7 @@ import java.io.PrintWriter;
  */
 
 
-@WebServlet(name="InitializeResources", urlPatterns="/initializeResources", loadOnStartup=1)
+//@WebServlet(name="InitializeResources", urlPatterns="/initializeResources", loadOnStartup=1)
 public class Init extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //       super.doGet(req,resp);
