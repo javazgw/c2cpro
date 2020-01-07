@@ -2,6 +2,8 @@ package com.ht.c2c.server;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +13,9 @@ import java.io.PrintWriter;
 /**
  * Created by guangwangzhuang on 2019/4/12.
  */
+
+
+//@WebServlet(name="InitializeResources", urlPatterns="/initializeResources", loadOnStartup=1)
 public class Init extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //       super.doGet(req,resp);

@@ -28,7 +28,7 @@
     <servlet>
         <servlet-name>init</servlet-name>
         <servlet-class>com.ht.c2c.server.Init</servlet-class>
-        <load-on-startup>1</load-on-startup>
+        <!--<load-on-startup>1</load-on-startup>-->
 
     </servlet>
     <servlet>
@@ -95,22 +95,22 @@
 
 
     <servlet>
-        <servlet-name>Jersey REST Service</servlet-name>
-        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <servlet-name>htRestful</servlet-name>
+        <servlet-class>com.ht.c2c.servicex.HtServletConteainer</servlet-class>
         <!-- Register resources and providers under com.vogella.jersey.first package. -->
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>com.ht.c2c.server.test</param-value>
+            <param-value>com.ht.c2c.servicex.HtApp</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Jersey REST Service</servlet-name>
-        <url-pattern>/rest/*</url-pattern>
+        <servlet-name>htRestful</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <servlet>
+    <!--<servlet>
         <servlet-name>com.ht.c2c.server.test.MyApplication</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
@@ -122,37 +122,7 @@
     <servlet-mapping>
         <servlet-name>com.ht.c2c.server.test.MyApplication</servlet-name>
         <url-pattern>/restful/*</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>htService</servlet-name>
-        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-        <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
-            <param-value>com.ht.c2c.service.HtService</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>htService</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>adminService</servlet-name>
-        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-        <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
-            <param-value>com.ht.c2c.Admin.AdminService</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>adminService</servlet-name>
-        <url-pattern>/admin/*</url-pattern>
-    </servlet-mapping>
-
+    </servlet-mapping>-->
     <!--<servlet-mapping>-->
         <!--<servlet-name>order</servlet-name>-->
         <!--<url-pattern>/order</url-pattern>-->
