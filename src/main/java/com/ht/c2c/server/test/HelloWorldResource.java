@@ -35,5 +35,28 @@ public class HelloWorldResource {
 
     }
 
+    @Path("list/{curpage}/{onepagenum}")
+    @GET
+    @Produces("text/plain")
+    public String getH2(@PathParam("curpage") int start,@PathParam("onepagenum") int end)
+    {
+        System.out.println(this);
+
+        System.out.printf("start %s end = %s %n ",start,end);
+        DataSet ds  = Cache.getInstance().getCahe("GCOETYPE_CACHE");
+        return ds.toString()
+                ;
+
+    }
+   /*
+   @Path("/getSubTaskInfo/") // url上没有参数，参数通过body传入
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON) // 声明传入参数是json格式
+    @Produces(MediaType.APPLICATION_JSON)  //返回json
+
+    */
+
+
+
 
 }

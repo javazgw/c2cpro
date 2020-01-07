@@ -123,6 +123,36 @@
         <servlet-name>com.ht.c2c.server.test.MyApplication</servlet-name>
         <url-pattern>/restful/*</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>htService</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.ht.c2c.service.HtService</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>htService</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>adminService</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.ht.c2c.Admin.AdminService</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminService</servlet-name>
+        <url-pattern>/admin/*</url-pattern>
+    </servlet-mapping>
+
     <!--<servlet-mapping>-->
         <!--<servlet-name>order</servlet-name>-->
         <!--<url-pattern>/order</url-pattern>-->
