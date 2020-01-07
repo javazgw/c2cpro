@@ -26,7 +26,7 @@ public class Addr {
     }
 
     @GET
-    @Produces("text/plain")
+    @Produces({MediaType.APPLICATION_JSON,MediaType.TEXT_PLAIN})
     @Path("/list")
     public String getAlladdr() {
         System.out.println(this);

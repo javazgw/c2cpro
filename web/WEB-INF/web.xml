@@ -12,7 +12,7 @@
     </filter>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
-        <!-- url-pattern>*</url-pattern-->
+        <url-pattern>*</url-pattern>
         <servlet-name>Login</servlet-name>
     </filter-mapping>
 
