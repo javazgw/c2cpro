@@ -138,6 +138,14 @@
             <artifactId>tomcat-servlet-api</artifactId>
             <version>8.5.40</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-frontend-jaxrs -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+            <version>3.3.4</version>
+        </dependency>
+
     </dependencies>
     
 </project>
