@@ -32,6 +32,8 @@ public class LoginFilter implements Filter {
 
             try {
                 Claims str = JWT.getInstance().parseJWT(tokenStr);
+                String token = JWT.getInstance().refreshToken(tokenStr);
+                httpServletResponse.addHeader("token", token);
             }
             catch (Exception e)
             {
@@ -41,10 +43,12 @@ public class LoginFilter implements Filter {
 
 
         }
+        httpServletResponse.setHeader("X-Powered-By","httech");
+//        httpServletResponse.addHeader("Access-Control-Allow-Origin", "*");
+
         filterChain.doFilter(servletRequest,servletResponse);
 
-        httpServletResponse.setHeader("X-Powered-By","httech");
-    }
+       }
 
     public void destroy() {
 

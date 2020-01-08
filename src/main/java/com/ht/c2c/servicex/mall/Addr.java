@@ -8,7 +8,9 @@ package com.ht.c2c.servicex.mall;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.ht.c2c.dataBase.DataSet;
 import com.ht.c2c.redis.Redis;
+import com.ht.c2c.tools.JWT;
 import com.ht.c2c.tools.SQLTools;
 
 import javax.ws.rs.*;
@@ -33,10 +35,22 @@ public class Addr {
     @GET
     @Produces({MediaType.APPLICATION_JSON,MediaType.TEXT_PLAIN})
     @Path("/list")
-    public String getAlladdr() {
+    public String getAlladdr(@HeaderParam("token") String token) {
+
+        String username  = JWT.getInstance().getUserNameFromToken(token);
+        DataSet ds = null;
+        try {
+             ds = SQLTools.getInstance().query("select * from addr where ccode ='" + username + "'");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         System.out.println(this);
 
-        return "getall addr";
+        if(ds !=null)
+            return ds.toString();
+        return null;
     }
 
 
@@ -67,13 +81,13 @@ public class Addr {
 
         try {
 
-            SQLTools.getInstance().Update("insert into addr (recivename,addr,tel,mobil,ccode,createdate) values(?,?,?,?,?)", new String[]{
-                    ht.get("recivename"), ht.get("addr"),ht.get("tel"),ht.get("mobil"), format.format(d)
+            SQLTools.getInstance().Update("insert into addr (recivename,addr,tel,mobil,ccode,createdate) values(?,?,?,?,?,?)", new String[]{
+                    ht.get("recivename"), ht.get("addr"),ht.get("tel"),ht.get("mobil"),ht.get("ccode"), format.format(d)
             });
         }
         catch (Exception e)
         {
-
+            e.printStackTrace();
         }
         return Redis.getInstance().getHashJson("zgw30");
     }
