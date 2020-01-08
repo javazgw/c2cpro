@@ -24,6 +24,10 @@ public class ReturnObject implements Serializable {
     public static final  int YOUIPISBANANDFUCKYOU = 4001;
     public static final  int USERNOTEXIST = 4011;
     public static final  int USERORPASSNOTALLOW = 4011;
+    //jwt auth 过期.需要重新登陆
+    public static final  int JWT_TOKEN_EXP = 6011;
+    //JWT 没有用户名
+    public static final  int JWT_TOKEN_NO_USERNAME = 6020;
 
 
 

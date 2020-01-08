@@ -2,12 +2,12 @@ package com.ht.c2c.tools;
 
 
 
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
+
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;

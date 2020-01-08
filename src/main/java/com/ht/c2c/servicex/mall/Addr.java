@@ -23,6 +23,12 @@ import java.util.Map;
 //地址管理
 @Path("/companyAddress")
 public class Addr {
+
+    public Addr()
+    {
+        System.out.println("addr"+this);
+    }
+
     @GET
     @Produces("text/plain")
     @Path("{id}")

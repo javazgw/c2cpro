@@ -17,8 +17,8 @@ public class MyApplication extends Application {
         classes.add(HelloWorldResource.class);
 //23
        classes.add(HW2.class);
-        System.out.println("http://localhost:8080/helloworld");
-        System.out.println("http://localhost:8080/h2");
+        System.out.println("http://localhost:8080/helloworld...");
+        System.out.println("http://localhost:8080/h2....");
         return classes;
     }
 }

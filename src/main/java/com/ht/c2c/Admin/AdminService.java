@@ -1,6 +1,6 @@
 package com.ht.c2c.Admin;
 
-import com.ht.c2c.service.User;
+import com.ht.c2c.servicex.mall.User;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

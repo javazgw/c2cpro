@@ -1,4 +1,4 @@
-package com.ht.c2c.service;
+package com.ht.c2c.servicex.mall;
 
 import javax.ws.rs.*;
 

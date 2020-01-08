@@ -1,5 +1,7 @@
 package com.ht.c2c.server;
 
+import com.alibaba.fastjson.JSON;
+import com.ht.c2c.returnObject.ReturnObject;
 import com.ht.c2c.tools.JWT;
 import io.jsonwebtoken.Claims;
 
@@ -7,7 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+import java.io.PrintWriter;
 
 
 /**
@@ -34,10 +36,20 @@ public class LoginFilter implements Filter {
                 Claims str = JWT.getInstance().parseJWT(tokenStr);
                 String token = JWT.getInstance().refreshToken(tokenStr);
                 httpServletResponse.addHeader("token", token);
+
+                ReturnObject rto = new ReturnObject();
+                rto.setMsg("errorhaah");
+                rto.setType(123);
+
+                PrintWriter out = httpServletResponse.getWriter();
+                out.print(JSON.toJSON(rto));
+                return;
+
             }
             catch (Exception e)
             {
-
+                PrintWriter out = httpServletResponse.getWriter();
+                out.print(e.getMessage());
             }
 
 

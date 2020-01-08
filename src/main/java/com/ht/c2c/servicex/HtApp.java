@@ -17,20 +17,30 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
-@ApplicationPath("/")
+@ApplicationPath("/mall")
 public class HtApp extends Application {
-    @Override
-    public Set<Class<?>> getClasses() {
-        final Set<Class<?>> classes = new HashSet<Class<?>>();
-        // register root resource
+
+
+    Set<Class<?>> classes = new HashSet<Class<?>>();
+    public HtApp()
+    {
+        System.out.println("htapp.....");
         classes.add(HelloWorldResource.class);
         classes.add(Addr.class);
-        classes.add(Home.class);
-        classes.add(Order.class);
-        classes.add(Product.class);
+    }
+    @Override
+    public Set<Class<?>> getClasses() {
+        System.out.println("Set.....");
+      //  final Set<Class<?>> classes = new HashSet<Class<?>>();
+        // register root resource
+      //  classes.add(HelloWorldResource.class);
+      //  classes.add(Addr.class);
+       // classes.add(Home.class);
+       // classes.add(Order.class);
+      //  classes.add(Product.class);
 //        classes.add(Addr.class);
-        System.out.println("http://localhost:8080/helloworld");
-        System.out.println("http://localhost:8080/h2");
+        System.out.println("http://localhost:8080/helloworld---");
+        System.out.println("http://localhost:8080/h2---");
         return classes;
     }
 }
