@@ -57,11 +57,30 @@ Signature
 public class JWT {
 
      static final String scretkey = "1212121234567890123456789012345678901234567890123333";
-    public static SecretKey generalKey() {
+     private static JWT jwt = null;
+    SecretKey signingKey = null;
 
-        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary (scretkey);
-        SecretKey signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm. getJcaName());
+    private Long expiration;
+    private  long expmillis=3600*24*365*1000;
+     private JWT()
+     {
+
+     }
+
+     public static  JWT getInstance()
+     {
+         if(jwt == null)
+             jwt = new JWT();
+         return jwt;
+     }
+
+    public  SecretKey generalKey() {
+
+         if(  signingKey == null) {
+             SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+             byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(scretkey);
+             signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+         }
 
         return signingKey;
 
@@ -75,22 +94,24 @@ public class JWT {
      * @return
      * @throws Exception
      */
-    public static String createJWT(String id, String subject, long ttlMillis) {
-        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+    public  String createJWT(String id, String subject, long ttlMillis) {
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
-        SecretKey secretKey = generalKey();
-        JwtBuilder builder = Jwts.builder()
+        Key key =generalKey();
+        JwtBuilder builder = Jwts.builder();
+        builder.setSubject(subject)
                 .setId(id)
-                .setSubject(subject)
                 .setIssuedAt(now)
-                .signWith(signatureAlgorithm, secretKey);
+
+                .signWith(key);
         if (ttlMillis >= 0) {
             long expMillis = nowMillis + ttlMillis;
             Date expDate = new Date(expMillis);
             builder.setExpiration(expDate);
         }
-        return builder.compact();
+        String jws = builder.compact();
+        return jws;
+
     }
 
     /**
@@ -98,15 +119,17 @@ public class JWT {
      * @param jwtStr
      * @return
      */
-    public static void validateJWT(String jwtStr) {
+    public  Claims validateJWT(String jwtStr) {
 
         Claims claims = null;
 
         try {
             claims = parseJWT(jwtStr);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return claims ;
 
 
     }
@@ -118,7 +141,7 @@ public class JWT {
      * @return
      * @throws Exception
      */
-    public static Claims parseJWT(String jwt) throws Exception {
+    public  Claims parseJWT(String jwt) throws Exception {
         SecretKey secretKey = generalKey();
         return Jwts.parser()
                 .setSigningKey(secretKey)
@@ -126,15 +149,74 @@ public class JWT {
                 .getBody();
     }
 
+    /**
+     * 从token中获取登录用户名
+     */
+    public String getUserNameFromToken(String token) {
+        String username;
+        try {
+            Claims claims = validateJWT(token);
+            username = claims.getSubject();
+        } catch (Exception e) {
+            username = null;
+        }
+        return username;
+    }
+    /**
+     * 验证token是否还有效
+     *
+     * @param token       客户端传入的token
+     * @param name 从数据库中查询出来的用户信息
+     */
+    public boolean validateToken(String token, String name) {
+        String username = getUserNameFromToken(token);
+        return username.equals(username) && !isTokenExpired(token);
+    }
 
+    /**
+     * 判断token是否已经失效
+     */
+    private boolean isTokenExpired(String token) {
+        Date expiredDate = getExpiredDateFromToken(token);
+        return expiredDate.before(new Date());
+    }
+    /**
+     * 从token中获取过期时间
+     */
+    private Date getExpiredDateFromToken(String token) {
+        Claims claims = validateJWT(token);
+        return claims.getExpiration();
+    }
+
+    /**
+     * 刷新token 报错说明过期或其他原因，返回null
+     * 前端要重新登陆了
+     *
+     * @param token
+     * @return
+     */
+    public String refreshToken(String token)
+    {
+        Claims claims  = null;
+        try {
+            claims = parseJWT(token);
+            String id = claims.getId();
+            String username = claims.getSubject();
+            token = createJWT(id,username,expmillis);
+            return token;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    return null;
+
+    }
     public static void main(String[] argc) throws Exception {
-//        JWT jwt = new JWT();
-//        String str = createJWT("","",11111);
-//        System.out.println(str);
-        long nowMillis = System.currentTimeMillis();
+
+      /*  long nowMillis = System.currentTimeMillis();
         long ttlMillis =36000;
         Date now = new Date(nowMillis);
-//        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+
         Key key =generalKey();
         JwtBuilder builder = Jwts.builder();
          builder.setSubject("Joe")
@@ -157,11 +239,19 @@ public class JWT {
 
         System.out.println(secretBytes);
 
-        String jwt  = createJWT("zgw","zgwname",10000);
+        String jwt  = createJWT("123322","zgwname",10000);
         System.out.println(jwt);
-        System.out.println(parseJWT(jwt));
+        System.out.println(parseJWT(jwt));*/
 
+        String jwt =  JWT.getInstance().createJWT("112","zgw",1000000);
 
+        System.out.println(jwt);
+        System.out.println(JWT.getInstance().parseJWT(jwt));
+
+        jwt = JWT.getInstance().refreshToken(jwt);
+
+        System.out.println(jwt);
+        System.out.println(JWT.getInstance().parseJWT(jwt));
     }
 
 }

@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.Vector;
 import java.sql.PreparedStatement;
@@ -97,6 +99,7 @@ public class SQLTools {
             statement = conn.prepareStatement(SqlStr);
             for (int i=0;i<params.length;i++){
                 statement.setString(i+1,params[i].toString());
+
             }
             result = statement.executeUpdate();
             if (result == 0)
@@ -237,7 +240,18 @@ public class SQLTools {
 
 //        DataSet ds = SQLTools.getInstance().query("select * from gcode");
 //        System.out.println(ds);
-        SQLTools.getInstance().query2Redis("select * from gcode");
+      //  SQLTools.getInstance().query2Redis("select * from gcode");
        // SQLTools.getInstance().Update("update gcode set gname='ipad',price='5000.00',descript='234' where icode =1\n");
+
+       Date d = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        format.format(d);
+
+        SQLTools.getInstance().Update("insert into addr (recivename,addr,tel,mobil,createdate) values(?,?,?,?,?)",new String[]{
+        "zgw","广东","3236","13828259855",format.format(d)
+        });
+
+
+
     }
 }

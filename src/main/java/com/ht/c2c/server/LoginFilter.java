@@ -8,8 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
+
 /**
  * Created by guangwangzhuang on 2019/4/12.
+ * 记住dofilter 内不要有任何system.out.println的输出
+ * 会导致输出异常。前端收到错误
  */
 public class LoginFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -20,24 +24,26 @@ public class LoginFilter implements Filter {
 
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
+       // responseContext.getHeaders().add("X-Powered-By", "Jersey :-)");
 
-        System.out.println("token = "+httpServletRequest.getHeader("token"));
         String tokenStr = httpServletRequest.getHeader("token");
         if (tokenStr != null ) {
 
+
             try {
-                Claims str  =  JWT.parseJWT(tokenStr);
-                System.out.println(str);
+                Claims str = JWT.getInstance().parseJWT(tokenStr);
+            }
+            catch (Exception e)
+            {
 
             }
 
-            catch (Exception e) {
 
-                //不要抛出异常.....难看
-               // System.out.println(e.getMessage());
-            }
+
         }
         filterChain.doFilter(servletRequest,servletResponse);
+
+        httpServletResponse.setHeader("X-Powered-By","httech");
     }
 
     public void destroy() {
