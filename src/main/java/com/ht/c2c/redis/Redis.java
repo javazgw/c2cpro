@@ -33,6 +33,7 @@ public class Redis {
         config.setMaxTotal(Integer.parseInt(Configure.getInstance().getProperties().get("redis.pool.maxTotal").toString()));
         //最多空闲实例
         config.setMaxIdle(Integer.parseInt(Configure.getInstance().getProperties().get("redis.pool.maxIdle").toString()));
+
         //超时时间
 //        config.setMaxWaitMillis(MAX_WAIT);
         //
@@ -41,7 +42,7 @@ public class Redis {
 
         String ADDR = Configure.getInstance().getProperties().get("redis.url").toString();
         int PORT = Integer.parseInt(Configure.getInstance().getProperties().get("redis.port").toString());
-        JedisPool pool = new JedisPool(config, ADDR, PORT, 1000);
+        JedisPool pool = new JedisPool(config, ADDR, PORT, 1000,"Ht123321");
 
         jedis = pool.getResource();
 
@@ -129,14 +130,14 @@ public class Redis {
     {
         Redis.getInstance().getJedis().flushDB();
         long current = System.currentTimeMillis();
-        for(int i = 0; i<1;i++) {
+        for(int i = 0; i<1000;i++) {
             Redis.getInstance().setKeyValue("zgw"+i, "1231");
-            Redis.getInstance().setList("zgw2"+i, "1231", "333", "444");
+            Redis.getInstance().setList("zgwlist"+i, "1231", "333", "444");
             Hashtable<String, String> ht = new Hashtable<>();
             ht.put("zzz", "3333");
             ht.put("zzz1", "3222333");
             ht.put("zzz2", "223333");
-            Redis.getInstance().setHash("zgw3"+i, ht);
+            Redis.getInstance().setHash("zgwhash"+i, ht);
         }
         long current2 = System.currentTimeMillis();
         System.out.println((current2-current )/1000);
@@ -146,7 +147,7 @@ public class Redis {
         row.addCell(cell);
 
 
-        System.out.println(Redis.getInstance().getHashJson("zgw30"));
+       // System.out.println(Redis.getInstance().getHashJson("zgw30"));
 
     }
 

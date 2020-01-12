@@ -20,6 +20,13 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.Map;
 
+/**
+ * 创建表记录：POST /{控制器路由名称}/create
+ * 修改表记录：POST /{控制器路由名称}/update/{id}
+ * 删除指定表记录：POST /{控制器路由名称}/delete/{id}
+ * 分页查询表记录：GET /{控制器路由名称}/list
+ * 获取指定记录详情：GET /{控制器路由名称}/{id}
+ */
 //地址管理
 @Path("/companyAddress")
 public class Addr {
