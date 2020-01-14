@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.ht.c2c.dataBase.DataSet;
 import com.ht.c2c.redis.Redis;
+import com.ht.c2c.returnObject.ReturnObject;
 import com.ht.c2c.tools.Configure;
 import com.ht.c2c.tools.JWT;
 import com.ht.c2c.tools.SQLTools;
@@ -20,6 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.Map;
+
+import static com.ht.c2c.tools.SQLTools.getDateNow;
 
 /**
  * 创建表记录：POST /{控制器路由名称}/create
@@ -39,14 +42,37 @@ public class Addr {
 
 
 
-    //一般不用，
+
     @POST
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/create")
-    public String create(@HeaderParam("token") String token)
+    public String create(@HeaderParam("token") String token,String createstr)
     {
-        return "create";
+
+
+
+
+        System.out.println(token);
+        Hashtable<String,Object> ht = JSON.parseObject(createstr, Hashtable.class);
+        System.out.println(createstr);
+        ht.put("createdate",getDateNow());
+//        ht.put("ccode",)
+        try {
+            SQLTools.getInstance().insertFromHt("addr",ht);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ReturnObject ro =new ReturnObject();
+            ro.setType(ReturnObject.ERROR);
+            ro.setMsg("失败");
+            return JSON.toJSON(ro).toString();
+        }
+
+        //  return Redis.getInstance().getHashJson("zgw30");
+        ReturnObject ro =new ReturnObject();
+        ro.setType(ReturnObject.SUCCESS);
+        ro.setMsg("成功");
+        return JSON.toJSON(ro).toString();
     }
 
 
@@ -71,47 +97,33 @@ public class Addr {
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/update/{id}")
-    public void update(@HeaderParam("token") String token,@PathParam("id") Long id,String updatejson)
+    public String update(@HeaderParam("token") String token,@PathParam("id") Long id,String updatejson)
     {
-
-        String sql = Configure.getInstance().getProperties().getProperty("ADDRCREATESQL");
-
-        Configure.info(sql);
-        String[] reciveColumn = Configure.getInstance().getProperties().getProperty("ADDRCREATESQL_STRING").split(",");
 
 
         Hashtable<String,String> ht = JSON.parseObject(updatejson, Hashtable.class);
 
-        Object[] objects = new Object[reciveColumn.length+2];
+        ht.put("updatedate",getDateNow());
 
-        for(int i = 0; i<objects.length-2;i++)
-        {
-            objects[i] =  ht.get(reciveColumn[i]);
-        }
-        Date d = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        format.format(d);
-
-
-        objects[objects.length-2] = format.format(d);
-        objects[objects.length-1] = id;
-
-        for(Object str:objects)
-        {
-            System.out.println(str);
-        }
-
-
+        String keyjson = "{'icode':'"+id+"'}";
+        Hashtable<String,Object> keyht = JSON.parseObject(keyjson, Hashtable.class);
 
         try {
+            SQLTools.getInstance().updateFromHt("addr",ht,keyht);
+        } catch (Exception e) {
 
-           int  updatecount =  SQLTools.getInstance().Update(sql, objects);
-
-        }
-        catch (Exception e)
-        {
             e.printStackTrace();
+            ReturnObject ro =new ReturnObject();
+            ro.setType(ReturnObject.ERROR);
+            ro.setMsg("失败");
+            return JSON.toJSON(ro).toString();
         }
+
+        ReturnObject ro =new ReturnObject();
+        ro.setType(ReturnObject.SUCCESS);
+        ro.setMsg("成功");
+        return JSON.toJSON(ro).toString();
+
     }
 
 
@@ -119,9 +131,22 @@ public class Addr {
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/delete/{id}")
-    public void delete(@HeaderParam("token") String token,@PathParam("id") Long id)
+    public String delete(@HeaderParam("token") String token,@PathParam("id") Long id)
     {
-
+        String sql = "delete from addr where icode ="+id;
+        try {
+            SQLTools.getInstance().Update(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ReturnObject ro =new ReturnObject();
+            ro.setType(ReturnObject.ERROR);
+            ro.setMsg("失败");
+            return JSON.toJSON(ro).toString();
+        }
+        ReturnObject ro =new ReturnObject();
+        ro.setType(ReturnObject.SUCCESS);
+        ro.setMsg("成功");
+        return JSON.toJSON(ro).toString();
     }
 
     @GET
@@ -160,7 +185,7 @@ public class Addr {
 
     @GET
     @Produces({MediaType.APPLICATION_JSON,MediaType.TEXT_PLAIN})
-    @Path("/list")
+    @Path("/list2")
     public String getAlladdr(@HeaderParam("token") String token) {
 
         String username  = JWT.getInstance().getUserNameFromToken(token);

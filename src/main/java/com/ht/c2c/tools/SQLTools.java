@@ -1,5 +1,6 @@
 package com.ht.c2c.tools;
 
+import com.alibaba.fastjson.JSON;
 import com.ht.c2c.dataBase.DataSet;
 import com.ht.c2c.dataBase.Row;
 import com.ht.c2c.redis.Redis;
@@ -228,6 +229,95 @@ public class SQLTools {
         }
     }
 
+
+    /**
+     * hash 的插入
+     * @param table
+     * @param contentht
+     */
+    public void insertFromHt(String table,Hashtable<String,Object>  contentht) throws Exception {
+        StringBuffer sql = new StringBuffer("insert into "+table+" ( ");
+
+        for(String key:contentht.keySet())
+        {
+            sql.append(key);
+            sql.append(",");
+
+        }
+        sql.deleteCharAt(sql.length()-1);
+        sql.append(") values (");
+        for(String key:contentht.keySet())
+        {
+            sql.append("'");
+            sql.append(contentht.get(key));
+            sql.append("'");
+            sql.append(",");
+
+
+        }
+        sql.deleteCharAt(sql.length()-1);
+        sql.append(")");
+        Update(sql+"");
+    }
+    /**
+     * 从hash 进行更新,
+     *
+     * @param table  表名
+     * @param contentht  更新的内容
+     * @param conditionht 更新的条件
+     */
+
+    public void updateFromHt(String table, Hashtable<String,String>  contentht,Hashtable<String,Object> conditionht) throws Exception {
+      //  String updatejson = "{\"recivename\":\"2222\",\"addr\":\"广222东\",\"tel\":\"333333\",\"mobil\":\"3234234234\",\"ccode\":\"zgw\"}";
+
+      //  Hashtable<String,String> ht = JSON.parseObject(content, Hashtable.class);
+
+        StringBuffer sql = new StringBuffer("update "+table+" set  ");
+        for(String key:contentht.keySet())
+        {
+            sql.append(key);
+            sql.append(" = ");
+            sql.append("'");
+            sql.append(contentht.get(key));
+            sql.append("'");
+            sql.append(",");
+        }
+        sql.deleteCharAt(sql.length()-1);
+//        String keyjson = "{'icode':1}";
+//        Hashtable<String,Object> keyht = JSON.parseObject(keyjson, Hashtable.class);
+        sql.append(" where ");
+        for (String key:conditionht.keySet())
+        {
+            sql.append(key);
+            sql.append(" = ");
+            if(conditionht.get(key) instanceof  Integer)
+            {
+
+                sql.append(conditionht.get(key));
+
+            }
+            else
+            {
+                sql.append("'");
+                sql.append(conditionht.get(key));
+                sql.append("'");
+            }
+
+
+            sql.append(",");
+        }
+        sql.deleteCharAt(sql.length()-1);
+
+        Update(sql+"");
+    }
+
+
+    public static String getDateNow()
+    {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    }
+
+
     public static void main(String[] argv) throws Exception {
 
         long l = System.currentTimeMillis();
@@ -247,11 +337,16 @@ public class SQLTools {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         format.format(d);
 
-        SQLTools.getInstance().Update("insert into addr (recivename,addr,tel,mobil,createdate) values(?,?,?,?,?)",new String[]{
-        "zgw","广东","3236","13828259855",format.format(d)
-        });
+//        SQLTools.getInstance().Update("insert into addr (recivename,addr,tel,mobil,createdate) values(?,?,?,?,?)",new String[]{
+//        "zgw","广东","3236","13828259855",format.format(d)
+//        });
 
 
+
+
+
+
+//        System.out.println(sql);
 
     }
 }
