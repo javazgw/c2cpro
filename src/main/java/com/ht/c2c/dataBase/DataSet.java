@@ -1,5 +1,7 @@
 package com.ht.c2c.dataBase;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -185,7 +187,7 @@ public class DataSet implements Serializable{
 //        fireEvent(DataSetEvent.EventType.CELLCHANGEED,DataSetValueChangeEvent(this,row, name, row.getValue(name), value,DataSetEvent.EventType.CELLCHANGEED));
         fireEvent(DataSetEvent.EventType.CELLCHANGEED,DataSetValueChangeEvent(this,row, row.getCell(name), row.getValue(name), value,DataSetEvent.EventType.CELLCHANGEED));
     }
-
+    @JSONField(name="V")
     public Vector<Row> getV() {
         return v;
     }

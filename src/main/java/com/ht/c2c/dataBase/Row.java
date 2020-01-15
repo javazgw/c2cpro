@@ -3,6 +3,8 @@
  */
 package com.ht.c2c.dataBase;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 import java.util.Vector;
 
@@ -17,8 +19,9 @@ public class Row implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 6586800595603708112L;
-	Vector<Cell> v = new Vector<Cell>();
 
+	Vector<Cell> v = new Vector<Cell>();
+	@JSONField(serialize=false)
     DataSet dataSet;
 	/**
 	 * 空的构造函数，序列化的要求
@@ -125,6 +128,8 @@ public class Row implements Serializable{
 		}
 		return 0;
 	}
+
+	@JSONField(name="V")
 	public Vector<Cell> getVector()
 	{
 		return v;

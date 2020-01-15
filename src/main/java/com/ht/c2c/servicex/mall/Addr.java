@@ -153,9 +153,25 @@ public class Addr {
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/list")
-    public void list(@HeaderParam("token") String token)
+    public String  list(@HeaderParam("token") String token,String bodyquery)
     {
 
+        try {
+        Hashtable<String,Object> ht = JSON.parseObject(bodyquery, Hashtable.class);
+
+        int onepageshownum = 10;
+        int pagenum = 1;
+        String sql = "select * from addr where 1=1  limit "+((pagenum-1)*onepageshownum)+","+onepageshownum+"";
+
+            DataSet ds = SQLTools.getInstance().query(sql);
+            return JSON.toJSON(ds).toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            ReturnObject  ro =new ReturnObject();
+            ro.setType(ReturnObject.ERROR);
+            ro.setMsg("失败");
+            return JSON.toJSON(ro).toString();
+        }
     }
 
 

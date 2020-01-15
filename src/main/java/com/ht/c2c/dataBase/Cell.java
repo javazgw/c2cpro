@@ -3,6 +3,8 @@
  */
 package com.ht.c2c.dataBase;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 
 /**
@@ -21,6 +23,7 @@ public class Cell implements Serializable{
 	String cellname;
 	int celltype;
 	String value;
+	@JSONField(serialize=false)
     Row row;
 
 	public static final int  _nothing = 1;
@@ -42,6 +45,7 @@ public class Cell implements Serializable{
 	/**
 	 * @return the cellname
 	 */
+	@JSONField(name="cellname")
 	public String getCellname() {
 		
 		return cellname;
@@ -49,6 +53,7 @@ public class Cell implements Serializable{
 	/**
 	 * @param cellname the cellname to set
 	 */
+	@JSONField(name="cellname")
 	public void setCellname(String cellname) {
 		this.cellname = cellname;
 	}
@@ -56,12 +61,14 @@ public class Cell implements Serializable{
 	/**
 	 * @return the value
 	 */
+	@JSONField(name="value")
 	public String getValue() {
 		return value;
 	}
 	/**
 	 * @param value the value to set
 	 */
+	@JSONField(name="value")
 	public void setValue(String value) {
 		this.value = value;
 	}
