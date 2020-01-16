@@ -6,5 +6,24 @@
 
 package com.ht.c2c.servicex.mall;
 
-public class Order {
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+
+@Path("/order")
+public class Order extends Common {
+
+    public Order()
+    {
+        this.tablename = "order";
+    }
+
+
+    @GET
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/list")
+    public String  list(@HeaderParam("token") String token, String bodyquery)
+    {
+        return super.list(token,bodyquery);
+    }
 }
