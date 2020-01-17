@@ -7,9 +7,7 @@
 package com.ht.c2c.servicex;
 
 import com.ht.c2c.server.test.HelloWorldResource;
-import com.ht.c2c.servicex.mall.Addr;
-import com.ht.c2c.servicex.mall.Common;
-import com.ht.c2c.servicex.mall.Order;
+import com.ht.c2c.servicex.mall.*;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -22,10 +20,13 @@ public class HtApp extends Application {
     Set<Class<?>> classes = new HashSet<Class<?>>();
     public HtApp()
     {
-        System.out.println("htapp.....");
+        System.out.println("注册。。。");
         classes.add(HelloWorldResource.class);
         classes.add(Addr.class);
         classes.add(Order.class);
+        classes.add(User.class);
+        classes.add(Product.class);
+
     }
     @Override
     public Set<Class<?>> getClasses() {

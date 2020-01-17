@@ -6,5 +6,12 @@
 
 package com.ht.c2c.servicex.mall;
 
-public class Product {
+import javax.ws.rs.Path;
+
+@Path("/product")
+public class Product extends Common {
+    public Product()
+    {
+        this.tablename = "product";
+    }
 }
