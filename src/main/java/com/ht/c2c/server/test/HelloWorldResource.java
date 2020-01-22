@@ -1,12 +1,12 @@
 package com.ht.c2c.server.test;
 
+import com.alibaba.fastjson.JSON;
 import com.ht.c2c.dataBase.DataSet;
 import com.ht.c2c.server.Cache;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.annotation.PostConstruct;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 
 /**
  * @author Pavel Bucek (pavel.bucek at oracle.com)
@@ -21,6 +21,16 @@ public class HelloWorldResource {
         System.out.println(this);
         System.out.println("id=" +id);
         return "Hello World!";
+    }
+    @POST
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("list")
+    public String list(@PathParam("id") Long id) {
+        System.out.println(this);
+        System.out.println("id=" +id);
+
+        return "{\"data\":{\"name\":\"zgw\"},\"code\":20000}";
     }
     @Path("name/{id}")
     @GET
