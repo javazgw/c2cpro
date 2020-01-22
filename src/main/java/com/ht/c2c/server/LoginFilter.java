@@ -56,8 +56,8 @@ public class LoginFilter implements Filter {
 
         }
         httpServletResponse.setHeader("X-Powered-By","httech");
-//        httpServletResponse.addHeader("Access-Control-Allow-Origin", "*");
-
+        httpServletResponse.addHeader("Access-Control-Allow-Origin", "*");
+        httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
         filterChain.doFilter(servletRequest,servletResponse);
 
        }
