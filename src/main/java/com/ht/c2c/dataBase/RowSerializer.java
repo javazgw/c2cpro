@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Vector;
 
-public class CellSerializer implements ObjectSerializer {
-    public static final  CellSerializer instance = new  CellSerializer();
+public class RowSerializer implements ObjectSerializer {
+    public static final RowSerializer instance = new RowSerializer();
     @Override
     public void write(JSONSerializer jsonSerializer, Object o, Object o1, Type type, int i) throws IOException {
         SerializeWriter out = jsonSerializer.out;
@@ -41,7 +41,7 @@ public class CellSerializer implements ObjectSerializer {
         Row r = ((Row)o);
         Vector<Cell> v = r.getVector();
 //        out.writeFieldValue(' ',((Row)o).getVector(),((Row)o).getValue());
-        out.writeFieldName(r.getValue("icode"));
+        out.writeFieldName(r.getValue("icode").toString());
 
         out.write('{');
 //        out.writeFieldName(c.getCellname());
@@ -53,7 +53,7 @@ public class CellSerializer implements ObjectSerializer {
             out.write('{');
             out.writeString("value");
             out.write(':');
-            out.writeString(c.getValue());
+            out.writeString(c.getValue().toString());
             out.write(',');
             out.write("\"type\":");
             out.writeInt(c.getCelltype());

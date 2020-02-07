@@ -27,7 +27,7 @@ public class LoginFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
        // responseContext.getHeaders().add("X-Powered-By", "Jersey :-)");
-
+        System.out.println("---doFilter ---");
         String tokenStr = httpServletRequest.getHeader("token");
         if (tokenStr != null ) {
 
@@ -56,12 +56,18 @@ public class LoginFilter implements Filter {
 
         }
         httpServletResponse.setHeader("X-Powered-By","httech");
-        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
+//        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
+        httpServletResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:9527");
         httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
         httpServletResponse.setHeader("Access-Control-Allow-Methods", "*");
-        httpServletResponse.setHeader("Access-Control-Allow-Headers", "content-type,HT-Token,x-token,token,id");
+        httpServletResponse.setHeader("Access-Control-Allow-Headers", "content-type,HT-Token,x-token,token,id,x-powered-by");
         httpServletResponse.setHeader("Access-Control-Request-Headers", "Origin, X-Requested-With, content-Type, Accept, Authorization");
+//        httpServletResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
 
+//        if (httpServletRequest.getMethod().equals("OPTIONS")) {
+//            httpServletResponse.setStatus(HttpServletResponse.SC_ACCEPTED);
+//            return;
+//        }
         filterChain.doFilter(servletRequest,httpServletResponse);
 
        }

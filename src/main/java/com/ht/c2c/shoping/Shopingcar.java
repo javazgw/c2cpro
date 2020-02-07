@@ -56,7 +56,7 @@ public class Shopingcar {
             else
             {
                 //购物车里有商品就加1
-                item.setNum(1+Integer.parseInt(ds.getValue(0,"num")));
+                item.setNum(1+Integer.parseInt(ds.getValue(0,"num").toString()));
                 changeNum(item);
             }
 

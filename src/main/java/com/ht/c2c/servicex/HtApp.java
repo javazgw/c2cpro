@@ -6,6 +6,9 @@
 
 package com.ht.c2c.servicex;
 
+import com.alibaba.fastjson.serializer.SerializeConfig;
+import com.ht.c2c.dataBase.DataSet;
+import com.ht.c2c.dataBase.DataSetSerializer;
 import com.ht.c2c.server.test.HelloWorldResource;
 import com.ht.c2c.servicex.mall.*;
 
@@ -26,6 +29,10 @@ public class HtApp extends Application {
         classes.add(Order.class);
         classes.add(User.class);
         classes.add(Product.class);
+        classes.add(Maintain.class);
+        classes.add(Setting.class);
+//暂时放在此处 应该再init 里面的
+        SerializeConfig.getGlobalInstance().put(DataSet.class, new DataSetSerializer());
 
     }
     @Override

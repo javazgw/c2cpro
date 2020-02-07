@@ -13,6 +13,7 @@ import java.io.Serializable;
  *2009-11-22 上午11:32:41
  * javazgw@gmail.com
  */
+
 public class Cell implements Serializable{
 
 	/**
@@ -21,8 +22,8 @@ public class Cell implements Serializable{
 	private static final long serialVersionUID = -7796088839652470203L;
 
 	String cellname;
-	int celltype;
-	String value;
+	int celltype=0;
+	Object value;
 	@JSONField(serialize=false)
     Row row;
 
@@ -35,13 +36,27 @@ public class Cell implements Serializable{
 	 */
 	public Cell()
 	{
-		
+		this.celltype = 0;
 	}
     public Cell(String cellname,String value)
     {
         this.cellname =cellname;
         this.value = value;
+        this.celltype = 0;
     }
+
+	/**
+	 * @see java.sql.Types
+	 * @param cellname
+	 * @param value
+	 * @param type 和jdbc 一致@see java.sql.Types
+	 */
+	public Cell(String cellname,Object value,int type)
+	{
+		this.cellname =cellname;
+		this.value = value;
+		this.celltype = type;
+	}
 	/**
 	 * @return the cellname
 	 */
@@ -62,14 +77,14 @@ public class Cell implements Serializable{
 	 * @return the value
 	 */
 	@JSONField(name="value")
-	public String getValue() {
+	public Object getValue() {
 		return value;
 	}
 	/**
 	 * @param value the value to set
 	 */
 	@JSONField(name="value")
-	public void setValue(String value) {
+	public void setValue(Object value) {
 		this.value = value;
 	}
 	

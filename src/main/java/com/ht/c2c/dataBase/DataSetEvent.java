@@ -13,7 +13,7 @@ public class DataSetEvent extends EventObject {
     public Row r;
     public Cell c;
     public DataSet ds;
-   public String colname,oldvalue,newvalue;
+   public Object colname,oldvalue,newvalue;
     /**
      * Constructs a prototypical Event.
      *
@@ -63,7 +63,7 @@ public class DataSetEvent extends EventObject {
     }
 
     @Deprecated
-    public static DataSetEvent DataSetValueChangeEvent(DataSet ds,Row r,String colname,String oldvalue,String newvalue ,EventType type)
+    public static DataSetEvent DataSetValueChangeEvent(DataSet ds,Row r,String colname,Object oldvalue,Object newvalue ,EventType type)
     {
         DataSetEvent dse = new DataSetEvent(ds);
         dse.colname=colname;
@@ -77,7 +77,7 @@ public class DataSetEvent extends EventObject {
 
         return dse;
     }
-    public static DataSetEvent DataSetValueChangeEvent(DataSet ds,Row r,Cell c,String oldvalue,String newvalue ,EventType type)
+    public static DataSetEvent DataSetValueChangeEvent(DataSet ds,Row r,Cell c,Object oldvalue,Object newvalue ,EventType type)
     {
         DataSetEvent dse = new DataSetEvent(ds);
         assert  c!=null:"字段为什么是null!";

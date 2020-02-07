@@ -4,6 +4,8 @@
 package com.ht.c2c.dataBase;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.serializer.NameFilter;
+import com.alibaba.fastjson.serializer.PropertyFilter;
 
 import java.io.Serializable;
 import java.util.Vector;
@@ -13,7 +15,7 @@ import java.util.Vector;
  *2009-11-22 上午11:40:34
  * javazgw@gmail.com
  */
-public class Row implements Serializable{
+public class Row implements Serializable {
 
 	/**
 	 * 
@@ -23,19 +25,20 @@ public class Row implements Serializable{
 	Vector<Cell> v = new Vector<Cell>();
 	@JSONField(serialize=false)
     DataSet dataSet;
+
 	/**
 	 * 空的构造函数，序列化的要求
 	 */
 	public Row()
 	{
-		
+
 	}
 	/**
 	 * 设置新值
 	 * @param key
 	 * @param value
 	 */
-	public void PutValue(String key,String value)
+	public void PutValue(String key,Object value)
 	{
 		Cell cell = new Cell();
 		cell.setCellname(key);
@@ -48,7 +51,7 @@ public class Row implements Serializable{
 	 * @param value
 	 */
 	
-	public void setValue(String key,String value)
+	public void setValue(String key,Object value)
 	{
 		boolean flag = false;
 		for(Cell c:v)
@@ -73,7 +76,7 @@ public class Row implements Serializable{
 		v.remove(cell);
 	}
 
-	public String getValue(String name)
+	public Object getValue(String name)
 	{
 		for(Cell c:v)
 		{
@@ -90,7 +93,7 @@ public class Row implements Serializable{
 	 * @param index
 	 * @return
 	 */
-	public String getValue(int index)
+	public Object getValue(int index)
 	{
 		return v.get(index).getValue();
 	}
@@ -129,7 +132,7 @@ public class Row implements Serializable{
 		return 0;
 	}
 
-	@JSONField(name="V")
+	@JSONField(name="ROWID")
 	public Vector<Cell> getVector()
 	{
 		return v;
@@ -162,9 +165,14 @@ public class Row implements Serializable{
         return null;
     }
 
-    @Deprecated
+
+
+	@Deprecated
 	public String toString()
     {
         return "name"+":"+v.toString();
     }
+
+
+
 }

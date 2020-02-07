@@ -18,7 +18,7 @@ public class Order extends Common {
     }
 
 
-    @GET
+    @POST
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/list")

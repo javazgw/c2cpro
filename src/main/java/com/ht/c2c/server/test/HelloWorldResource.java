@@ -30,7 +30,8 @@ public class HelloWorldResource {
         System.out.println(this);
         System.out.println("id=" +id);
 
-        return "{\"data\":{\"name\":\"zgw\"},\"code\":20000}";
+       // return "{\"data\":{\"name\":\"zgw\"},\"code\":20000}";
+        return "{\"addr\":\"gd\",\"name\":\"zgw\",\"filelist\":[{\"uid\":1580972678514,\"name\":\"2d4ff8e5-2fb3-49a7-8ecd-7b4f592b36a0.jpg\",\"url\":\"http://localhost:8080/uploaddata/2d4ff8e5-2fb3-49a7-8ecd-7b4f592b36a0.jpg\",\"status\":\"success\"},{\"uid\":1580972678514,\"name\":\"2d4ff8e5-2fb3-49a7-8ecd-7b4f592b36a0.jpg\",\"url\":\"http://localhost:8080/uploaddata/96c49f78-7da7-4fbe-9f98-864234e5fd82.png\",\"status\":\"success\",\"file\":\"[{\\\"name\\\":123},{\\\"name\\\":3455}]\"}]}";
     }
     @Path("name/{id}")
     @GET

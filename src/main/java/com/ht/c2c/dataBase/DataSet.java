@@ -1,18 +1,47 @@
 package com.ht.c2c.dataBase;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.parser.Feature;
+import com.alibaba.fastjson.serializer.SerializeConfig;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.ht.c2c.tools.SQLTools;
+
 
 import java.io.Serializable;
 import java.util.*;
 
 import static com.ht.c2c.dataBase.DataSetEvent.DataSetValueChangeEvent;
+import static com.ht.c2c.dataBase.DataSetTools.getJson;
+import static com.ht.c2c.tools.SQLTools.getDateNow;
 
 /**
  * json 格式
  *
  *  {"datasetid":{"row1":{"rowid":1,"name":"zgw"},"row2":{"rowid":1,"name":"zgw"}}}
 
-
+ {
+ "datasetid": {
+ "rowid1": {
+ "name": {
+ "value": 123
+ },
+ "tel": {
+ "value": 333
+ }
+ },
+ "rowid2": {
+ "name": {
+ "value": 123
+ },
+ "tel": {
+ "value": 333
+ }
+ }
+ }
+ }
  */
 public class DataSet implements Serializable{
 
@@ -74,11 +103,11 @@ public class DataSet implements Serializable{
         }
         fireEvent(DataSetEvent.EventType.LOADDATA,new DataSetEvent(this, DataSetEvent.EventType.LOADDATA));
     }
-	public String getValue(int rownum,String name)
+	public Object getValue(int rownum,String name)
 	{
 		return v.get(rownum).getValue(name);
 	}
-	public String  getValue(int rownum,int columnindex)
+	public Object  getValue(int rownum,int columnindex)
 	{
 		return v.get(rownum).getValue(columnindex);
 	}
@@ -187,7 +216,7 @@ public class DataSet implements Serializable{
 //        fireEvent(DataSetEvent.EventType.CELLCHANGEED,DataSetValueChangeEvent(this,row, name, row.getValue(name), value,DataSetEvent.EventType.CELLCHANGEED));
         fireEvent(DataSetEvent.EventType.CELLCHANGEED,DataSetValueChangeEvent(this,row, row.getCell(name), row.getValue(name), value,DataSetEvent.EventType.CELLCHANGEED));
     }
-    @JSONField(name="V")
+    @JSONField(name="DataSet")
     public Vector<Row> getV() {
         return v;
     }
@@ -286,7 +315,10 @@ public class DataSet implements Serializable{
     public static void main(String[] argc)
     {
 
-         /*   DataSet ds = new DataSet();
+//        SerializeConfig.getGlobalInstance().put(Row.class, new RowSerializer());
+        SerializeConfig.getGlobalInstance().put(DataSet.class, new DataSetSerializer());
+
+           DataSet ds = new DataSet();
         ds.addDataSetLinstener(DataSetEvent.EventType.CELLCHANGING,new DataSetListener() {
             @Override
             public void DataSetEvnetHandle(DataSetEvent event) {
@@ -294,15 +326,76 @@ public class DataSet implements Serializable{
             }
         });
         Row r = new Row();
-        r.setValue("rowid","2");
+        r.setValue("sex","2");
         ds.addRow(r);
-        r.setValue("rowid","333");
-        ds.setValue(0,"rowid","4444");
-        System.exit(1);
-*/
+        r.setValue("icode","1");
+        ds.setValue(0,"name","4444");
+
+        Row r2 = new Row();
+        r2.setValue("icode","2");
+        r2.setValue("name","row2");
+        r2.setValue("json","[{\"uid\":1580972678514,\"name\":\"2d4ff8e5-2fb3-49a7-8ecd-7b4f592b36a0.jpg\",\"url\":\"http://localhost:8080/uploaddata/2d4ff8e5-2fb3-49a7-8ecd-7b4f592b36a0.jpg\",\"status\":\"success\"},{\"uid\":1580972678514,\"name\":\"2d4ff8e5-2fb3-49a7-8ecd-7b4f592b36a0.jpg\",\"url\":\"http://localhost:8080/uploaddata/96c49f78-7da7-4fbe-9f98-864234e5fd82.png\",\"status\":\"success\"}]");
+        ds.addRow(r2);
+      //  System.exit(1);
+
+
+
+
+        String jsonString = JSON.toJSONString(ds); // 序列化的时候传入filter
+
+        JSONArray ja =(JSONArray)JSON.parseArray(jsonString);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("ds",ja);
+        JSONObject jinfo = new JSONObject();
+        jinfo.put("total",10);
+        jinfo.put("onepagenum","{name:'1212'}");
+        jinfo.put("curpagenum",1);
+
+        jsonObject.put("info",jinfo);
+
+
+        System.out.println(JSON.toJSONString(jsonObject));
+        System.out.println("---"+  getJson(ds));
+        System.out.println("---"+  jsonString);
+        System.out.println("---"+   JSON.toJSONString(r));
+        System.out.println("---"+   JSON.toJSONString(r2));
+
+
+
         Hashtable<String,Object> ht = new Hashtable<String,Object>();
         ht.put("k",ht);
-        System.out.println(ht.size());
+        //System.out.println(ht.size());
 
+     /*   String str = "{\"name\":\"213123\",\"addr\":\"123\",\"descript\":\"1231231\",\"aaa\":null,\"resultdesc\":\"23123123\",\"status\":\"待处理\",\"fileList\":[{\"name\":\"7c0447da-dcb2-454e-8fdd-ae5978dc7b39.png\",\"url\":\"http://localhost:8080\\\\uploaddata\\\\7c0447da-dcb2-454e-8fdd-ae5978dc7b39.png\",\"uid\":1580740572720,\"status\":\"success\"}],\"value\":{\"pic\":null}}";
+       Object jo = JSON.parse(str);
+       System.out.println(jo.getClass());
+       // Object jo = JSON.parse(createstr);
+      //  Hashtable<String,Object> ht1    = JSON.toJavaObject((JSONObject)jo,Hashtable.class);
+        Hashtable<String,Object> ht1 = JSON.parseObject(str, Hashtable.class, Feature.NonStringKeyAsString);
+        System.out.println(ht1);*/
+
+        String str = "{}";
+
+        HashMap<String,Object> ht1 = JSON.parseObject(str, HashMap.class);
+        ht1.put("zgw",null);
+        System.out.println(ht1);
+
+        String updatejson = "{filelist:[{\"name\":\"123\"}]}";
+        HashMap<String,Object> ht3 = JSON.parseObject(updatejson, HashMap.class);
+
+        ht.put("updatedate",getDateNow());
+
+        String keyjson = "{'icode':'67e1019b-1849-4bb0-a70c-6b67bf55e74d'}";
+        HashMap<String,Object> keyht = JSON.parseObject(keyjson, HashMap.class);
+        try {
+           // SQLTools.getInstance().updateFromHt("maintain",ht3,keyht);
+            DataSet ds1 = SQLTools.getInstance().query("select icode,filelist,name from maintain where icode  ='67e1019b-1849-4bb0-a70c-6b67bf55e74d'");
+
+
+            System.out.println(getJson(ds1));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

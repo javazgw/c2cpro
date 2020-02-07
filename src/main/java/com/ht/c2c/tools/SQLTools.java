@@ -1,21 +1,19 @@
 package com.ht.c2c.tools;
 
 import com.alibaba.fastjson.JSON;
+import com.ht.c2c.dataBase.Cell;
 import com.ht.c2c.dataBase.DataSet;
 import com.ht.c2c.dataBase.Row;
 import com.ht.c2c.redis.Redis;
 
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Vector;
-import java.sql.PreparedStatement;
 
 /**
  * Created by guangwangzhuang on 2019/4/12.
@@ -129,8 +127,29 @@ public class SQLTools {
                 count ++;
                 Row r = new Row();
                 for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
+
+
                     String colname = rs.getMetaData().getColumnName(i + 1);
-                    r.setValue(colname, rs.getString(colname));
+
+
+                    int type = rs.getMetaData().getColumnType(i+1);
+
+                    System.out.println("colname"+colname +"type = "+ type);
+                    //java.sql.Types.VARCHAR:
+                    //对于mysql 这是JSON 类型  右面jdbc 升级估计会有bug
+                    if(type ==Types.LONGVARCHAR)
+                    {
+                        System.out.println(rs.getObject(colname).getClass());
+
+                       // r.setValue(colname, rs.getObject(colname));
+                        Cell c = new Cell(colname,rs.getObject(colname),Types.LONGVARCHAR);
+
+                        r.addCell(c);
+                    }
+                    else{
+                        r.setValue(colname, rs.getString(colname));
+                    }
+
                 }
                 ds.addRow(r);
             }
@@ -235,7 +254,7 @@ public class SQLTools {
      * @param table
      * @param contentht
      */
-    public void insertFromHt(String table,Hashtable<String,Object>  contentht) throws Exception {
+    public void insertFromHt(String table,HashMap<String,Object> contentht) throws Exception {
         StringBuffer sql = new StringBuffer("insert into "+table+" ( ");
 
         for(String key:contentht.keySet())
@@ -267,7 +286,7 @@ public class SQLTools {
      * @param conditionht 更新的条件
      */
 
-    public void updateFromHt(String table, Hashtable<String,String>  contentht,Hashtable<String,Object> conditionht) throws Exception {
+    public void updateFromHt(String table, HashMap<String,Object>  contentht,HashMap<String,Object> conditionht) throws Exception {
       //  String updatejson = "{\"recivename\":\"2222\",\"addr\":\"广222东\",\"tel\":\"333333\",\"mobil\":\"3234234234\",\"ccode\":\"zgw\"}";
 
       //  Hashtable<String,String> ht = JSON.parseObject(content, Hashtable.class);
@@ -278,7 +297,14 @@ public class SQLTools {
             sql.append(key);
             sql.append(" = ");
             sql.append("'");
-            sql.append(contentht.get(key));
+            if(contentht.get(key) instanceof JSON)
+            {
+                sql.append(JSON.toJSONString(contentht.get(key)));
+
+            }
+            else {
+                sql.append(contentht.get(key).toString());
+            }
             sql.append("'");
             sql.append(",");
         }

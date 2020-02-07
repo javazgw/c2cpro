@@ -48,7 +48,7 @@ import java.util.UUID;
 public class FileUpload extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private File fileUploadPath;
-    private static final String fileDirectory = "/uploaddata";
+    private static final String fileDirectory = File.separator+"uploaddata";
 
     public void init() {
         System.out.println("init upload");
@@ -114,7 +114,14 @@ public class FileUpload extends HttpServlet {
                             JSONObject file = new JSONObject();
                             file.put("name", name);
                             file.put("size", item.getSize());
-                            file.put("url", fileUploadPath + "/" + name);
+                            String url = request.getScheme() + "://"+request.getServerName() + ":" + request.getServerPort() + fileDirectory;
+
+
+                            url+=File.separator+name;
+                            //win 的路径 要转换 否则再数据库的json 又发生错误
+
+                            url = url.replaceAll("\\\\","/");
+                            file.put("url", url);
                             file.put("deleteType", "post");
                             files.add(file);
                         } else {

@@ -7,11 +7,12 @@
 package com.ht.c2c.servicex.mall;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ht.c2c.dataBase.DataSet;
 import com.ht.c2c.redis.Redis;
 import com.ht.c2c.returnObject.ReturnObject;
-import com.ht.c2c.tools.Configure;
+
 import com.ht.c2c.tools.JWT;
 import com.ht.c2c.tools.SQLTools;
 
@@ -19,8 +20,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.Map;
+
 
 import static com.ht.c2c.tools.SQLTools.getDateNow;
 
@@ -36,8 +38,9 @@ import static com.ht.c2c.tools.SQLTools.getDateNow;
 public class Common {
 
 
-    String tablename ;
-
+    public String tablename ;
+    public int onepageshownum = 10;
+    public int pagenum = 1;
     public Common()
     {
 
@@ -60,7 +63,7 @@ public class Common {
 
 
         System.out.println(token);
-        Hashtable<String,Object> ht = JSON.parseObject(createstr, Hashtable.class);
+        HashMap<String,Object> ht = JSON.parseObject(createstr, HashMap.class);
         System.out.println(createstr);
         ht.put("createdate",getDateNow());
 //        ht.put("ccode",)
@@ -103,19 +106,22 @@ public class Common {
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/update/{id}")
-    public String update(@HeaderParam("token") String token,@PathParam("id") Long id,String updatejson)
+    public String update(@HeaderParam("token") String token,@PathParam("id") String id,String updatejson)
     {
 
 
-        Hashtable<String,String> ht = JSON.parseObject(updatejson, Hashtable.class);
+
+        System.out.println(updatejson);
+        System.out.println(id);
+        HashMap<String,Object> ht = JSON.parseObject(updatejson, HashMap.class);
 
         ht.put("updatedate",getDateNow());
 
         String keyjson = "{'icode':'"+id+"'}";
-        Hashtable<String,Object> keyht = JSON.parseObject(keyjson, Hashtable.class);
+        HashMap<String,Object> keyht = JSON.parseObject(keyjson, HashMap.class);
 
         try {
-            SQLTools.getInstance().updateFromHt("addr",ht,keyht);
+            SQLTools.getInstance().updateFromHt(this.tablename,ht,keyht);
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -137,7 +143,7 @@ public class Common {
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/delete/{id}")
-    public String delete(@HeaderParam("token") String token,@PathParam("id") Long id)
+    public String delete(@HeaderParam("token") String token,@PathParam("id") String id)
     {
         String sql = "delete from addr where icode ="+id;
         try {
@@ -155,7 +161,7 @@ public class Common {
         return JSON.toJSON(ro).toString();
     }
 
-    @GET
+    @POST
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/list")
@@ -163,38 +169,76 @@ public class Common {
     {
 
         try {
-        Hashtable<String,Object> ht = JSON.parseObject(bodyquery, Hashtable.class);
 
-        int onepageshownum = 10;
-        int pagenum = 1;
-        String sql = "select * from addr where 1=1  limit "+((pagenum-1)*onepageshownum)+","+onepageshownum+"";
+            System.out.println("bodyquery ="+bodyquery);
+      //  Hashtable<String,Object> ht = JSON.parseObject(bodyquery, Hashtable.class);
+
+
+        String sql = "select * from "+tablename+" where 1=1  limit "+((pagenum-1)*onepageshownum)+","+onepageshownum+"";
 
             DataSet ds = SQLTools.getInstance().query(sql);
-            return JSON.toJSON(ds).toString();
+
+            String jsonString = JSON.toJSONString(ds);
+            JSONArray ja =(JSONArray)JSON.parseArray(jsonString);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("ds",ja);
+            JSONObject jinfo = new JSONObject();
+            jinfo.put("total",110);
+            jinfo.put("onepagenum",10);
+            jinfo.put("curpagenum",2);
+
+            jsonObject.put("info",jinfo);
+
+            ReturnObject  ro =new ReturnObject();
+            ro.setType(ReturnObject.SUCCESS);
+            ro.setMsg("成功");
+            ro.setJson(jsonObject);
+
+            return JSON.toJSON(ro).toString();
         } catch (Exception e) {
             e.printStackTrace();
             ReturnObject  ro =new ReturnObject();
             ro.setType(ReturnObject.ERROR);
             ro.setMsg("失败");
             return JSON.toJSON(ro).toString();
+
         }
+
     }
 
 
-    @GET
+    @POST
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public String one(@HeaderParam("token") String token,@PathParam("id") Long id)
+    public String one(@HeaderParam("token") String token,@PathParam("id") String id)
     {
         try {
 
 
 
-            String sql = "select * from addr where icode = "+id+"";
+            String sql = "select * from "+this.tablename+" where icode = '"+id+"'";
 
             DataSet ds = SQLTools.getInstance().query(sql);
-            return JSON.toJSON(ds).toString();
+
+
+
+
+            ReturnObject  ro =new ReturnObject();
+            ro.setType(ReturnObject.SUCCESS);
+            ro.setMsg("成功");
+
+            String jsonString = JSON.toJSONString(ds);
+            JSONArray ja =(JSONArray)JSON.parseArray(jsonString);
+            JSONObject jsonObject = new JSONObject();
+            if(ja.size() >0) {
+                jsonObject.put("row", ja.get(0));
+
+
+            }
+            ro.setJson(jsonObject);
+
+            return JSON.toJSON(ro).toString();
         } catch (Exception e) {
             e.printStackTrace();
             ReturnObject  ro =new ReturnObject();
@@ -217,7 +261,7 @@ public class Common {
         return "Hello World!";
     }*/
 
-    @GET
+   /* @GET
     @Produces({MediaType.APPLICATION_JSON,MediaType.TEXT_PLAIN})
     @Path("/list2")
     public String getAlladdr(@HeaderParam("token") String token) {
@@ -236,7 +280,7 @@ public class Common {
         if(ds !=null)
             return ds.toString();
         return null;
-    }
+    }*/
 
 
     @POST
