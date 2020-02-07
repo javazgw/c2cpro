@@ -1,8 +1,10 @@
 package com.ht.c2c.server.test;
 
+import com.alibaba.fastjson.JSON;
 import com.ht.c2c.dataBase.DataSet;
 import com.ht.c2c.server.Cache;
 
+import javax.annotation.PostConstruct;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
@@ -20,14 +22,15 @@ public class HelloWorldResource {
         System.out.println("id=" +id);
         return "Hello World!";
     }
-
-    @GET
+    @POST
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces(MediaType.APPLICATION_JSON)
     @Path("list")
-    public String test() {
+    public String list(@PathParam("id") Long id) {
         System.out.println(this);
-        return "{name:'zgw'}";
+        System.out.println("id=" +id);
+
+        return "{\"data\":{\"name\":\"zgw\"},\"code\":20000}";
     }
     @Path("name/{id}")
     @GET
