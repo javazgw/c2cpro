@@ -6,6 +6,7 @@ import com.alibaba.fastjson.serializer.SerializeWriter;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.sql.Types;
 import java.util.Vector;
 
 public class DataSetSerializer implements ObjectSerializer {
@@ -37,9 +38,20 @@ public class DataSetSerializer implements ObjectSerializer {
 
                 out.writeFieldName(c.getCellname());
 
+                if(c.getValue()!=null) {
 
-
-                out.writeString(c.getValue().toString());
+                    if(c.getCelltype()==Types.LONGVARCHAR)
+                    {
+                        out.write(c.getValue().toString());
+                    }
+                    else {
+                        out.writeString(c.getValue().toString());
+                    }
+                }
+                else
+                {
+                    out.writeNull();
+                }
 
                 if(count!=cellVector.size())
                     out.write(',');
@@ -55,8 +67,8 @@ public class DataSetSerializer implements ObjectSerializer {
         out.write(']');
 
 
-        if(rowcount!=v.size())
-            out.write(',');
+//        if(rowcount!=v.size())
+//            out.write(',');
 
     }
 }

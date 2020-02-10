@@ -89,22 +89,70 @@ public class Maintain extends Common {
     @Path("/list")
     public String  list(@HeaderParam("token") String token,String bodyquery)
     {
+/*
+        onepagenum: 10,
+                total: 0,
+            curpagenum: 1*/
 
         try {
 
+            StringBuffer sqlquery = new StringBuffer();
+            HashMap<String,Object> queryht = new HashMap<>();
+            if(bodyquery!=null && !bodyquery.equals(""))
+            {
+                 queryht = JSON.parseObject(bodyquery, HashMap.class);
+            }
 
-            String sql = "select * from "+tablename+" where 1=1    order by createdate desc limit "+((pagenum-1)*onepageshownum)+","+onepageshownum+"";
+            for(String key :queryht.keySet())
+            {
+
+                Object value = queryht.get(key);
+                if(key.equals("onepagenum") )
+                {
+                    onepagenum = Integer.parseInt(value.toString());
+                    continue;
+                }
+                if(key.equals("total"))
+                {
+                    continue;
+                }
+                if(key.equals("curpagenum"))
+                {
+                    curpagenum = Integer.parseInt(value.toString());
+                    continue;
+                }
+
+                if(value!=null) {
+                    value =value.toString().replaceAll("'","''");
+                    sqlquery.append(key);
+                    sqlquery.append(" like ");
+
+                    sqlquery.append("  '%" +value +"%'");
+                    sqlquery.append(" and ");
+                }
+            }
+
+
+
+            String sql = "select * from "+tablename+" where "+ sqlquery + " 1=1    order by createdate desc  ";
+
+            String totalsql = " select count(*) as c from ("+sql+" ) as a ";
+            sql = sql + " limit "+((curpagenum -1)* onepagenum)+","+ onepagenum +"";
 
             DataSet ds = SQLTools.getInstance().query(sql);
+
+            DataSet totalds = SQLTools.getInstance().query(totalsql);
+
+
 
             String jsonString = JSON.toJSONString(ds);
             JSONArray ja =(JSONArray)JSON.parseArray(jsonString);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("ds",ja);
             JSONObject jinfo = new JSONObject();
-            jinfo.put("total",110);
-            jinfo.put("onepagenum",10);
-            jinfo.put("curpagenum",2);
+            jinfo.put("total",Integer.parseInt(totalds.getValue(0,"c").toString()));
+            jinfo.put("onepagenum",onepagenum);
+            jinfo.put("curpagenum",curpagenum);
 
             jsonObject.put("info",jinfo);
 

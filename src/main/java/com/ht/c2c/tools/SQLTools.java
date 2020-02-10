@@ -134,12 +134,12 @@ public class SQLTools {
 
                     int type = rs.getMetaData().getColumnType(i+1);
 
-                    System.out.println("colname"+colname +"type = "+ type);
+                    //System.out.println("colname"+colname +"type = "+ type);
                     //java.sql.Types.VARCHAR:
                     //对于mysql 这是JSON 类型  右面jdbc 升级估计会有bug
                     if(type ==Types.LONGVARCHAR)
                     {
-                        System.out.println(rs.getObject(colname).getClass());
+                       // System.out.println(rs.getObject(colname).getClass());
 
                        // r.setValue(colname, rs.getObject(colname));
                         Cell c = new Cell(colname,rs.getObject(colname),Types.LONGVARCHAR);

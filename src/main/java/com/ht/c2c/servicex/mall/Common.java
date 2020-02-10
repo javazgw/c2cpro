@@ -13,7 +13,6 @@ import com.ht.c2c.dataBase.DataSet;
 import com.ht.c2c.redis.Redis;
 import com.ht.c2c.returnObject.ReturnObject;
 
-import com.ht.c2c.tools.JWT;
 import com.ht.c2c.tools.SQLTools;
 
 import javax.ws.rs.*;
@@ -39,8 +38,8 @@ public class Common {
 
 
     public String tablename ;
-    public int onepageshownum = 10;
-    public int pagenum = 1;
+    public int onepagenum = 10;
+    public int curpagenum = 1;
     public Common()
     {
 
@@ -174,7 +173,7 @@ public class Common {
       //  Hashtable<String,Object> ht = JSON.parseObject(bodyquery, Hashtable.class);
 
 
-        String sql = "select * from "+tablename+" where 1=1  limit "+((pagenum-1)*onepageshownum)+","+onepageshownum+"";
+        String sql = "select * from "+tablename+" where 1=1  limit "+((curpagenum -1)* onepagenum)+","+ onepagenum +"";
 
             DataSet ds = SQLTools.getInstance().query(sql);
 

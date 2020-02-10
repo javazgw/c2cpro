@@ -8,10 +8,12 @@ import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.ht.c2c.tools.SQLTools;
+import org.slf4j.LoggerFactory;
 
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.logging.Logger;
 
 import static com.ht.c2c.dataBase.DataSetEvent.DataSetValueChangeEvent;
 import static com.ht.c2c.dataBase.DataSetTools.getJson;
@@ -315,6 +317,7 @@ public class DataSet implements Serializable{
     public static void main(String[] argc)
     {
 
+
 //        SerializeConfig.getGlobalInstance().put(Row.class, new RowSerializer());
         SerializeConfig.getGlobalInstance().put(DataSet.class, new DataSetSerializer());
 
@@ -390,12 +393,25 @@ public class DataSet implements Serializable{
         try {
            // SQLTools.getInstance().updateFromHt("maintain",ht3,keyht);
             DataSet ds1 = SQLTools.getInstance().query("select icode,filelist,name from maintain where icode  ='67e1019b-1849-4bb0-a70c-6b67bf55e74d'");
+//            DataSet ds1 = SQLTools.getInstance().query("select icode,filelist,name from maintain limit 0,3");
 
 
             System.out.println(getJson(ds1));
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+
+        String str1 =null;
+        String str2 ="1";
+        if(str1!=null && !str1.equals("3"))
+        {
+            System.out.println("true");
+        }
+        else
+        {
+            System.out.println("false");
         }
     }
 }
