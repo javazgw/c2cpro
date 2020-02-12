@@ -259,6 +259,7 @@ public class SQLTools {
 
         for(String key:contentht.keySet())
         {
+
             sql.append(key);
             sql.append(",");
 
@@ -267,9 +268,16 @@ public class SQLTools {
         sql.append(") values (");
         for(String key:contentht.keySet())
         {
-            sql.append("'");
-            sql.append(contentht.get(key));
-            sql.append("'");
+
+            if(contentht.get(key)!=null) {
+                sql.append("'");
+                sql.append(contentht.get(key));
+                sql.append("'");
+            }
+            else
+            {
+                sql.append(" null");
+            }
             sql.append(",");
 
 
@@ -296,16 +304,25 @@ public class SQLTools {
         {
             sql.append(key);
             sql.append(" = ");
-            sql.append("'");
+//            sql.append("'");
             if(contentht.get(key) instanceof JSON)
             {
+                sql.append("'");
                 sql.append(JSON.toJSONString(contentht.get(key)));
-
+                sql.append("'");
             }
             else {
-                sql.append(contentht.get(key).toString());
+                if(contentht.get(key)==null)
+                {
+                    sql.append( " null ");
+                }
+                else {
+                    sql.append("'");
+                    sql.append(contentht.get(key).toString());
+                    sql.append("'");
+                }
             }
-            sql.append("'");
+//            sql.append("'");
             sql.append(",");
         }
         sql.deleteCharAt(sql.length()-1);
