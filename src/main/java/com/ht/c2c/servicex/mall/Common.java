@@ -144,7 +144,7 @@ public class Common {
     @Path("/delete/{id}")
     public String delete(@HeaderParam("token") String token,@PathParam("id") String id)
     {
-        String sql = "delete from addr where icode ="+id;
+        String sql = "delete from "+this.tablename+" where icode ="+id;
         try {
             SQLTools.getInstance().Update(sql);
         } catch (Exception e) {

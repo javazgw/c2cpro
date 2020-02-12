@@ -57,11 +57,18 @@ public class LoginFilter implements Filter {
         }
         httpServletResponse.setHeader("X-Powered-By","httech");
 //        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
-        httpServletResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:9527");
+        String originHeader = ((HttpServletRequest) servletRequest).getHeader("Origin");
+        //@Todo 设置跨域url
+        System.out.println("originHeader = "+originHeader);
+
+        //httpServletResponse.setHeader("Access-Control-Allow-Origin", "http://192.168.1.193:9527");
+        httpServletResponse.setHeader("Access-Control-Allow-Origin", originHeader);
         httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
         httpServletResponse.setHeader("Access-Control-Allow-Methods", "*");
         httpServletResponse.setHeader("Access-Control-Allow-Headers", "content-type,HT-Token,x-token,token,id,x-powered-by");
         httpServletResponse.setHeader("Access-Control-Request-Headers", "Origin, X-Requested-With, content-Type, Accept, Authorization");
+
+        httpServletResponse.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
 //        httpServletResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
 
 //        if (httpServletRequest.getMethod().equals("OPTIONS")) {
