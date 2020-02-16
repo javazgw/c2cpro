@@ -31,6 +31,8 @@ public class HtApp extends Application {
         classes.add(Product.class);
         classes.add(Maintain.class);
         classes.add(Setting.class);
+        classes.add(gcodetype.class);
+        classes.add(GcodeAttr.class);
 //暂时放在此处 应该再init 里面的
         SerializeConfig.getGlobalInstance().put(DataSet.class, new DataSetSerializer());
 
