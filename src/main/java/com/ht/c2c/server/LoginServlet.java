@@ -48,6 +48,53 @@ public class LoginServlet extends HttpServlet{
             out.println("<h3>denglu</h3>");
         }
 
+        else if(action.equals("httpclientlogin"))
+        {
+            ReturnObject rto = new ReturnObject();
+            String bname = req.getParameter("bname");
+            String pass = req.getParameter("pass");
+
+
+            String sql = "select count(*) as c from bcode where bname='"+bname+"' and pass=md5('"+pass+"')";
+            Connection con = null;
+            Configure.info(sql);
+            try {
+                con = SQLTools.getInstance().getConnection();
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+
+                while(rs.next())
+                {
+                    int c = rs.getInt("c");
+                    if(c==1)
+                    {
+                        rto.setType(SUCCESS);
+                        req.getSession().setAttribute("bname",bname);
+                        PrintWriter out = resp.getWriter();
+
+                        out.println(JSON.toJSON(rto));
+                    }
+                    else if(c==0)
+                    {
+                        rto.setType(ERROR);
+                        rto.setMsg("用户名不存在或者密码不正确");
+                        PrintWriter out = resp.getWriter();
+                        out.println(JSON.toJSON(rto));
+                    }
+                    else{
+                        rto.setType(ERROR);
+                        PrintWriter out = resp.getWriter();
+                        out.println(JSON.toJSON(rto));
+                    }
+                }
+            } catch (Exception e) {
+//                e.printStackTrace();
+                Configure.error(e.getMessage());
+                PrintWriter out = resp.getWriter();
+                out.println("<h3>错误</h3>");
+            }
+        }
+
         else if(action.equals("login"))
         {
             ReturnObject rto = new ReturnObject();
@@ -66,7 +113,7 @@ public class LoginServlet extends HttpServlet{
             }
 
 
-            String sql = "select count(*) as c from bcode where bname='"+bname+"' and pass=md5("+pass+")";
+            String sql = "select count(*) as c from bcode where bname='"+bname+"' and pass=md5('"+pass+"')";
             Connection con = null;
             Configure.info(sql);
             try {
