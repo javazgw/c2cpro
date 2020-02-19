@@ -7,9 +7,12 @@
 package com.ht.c2c.returnObject;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.ht.c2c.dataBase.DataSet;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  *
@@ -70,6 +73,65 @@ public class ReturnObject implements Serializable {
 
     public void setJson(JSONObject json) {
         this.json = json;
+    }
+
+
+
+
+    public static String ReturnError(int type)
+    {
+        ReturnObject ro =new ReturnObject();
+
+        ro.setType(type);
+        ro.setMsg("失败");
+        return JSON.toJSON(ro).toString();
+    }
+    public static String ReturnRowSuccess( HashMap<String,Object> ht,String action)
+    {
+        ReturnObject ro =new ReturnObject();
+        ro.setType(ReturnObject.SUCCESS);
+        ro.setMsg("成功");
+        ro.setAction(action);
+        ro.setJson((JSONObject)  JSON.toJSON(ht));
+
+
+        return JSON.toJSON(ro).toString();
+    }
+    public static String ReturnDSSuccess(DataSet ds)
+    {
+        return ReturnDSSuccess (ds,0,0,0);
+    }
+    /**
+     * 通用类返回数据集dataset和数据的总数.
+     * @param ds
+     * @param totalcount  总数
+     * @param onepagenum  一页显示数量
+     * @param curpagenum   当前页数w
+     * @return
+     */
+    public static String ReturnDSSuccess(DataSet ds,int totalcount ,int onepagenum,int curpagenum)
+    {
+        ReturnObject ro = new ReturnObject();
+        String jsonString = JSON.toJSONString(ds);
+        JSONArray ja =(JSONArray)JSON.parseArray(jsonString);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("ds",ja);
+
+        if(totalcount!=0) {
+            JSONObject jinfo = new JSONObject();
+            jinfo.put("total", totalcount);
+            jinfo.put("onepagenum", onepagenum);
+            jinfo.put("curpagenum", curpagenum);
+
+            jsonObject.put("info", jinfo);
+        }
+
+        ro.setType(ReturnObject.SUCCESS);
+        ro.setMsg("成功");
+        ro.setJson(jsonObject);
+
+        return JSON.toJSON(ro).toString();
+       // return ro;
     }
 
     public  static void main(String[] argc)

@@ -18,6 +18,9 @@ import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.*;
 
+import static com.ht.c2c.returnObject.ReturnObject.ReturnDSSuccess;
+import static com.ht.c2c.returnObject.ReturnObject.ReturnError;
+import static com.ht.c2c.returnObject.ReturnObject.ReturnRowSuccess;
 import static com.ht.c2c.tools.SQLTools.getDateNow;
 
 @ServerEndpoint(value = "/websocket/M")
@@ -145,7 +148,7 @@ public class Maintain extends Common {
 
 
 
-            String jsonString = JSON.toJSONString(ds);
+  /*          String jsonString = JSON.toJSONString(ds);
             JSONArray ja =(JSONArray)JSON.parseArray(jsonString);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("ds",ja);
@@ -161,14 +164,17 @@ public class Maintain extends Common {
             ro.setMsg("成功");
             ro.setJson(jsonObject);
 
-            return JSON.toJSON(ro).toString();
+            return JSON.toJSON(ro).toString();*/
+
+
+            return ReturnDSSuccess(ds,Integer.parseInt(totalds.getValue(0,"c").toString()),onepagenum,curpagenum);
         } catch (Exception e) {
             e.printStackTrace();
-            ReturnObject  ro =new ReturnObject();
+           /* ReturnObject  ro =new ReturnObject();
             ro.setType(ReturnObject.ERROR);
             ro.setMsg("失败");
-            return JSON.toJSON(ro).toString();
-
+            return JSON.toJSON(ro).toString();*/
+            return ReturnError(ReturnObject.ERROR);
         }
 
     }
@@ -196,15 +202,17 @@ public class Maintain extends Common {
         } catch (Exception e) {
 
             e.printStackTrace();
-            ReturnObject ro =new ReturnObject();
+        /*    ReturnObject ro =new ReturnObject();
             ro.setType(ReturnObject.ERROR);
             ro.setMsg("失败");
-            return JSON.toJSON(ro).toString();
+            return JSON.toJSON(ro).toString();*/
+
+            return ReturnError(ReturnObject.ERROR);
         }
         //broatcast(json);
 
         ht.put("icode",id);
-        ReturnObject ro =new ReturnObject();
+       /* ReturnObject ro =new ReturnObject();
         ro.setType(ReturnObject.SUCCESS);
         ro.setMsg("成功");
         ro.setAction("UPDATE");
@@ -212,6 +220,8 @@ public class Maintain extends Common {
         //ro.setJson(JSON.toJSONString(ht));
         broatcast(JSON.toJSON(ro).toString());
         return JSON.toJSON(ro).toString();
+*/
+        return ReturnRowSuccess(ht,"UPDATE");
 
     }
 
