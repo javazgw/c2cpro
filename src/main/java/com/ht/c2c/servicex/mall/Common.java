@@ -32,7 +32,7 @@ import static com.ht.c2c.tools.SQLTools.getDateNow;
  * 分页查询表记录：GET /{控制器路由名称}/list
  * 获取指定记录详情：GET /{控制器路由名称}/{id}
  */
-//地址管理
+//地址管理1
 
 public class Common {
 
