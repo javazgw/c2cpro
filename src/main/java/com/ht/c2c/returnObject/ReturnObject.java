@@ -37,6 +37,8 @@ public class ReturnObject implements Serializable {
     //JWT 没有用户名
     public static final  int JWT_TOKEN_NO_USERNAME = 6020;
 
+    public static final int  LOGINSUCCESSRE = 6030;
+
 
 
     public ReturnObject()
@@ -84,6 +86,21 @@ public class ReturnObject implements Serializable {
 
         ro.setType(type);
         ro.setMsg("失败");
+        return JSON.toJSON(ro).toString();
+    }
+
+    public static String ReturnLoginSuccess(String token)
+    {
+        ReturnObject ro =new ReturnObject();
+        ro.setType(ReturnObject.SUCCESS);
+        ro.setMsg(token);
+        return JSON.toJSON(ro).toString();
+    }
+    public static String ReturnLoginERROR()
+    {
+        ReturnObject ro =new ReturnObject();
+        ro.setType(ReturnObject.ERROR);
+        ro.setMsg("用户名密码或错误");
         return JSON.toJSON(ro).toString();
     }
     public static String ReturnRowSuccess( HashMap<String,Object> ht,String action)
