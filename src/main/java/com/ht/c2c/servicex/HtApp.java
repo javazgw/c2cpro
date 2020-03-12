@@ -49,7 +49,7 @@ public class HtApp extends Application {
       //  classes.add(Product.class);
 //        classes.add(Common.class);
         System.out.println("http://localhost:8080/helloworld---");
-        System.out.println("http://localhost:8080/h2---");
+//        System.out.println("http://localhost:8080/h2---");
 
         System.out.println(""+
 
