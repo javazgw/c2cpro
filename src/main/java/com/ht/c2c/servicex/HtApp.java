@@ -20,6 +20,9 @@ import java.util.Set;
 public class HtApp extends Application {
 
 
+
+
+
     Set<Class<?>> classes = new HashSet<Class<?>>();
     public HtApp()
     {
@@ -35,6 +38,21 @@ public class HtApp extends Application {
         classes.add(GcodeAttr.class);
 //暂时放在此处 应该再init 里面的
         SerializeConfig.getGlobalInstance().put(DataSet.class, new DataSetSerializer());
+        System.out.println("http://localhost:8080/helloworld---");
+//        System.out.println("http://localhost:8080/h2---");
+
+        System.out.println(""+
+
+                " _______  __   __  _______  ___   _    _______  _______  __   __  ___   ______          ____   _______\n"+
+                "|       ||  | |  ||       ||   | | |  |       ||       ||  | |  ||   | |      |        |    | |  _    |\n"+
+                "|    ___||  | |  ||       ||   |_| |  |       ||   _   ||  |_|  ||   | |  _    | ____   |   | | | |   |\n"+
+                "|   |___ |  |_|  ||       ||      _|  |       ||  | |  ||       ||   | | | |   ||____|  |   | | |_|   |\n"+
+                "|    ___||       ||      _||     |_   |      _||  |_|  ||       ||   | | |_|   |        |   | |___    |\n"+
+                "|   |    |       ||     |_ |    _  |  |     |_ |       | |     | |   | |       |        |   |     |   |\n"+
+                "|___|    |_______||_______||___| |_|  |_______||_______|  |___|  |___| |______|         |___|     |___|\n"+
+
+                "");
+
 
     }
     @Override
@@ -48,20 +66,7 @@ public class HtApp extends Application {
        // classes.add(Order.class);
       //  classes.add(Product.class);
 //        classes.add(Common.class);
-        System.out.println("http://localhost:8080/helloworld---");
-//        System.out.println("http://localhost:8080/h2---");
 
-        System.out.println(""+
-
-" _______  __   __  _______  ___   _    _______  _______  __   __  ___   ______          ____   _______\n"+
-"|       ||  | |  ||       ||   | | |  |       ||       ||  | |  ||   | |      |        |    | |  _    |\n"+
-"|    ___||  | |  ||       ||   |_| |  |       ||   _   ||  |_|  ||   | |  _    | ____   |   | | | |   |\n"+
-"|   |___ |  |_|  ||       ||      _|  |       ||  | |  ||       ||   | | | |   ||____|  |   | | |_|   |\n"+
-"|    ___||       ||      _||     |_   |      _||  |_|  ||       ||   | | |_|   |        |   | |___    |\n"+
-"|   |    |       ||     |_ |    _  |  |     |_ |       | |     | |   | |       |        |   |     |   |\n"+
-"|___|    |_______||_______||___| |_|  |_______||_______|  |___|  |___| |______|         |___|     |___|\n"+
-
-                "");
         return classes;
     }
 }

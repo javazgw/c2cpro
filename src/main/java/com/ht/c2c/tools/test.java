@@ -10,6 +10,13 @@ public class test {
 
     public  static  void main(String[] argc)
     {
+
+        int[][] array = new int[2][3];
+        System.out.println(array.length);
+        if(1==1)
+            return;
+
+
        /* int x = 0;
         while(1==1)
         {
